@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import {
   Button, 
   Input,
@@ -31,27 +31,29 @@ class Login extends Component {
         <SafeAreaView style={styles.safeArea}>
           <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
           <Layout style={{flex: 1}}>
-            <View style={styles.logo}>
-              <Text category="h1" style={{color: 'white'}}>Login</Text>
-              <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
-            </View>
-            <View style={styles.container}>
-              <Input 
-                placeholder="Username"
-                value={this.state.username}
-                onChangeText={this.handleChange('username')}
-                style={styles.input}
-              />
-              <Input 
-                placeholder="Password"
-                value={this.state.password}
-                onChangeText={this.handleChange('password')}
-                secureTextEntry
-                style={styles.input}
-              />
-              <Button onPress={() => this.props.navigation.navigate('Home')}>Login</Button>
-              <Text category="p1" style={styles.forget}>Forgot your password?</Text>
-            </View>
+            <ScrollView>
+              <View style={styles.logo}>
+                <Text category="h1" style={{color: 'white'}}>Login</Text>
+                <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
+              </View>
+              <View style={styles.container}>
+                <Input 
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChangeText={this.handleChange('username')}
+                  style={styles.input}
+                />
+                <Input 
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChangeText={this.handleChange('password')}
+                  secureTextEntry
+                  style={styles.input}
+                />
+                <Button onPress={() => this.props.navigation.navigate('Home')}>Login</Button>
+                <Text category="p1" style={styles.forget}>Forgot your password?</Text>
+              </View>
+            </ScrollView>
             <View style={styles.footer}>
               <Text category="p1">{"Don't have an account? "}</Text>
               <TouchableOpacity>
@@ -107,6 +109,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
+    paddingTop: 8,
     paddingBottom: 20,
     justifyContent: 'center'
   },

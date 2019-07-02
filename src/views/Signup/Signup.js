@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import {
   Button, 
   Input,
@@ -33,41 +33,43 @@ class Login extends Component {
         <SafeAreaView style={styles.safeArea}>
           <Layout style={{flex: 1}}>
             <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
-            <View style={styles.logo}>
-              <Text category="h1" style={{color: 'white'}}>Sign up</Text>
-              <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
-            </View>
-            <View style={styles.container}>
-              <Input 
-                keyboardType="email-address"
-                placeholder="Email"
-                value={this.state.email}
-                onChangeText={this.handleChange('email')}
-                style={styles.input}
-              />
-              <Input 
-                placeholder="Username"
-                value={this.state.username}
-                onChangeText={this.handleChange('username')}
-                style={styles.input}
-              />
-              <Input 
-                placeholder="Password"
-                value={this.state.password}
-                onChangeText={this.handleChange('password')}
-                secureTextEntry
-                style={styles.input}
-              />
-              <Input 
-                placeholder="Re-enter password"
-                value={this.state.password2}
-                onChangeText={this.handleChange('password2')}
-                status={this.state.password===this.state.password2?'':'danger'}
-                secureTextEntry
-                style={styles.input}
-              />
-              <Button onPress={() => this.props.navigation.navigate('Home')}>Sign up</Button>
-            </View>
+            <ScrollView>
+              <View style={styles.logo}>
+                <Text category="h1" style={{color: 'white'}}>Sign up</Text>
+                <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
+              </View>
+              <View style={styles.container}>
+                <Input 
+                  keyboardType="email-address"
+                  placeholder="Email"
+                  value={this.state.email}
+                  onChangeText={this.handleChange('email')}
+                  style={styles.input}
+                />
+                <Input 
+                  placeholder="Username"
+                  value={this.state.username}
+                  onChangeText={this.handleChange('username')}
+                  style={styles.input}
+                />
+                <Input 
+                  placeholder="Password"
+                  value={this.state.password}
+                  onChangeText={this.handleChange('password')}
+                  secureTextEntry
+                  style={styles.input}
+                />
+                <Input 
+                  placeholder="Re-enter password"
+                  value={this.state.password2}
+                  onChangeText={this.handleChange('password2')}
+                  status={this.state.password===this.state.password2?'':'danger'}
+                  secureTextEntry
+                  style={styles.input}
+                />
+                <Button onPress={() => this.props.navigation.navigate('Home')}>Sign up</Button>
+              </View>
+            </ScrollView>
             <View style={styles.footer}>
               <Text category="p1">{"Already have an account? "}</Text>
               <TouchableOpacity>
@@ -118,6 +120,7 @@ const styles = StyleSheet.create({
   },
   footer: {
     flexDirection: 'row',
+    paddingTop: 8,
     paddingBottom: 20,
     justifyContent: 'center'
   },
