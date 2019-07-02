@@ -24,7 +24,11 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.aviedb.mobileprojectexpo"
+    },
+    "android": {
+      "package": "com.aviedb.mobileprojectexpo"
     },
     "androidStatusBar": {
       "backgroundColor": "#ffffff"

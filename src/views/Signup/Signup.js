@@ -34,21 +34,21 @@ class Login extends Component {
           <Layout style={{flex: 1}}>
             <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
             <View style={styles.logo}>
-              <Text category="h4" style={{color: 'white'}}>Sign up</Text>
+              <Text category="h1" style={{color: 'white'}}>Sign up</Text>
               <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
             </View>
             <View style={styles.container}>
-              <Input 
-                placeholder="Username"
-                value={this.state.username}
-                onChangeText={this.handleChange('username')}
-                style={styles.input}
-              />
               <Input 
                 keyboardType="email-address"
                 placeholder="Email"
                 value={this.state.email}
                 onChangeText={this.handleChange('email')}
+                style={styles.input}
+              />
+              <Input 
+                placeholder="Username"
+                value={this.state.username}
+                onChangeText={this.handleChange('username')}
                 style={styles.input}
               />
               <Input 

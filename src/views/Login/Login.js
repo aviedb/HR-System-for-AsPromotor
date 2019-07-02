@@ -50,7 +50,7 @@ class Login extends Component {
                 style={styles.input}
               />
               <Button onPress={() => this.props.navigation.navigate('Home')}>Login</Button>
-              <Text category="p1" style={styles.forget}>Forget password</Text>
+              <Text category="p1" style={styles.forget}>Forgot your password?</Text>
             </View>
             <View style={styles.footer}>
               <Text category="p1">{"Don't have an account? "}</Text>

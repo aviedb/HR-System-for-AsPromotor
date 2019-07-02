@@ -6,11 +6,13 @@ import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Login from './src/views/Login';
 import Signup from './src/views/Signup';
 import Home from './src/views/Home';
+import Settings from './src/views/Settings';
 
 const AppNavigator = createStackNavigator({
   Login,
   Signup,
   Home,
+  Settings
 });
 const AppContainer = createAppContainer(AppNavigator);
 

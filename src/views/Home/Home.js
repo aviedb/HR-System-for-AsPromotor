@@ -1,10 +1,11 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { StyleSheet, StatusBar, Platform, View, SafeAreaView } from 'react-native';
 import {
   Text,
   TopNavigation,
   BottomNavigation,
-  BottomNavigationTab
+  BottomNavigationTab,
+  Button
 } from 'react-native-ui-kitten';
 import { AntDesign } from '@expo/vector-icons';
 
@@ -31,32 +32,37 @@ class Home extends Component {
     this.setState({ selectedIndex, title: title[selectedIndex] });
   };
 
-  icon = (name, index) => () => {
-    return <AntDesign
+  icon = (name, index, IconComponent) => () => {
+    if (!IconComponent) IconComponent = AntDesign;
+    
+    let color = '#333A4F';
+    if (index !== null) color = this.state.selectedIndex === index? '#3267FF':'#8F9BB3';
+
+    return <IconComponent
       name={name}
       size={24}
-      color={this.state.selectedIndex === index?'#3267FF':'#8F9BB3'}
+      color={color}
     />
   }
 
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
-        <StatusBar 
-          translucent 
-          backgroundColor={Platform.OS==='android'? '#eee':'#fff'} 
+        <StatusBar
+          backgroundColor="#eee"
           barStyle="dark-content" />
         <TopNavigation
           title={this.state.title}
-          alignment={Platform.OS === 'android'? 'start':'center'}
+          alignment="center"
           style={styles.header} />
         <View style={styles.container}>
           <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+          <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>
         </View>
         <BottomNavigation
           style={styles.bottomNav}
           selectedIndex={this.state.selectedIndex}
-          indicatorStyle={{display: 'none'}}
+          indicatorStyle={{height: 0}}
           onSelect={this.onTabSelect}>
           <BottomNavigationTab icon={this.icon('home', 0)} />
           <BottomNavigationTab icon={this.icon('search1', 1)} />
@@ -87,21 +93,14 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   bottomNav: {
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: -4,
-    },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 16,
-    zIndex: 1
+    borderTopColor: '#dadada',
+    borderTopWidth: 1
   },
   container: {
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#fff'
+    backgroundColor: '#F7F9FC'
   }
 });
 
