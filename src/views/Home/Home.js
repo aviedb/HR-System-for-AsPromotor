@@ -61,7 +61,7 @@ class Home extends Component {
         }
         <View style={styles.container}>
           { this.state.selectedIndex === 1?
-            <Schedule />:
+            <Schedule navigation={this.props.navigation}/>:
             <View>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
               <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>

@@ -7,6 +7,7 @@ import {
   View,
   Text,
   TouchableOpacity,
+  TouchableNativeFeedback
 } from 'react-native';
 import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
 import {
@@ -34,7 +35,7 @@ function getPastDate(days) {
 }
 
 const ITEMS = [
-  {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
+  {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga gimana kalau titlenya panjang hiya hiya hiya hiya terrrrrr panjangin dikit lagi'}]},
   {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Pilates ABC'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
   {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
   {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
@@ -78,21 +79,24 @@ export default class ExpandableCalendarScreen extends Component {
     if (_.isEmpty(item)) {
       return this.renderEmptyItem();
     }
+
+    let TouchableComponent = Platform.select({
+      android: TouchableNativeFeedback,
+      ios: TouchableOpacity
+    })
     
     return (
-      <TouchableOpacity 
-        onPress={() => this.itemPressed(item.title)} 
-        style={styles.item}
+      <TouchableComponent 
+        onPress={() => this.props.navigation.navigate('Settings')} 
       >
-        <View>
-          <Text style={styles.itemHourText}>{item.hour}</Text>
-          <Text style={styles.itemDurationText}>{item.duration}</Text>
+        <View style={styles.item}>
+          <View>
+            <Text style={styles.itemHourText}>{item.hour}</Text>
+            <Text style={styles.itemDurationText}>{item.duration}</Text>
+          </View>
+          <Text style={styles.itemTitleText}>{item.title}</Text>
         </View>
-        <Text style={styles.itemTitleText}>{item.title}</Text>
-        <View style={styles.itemButtonContainer}>
-          <Button appearance="ghost">Info</Button>
-        </View>
-      </TouchableOpacity>
+      </TouchableComponent>
     );
   }
 
