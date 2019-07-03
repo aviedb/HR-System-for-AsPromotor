@@ -9,6 +9,8 @@ import {
 } from 'react-native-ui-kitten';
 import { AntDesign } from '@expo/vector-icons';
 
+import Schedule from '../Schedule';
+
 class Home extends Component {
 
   static navigationOptions = {
@@ -23,7 +25,7 @@ class Home extends Component {
   onTabSelect = (selectedIndex) => {
     let title = [
       'Home',
-      'Search',
+      'Schedule',
       'File',
       'Notification',
       'Profile'
@@ -51,13 +53,20 @@ class Home extends Component {
         <StatusBar
           backgroundColor="#eee"
           barStyle="dark-content" />
-        <TopNavigation
-          title={this.state.title}
-          alignment="center"
-          style={styles.header} />
+        {this.state.selectedIndex !== 1 &&
+          <TopNavigation
+            title={this.state.title}
+            alignment="center"
+            style={styles.header} />
+        }
         <View style={styles.container}>
-          <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
-          <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>
+          { this.state.selectedIndex === 1?
+            <Schedule />:
+            <View>
+              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>
+            </View>
+          }
         </View>
         <BottomNavigation
           style={styles.bottomNav}
@@ -65,7 +74,7 @@ class Home extends Component {
           indicatorStyle={{height: 0}}
           onSelect={this.onTabSelect}>
           <BottomNavigationTab icon={this.icon('home', 0)} />
-          <BottomNavigationTab icon={this.icon('search1', 1)} />
+          <BottomNavigationTab icon={this.icon('calendar', 1)} />
           <BottomNavigationTab icon={this.icon('pdffile1', 2)} />
           <BottomNavigationTab icon={this.icon('bells', 3)} />
           <BottomNavigationTab icon={this.icon('user', 4)} />
@@ -98,8 +107,6 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#F7F9FC'
   }
 });

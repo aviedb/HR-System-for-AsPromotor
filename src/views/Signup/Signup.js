@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, RefreshControl, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import {
   Button, 
   Input,
@@ -17,7 +17,22 @@ class Login extends Component {
     username: '',
     email: '',
     password: '',
-    password2: ''
+    password2: '',
+    refreshing: false
+  }
+
+  _onRefresh = () => {
+    this.setState({ refreshing: true});
+    
+    setTimeout(() => {
+      this.setState({ 
+        refreshing: false,
+        username: '',
+        email: '',
+        password: '',
+        password2: ''
+      });
+    }, 2000);
   }
 
   handleChange = (key) => (value) => {
@@ -33,7 +48,14 @@ class Login extends Component {
         <SafeAreaView style={styles.safeArea}>
           <Layout style={{flex: 1}}>
             <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
-            <ScrollView>
+            <ScrollView refreshControl={
+              <RefreshControl
+                refreshing={this.state.refreshing}
+                onRefresh={this._onRefresh}
+                colors={["#3267FF"]}
+                tintColor="#3267FF"
+              />
+            }>
               <View style={styles.logo}>
                 <Text category="h1" style={{color: 'white'}}>Sign up</Text>
                 <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
