@@ -49,8 +49,8 @@ const ITEMS = [
 
 export default class ExpandableCalendarScreen extends Component {
 
-  onDateChanged = (/* date, updateSource */) => {
-    // console.warn('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
+  onDateChanged = (date, updateSource) => {
+    console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
     // fetch and set data for date + week ahead
   }
 
@@ -82,7 +82,7 @@ export default class ExpandableCalendarScreen extends Component {
     let TouchableComponent = Platform.select({
       android: TouchableNativeFeedback,
       ios: TouchableOpacity
-    })
+    });
     
     return (
       <TouchableComponent 
