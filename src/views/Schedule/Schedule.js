@@ -5,13 +5,12 @@ import {
   Alert,
   StyleSheet,
   View,
-  Text,
   TouchableOpacity,
   TouchableNativeFeedback
 } from 'react-native';
 import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
 import {
-  Button
+  Text
 } from 'react-native-ui-kitten';
 
 
@@ -112,7 +111,7 @@ export default class ExpandableCalendarScreen extends Component {
   }
 
   getTheme = () => {
-    const themeColor = '#0059ff';
+    const themeColor = '#3267FF';
     const lightThemeColor = '#e6efff';
     const disabledColor = '#a6acb1';
     const black = '#20303c';

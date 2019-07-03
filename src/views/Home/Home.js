@@ -61,7 +61,7 @@ class Home extends Component {
         }
         <View style={styles.container}>
           { this.state.selectedIndex === 1?
-            <Schedule navigation={this.props.navigation}/>:
+            <Schedule navigation={this.props}/>:
             <View>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
               <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>
@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
     zIndex: 1
   },
   bottomNav: {
-    borderTopColor: '#dadada',
+    borderTopColor: '#EAEEF1',
     borderTopWidth: 1
   },
   container: {
