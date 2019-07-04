@@ -63,9 +63,8 @@ class Home extends Component {
         <View style={styles.container}>
           { this.state.selectedIndex === 1?
             <Schedule navigation={this.props.navigation}/>:
-            <View>
+            <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
-              <Button onPress={() => this.props.navigation.navigate('Settings')}>go so settings</Button>
             </View>
           }
         </View>
@@ -114,6 +113,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#F7F9FC'
+  },
+  view: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center'
   }
 });
 
