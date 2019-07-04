@@ -2,7 +2,6 @@ import _ from 'lodash';
 import React, {Component} from 'react';
 import {
   Platform,
-  Alert,
   StyleSheet,
   View,
   TouchableOpacity,
@@ -34,8 +33,8 @@ function getPastDate(days) {
 }
 
 const ITEMS = [
-  {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga gimana kalau titlenya panjang hiya hiya hiya hiya terrrrrr panjangin dikit lagi'}]},
-  {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Pilates ABC'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
+  {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
+  {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang dikit hampir2 baris'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
   {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
   {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
   {title: dates[4], data: [{}]},
@@ -54,16 +53,8 @@ export default class ExpandableCalendarScreen extends Component {
     // fetch and set data for date + week ahead
   }
 
-  onMonthChange = (/* month, updateSource */) => {
-    // console.warn('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
-  }
-  
-  buttonPressed() {
-    Alert.alert('show more');
-  }
-
-  itemPressed(id) {
-    Alert.alert(id);
+  onMonthChange = (month, updateSource) => {
+    console.log('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
 
   renderEmptyItem() {
@@ -79,21 +70,25 @@ export default class ExpandableCalendarScreen extends Component {
       return this.renderEmptyItem();
     }
 
-    let TouchableComponent = Platform.select({
+    const TouchableComponent = Platform.select({
       android: TouchableNativeFeedback,
       ios: TouchableOpacity
     });
     
     return (
       <TouchableComponent 
-        onPress={() => this.props.navigation.navigate('Settings')} 
+        onPress={() => this.props.navigation.navigate('AgendaDetail', {
+          title: item.title
+        })} 
       >
         <View style={styles.item}>
           <View>
             <Text style={styles.itemHourText}>{item.hour}</Text>
             <Text style={styles.itemDurationText}>{item.duration}</Text>
           </View>
-          <Text style={styles.itemTitleText}>{item.title}</Text>
+          <View style={{paddingLeft: 16}}>
+            <Text style={styles.itemTitleText}>{item.title}</Text>
+          </View>
         </View>
       </TouchableComponent>
     );
@@ -123,19 +118,19 @@ export default class ExpandableCalendarScreen extends Component {
       arrowStyle: {padding: 0},
       // month
       monthTextColor: black,
+      textMonthFontFamily: 'helvetica_neue_md',
       textMonthFontSize: 16,
-      textMonthFontWeight: 'bold',
       // day names
       textSectionTitleColor: black,
       textDayHeaderFontSize: 12,
-      textDayHeaderFontWeight: 'normal',
+      textDayHeaderFontFamily: 'helvetica_neue_lt',
       // today
       todayBackgroundColor: lightThemeColor,
       todayTextColor: themeColor,
       // dates
       dayTextColor: themeColor,
       textDayFontSize: 18,
-      textDayFontWeight: '500',
+      textDayFontFamily: 'helvetica_neue_lt',
       textDayStyle: {marginTop: Platform.OS === 'android' ? 2 : 4},
       // selected date
       selectedDayBackgroundColor: themeColor,
@@ -150,7 +145,7 @@ export default class ExpandableCalendarScreen extends Component {
     };
   }
 
-  render() {    
+  render() {
     return (
       <CalendarProvider 
         date={ITEMS[0].title} 
@@ -201,18 +196,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   itemHourText: {
-    color: 'black'
+    color: 'black',
+    fontFamily: 'helvetica_neue_lt'
   },
   itemDurationText: {
     color: 'grey', 
+    fontFamily: 'helvetica_neue_lt',
     fontSize: 12, 
     marginTop: 4,
     marginLeft: 4
   },
   itemTitleText: {
-    color: 'black', 
-    marginLeft: 16, 
-    fontWeight: 'bold', 
+    color: 'black',
+    fontFamily: 'helvetica_neue_md',
     fontSize: 16
   },
   itemButtonContainer: {

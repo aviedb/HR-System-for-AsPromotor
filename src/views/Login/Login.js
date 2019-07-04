@@ -33,8 +33,8 @@ class Login extends Component {
           <Layout style={{flex: 1}}>
             <ScrollView>
               <View style={styles.logo}>
-                <Text category="h1" style={{color: 'white'}}>Login</Text>
-                <Text category="p1" style={{color: 'white'}}>Lorem ipsum dolor sit amet</Text>
+                <Text category="h1" style={styles.logoTitle}>Login</Text>
+                <Text category="p1" style={styles.logoSubtitle}>Lorem ipsum dolor sit amet</Text>
               </View>
               <View style={styles.container}>
                 <Input 
@@ -98,6 +98,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#3267FF',
+  },
+  logoTitle: {
+    color: '#fff',
+    fontFamily: 'helvetica_neue_bd'
+  },
+  logoSubtitle: {
+    color: '#fff',
+    fontFamily: 'helvetica_neue_lt'
   },
   input: {
     marginBottom: 8

@@ -57,7 +57,8 @@ class Home extends Component {
           <TopNavigation
             title={this.state.title}
             alignment="center"
-            style={styles.header} />
+            style={styles.header}
+            titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
           { this.state.selectedIndex === 1?
@@ -100,6 +101,11 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 16,
     zIndex: 1
+  },
+  headerTitle: {
+    fontFamily: 'helvetica_neue_md',
+    fontWeight: "normal",
+    fontSize: 16
   },
   bottomNav: {
     borderTopColor: '#EAEEF1',
