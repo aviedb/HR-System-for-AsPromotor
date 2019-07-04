@@ -41,17 +41,13 @@ class App extends Component {
 
   render() {
 
-    if (!this.state.fontLoaded) return (
-      <View>
-        <Text>Loading</Text>
-      </View>
-    );
-
     return (
       <ApplicationProvider
         mapping={mapping}
         theme={lightTheme}>
-        <AppContainer />
+        {this.state.fontLoaded &&
+          <AppContainer />
+        }
       </ApplicationProvider>
     );
   }

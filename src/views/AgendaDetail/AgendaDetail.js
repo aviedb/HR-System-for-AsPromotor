@@ -52,7 +52,8 @@ class AgendaDetail extends Component {
               icon={this.icon('back')}
               onPress={() => this.props.navigation.goBack()}
             />}
-            style={styles.header} />
+            style={styles.header}
+            titleStyle={styles.headerTitle} />
           <View style={styles.container}>
             <Text>Lorem ipsum dolor sit amet settings</Text>
           </View>
@@ -78,6 +79,12 @@ const styles = StyleSheet.create({
     shadowRadius: 2.62,
     elevation: 16,
     zIndex: 1
+  },
+  headerTitle: {
+    fontFamily: 'helvetica_neue_md',
+    fontWeight: "normal",
+    fontSize: 16,
+    marginHorizontal: Platform.OS==='ios'? 16:0
   },
   container: {
     flex: 1,
