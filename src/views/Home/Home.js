@@ -95,7 +95,7 @@ class Home extends Component {
             titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
-          { this.state.selectedIndex === 4?
+          {this.state.selectedIndex === 4?
             <Schedule navigation={this.props.navigation}/>:
             <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>

@@ -151,7 +151,6 @@ export default class ExpandableCalendarScreen extends Component {
         date={new Date().toISOString().split('T')[0]} 
         onDateChanged={this.onDateChanged} 
         onMonthChange={this.onMonthChange}
-        theme={{todayButtonTextColor: '#0059ff'}} 
         disabledOpacity={0.6}
       >
         <ExpandableCalendar 
@@ -183,7 +182,7 @@ const styles = StyleSheet.create({
     paddingRight: 20
   },
   section: {
-    backgroundColor: '#f0f4f7', 
+    backgroundColor: '#F7F9FC', 
     color: '#79838a'
   },
   item: {
