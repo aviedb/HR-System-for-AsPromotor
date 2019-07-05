@@ -148,7 +148,7 @@ export default class ExpandableCalendarScreen extends Component {
   render() {
     return (
       <CalendarProvider 
-        date={ITEMS[0].title} 
+        date={new Date().toISOString().split('T')[0]} 
         onDateChanged={this.onDateChanged} 
         onMonthChange={this.onMonthChange}
         theme={{todayButtonTextColor: '#0059ff'}} 
@@ -160,7 +160,6 @@ export default class ExpandableCalendarScreen extends Component {
           // disablePan
           // hideKnob
           // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
-          firstDay={1}
           markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
           theme={this.getTheme()}
           leftArrowImageSource={require('../../assets/previous.png')}

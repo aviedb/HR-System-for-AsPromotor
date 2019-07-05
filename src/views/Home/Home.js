@@ -5,9 +5,11 @@ import {
   TopNavigation,
   BottomNavigation,
   BottomNavigationTab,
-  Button
 } from 'react-native-ui-kitten';
 import { AntDesign } from '@expo/vector-icons';
+import Constants from 'expo-constants';
+import * as Location from 'expo-location';
+import * as Permissions from 'expo-permissions';
 
 import Schedule from '../Schedule';
 
@@ -19,16 +21,40 @@ class Home extends Component {
 
   state = {
     selectedIndex: 0,
-    title: 'Home'
+    title: 'MSISDN',
+    location: '',
+    errorMessage: ''
+  };
+
+  componentWillMount() {
+    if (Platform.OS === 'android' && !Constants.isDevice) {
+      this.setState({
+        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
+      });
+    } else {
+      this.getLocationAsync();
+    }
+  }
+
+  getLocationAsync = async () => {
+    let { status } = await Permissions.askAsync(Permissions.LOCATION);
+    if (status !== 'granted') {
+      this.setState({
+        errorMessage: 'Permission to access location was denied',
+      });
+    }
+
+    let location = await Location.getCurrentPositionAsync({});
+    this.setState({ location });
   };
 
   onTabSelect = (selectedIndex) => {
     let title = [
-      'Home',
-      'Schedule',
-      'File',
-      'Notification',
-      'Profile'
+      'MSISDN',
+      'Knowledge Base',
+      'ASpro Report',
+      'Payroll Slip',
+      'Schedule'
     ];
 
     this.setState({ selectedIndex, title: title[selectedIndex] });
@@ -48,12 +74,20 @@ class Home extends Component {
   }
 
   render() {
+
+    let text = 'Waiting..';
+    if (this.state.errorMessage) {
+      text = this.state.errorMessage;
+    } else if (this.state.location) {
+      text = JSON.stringify(this.state.location);
+    }
+
     return (
       <SafeAreaView style={styles.safeArea}>
         <StatusBar
           backgroundColor="#eee"
           barStyle="dark-content" />
-        {this.state.selectedIndex !== 1 &&
+        {this.state.selectedIndex !== 4 &&
           <TopNavigation
             title={this.state.title}
             alignment="center"
@@ -61,10 +95,11 @@ class Home extends Component {
             titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
-          { this.state.selectedIndex === 1?
+          { this.state.selectedIndex === 4?
             <Schedule navigation={this.props.navigation}/>:
             <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>{text}</Text>
             </View>
           }
         </View>
@@ -73,11 +108,11 @@ class Home extends Component {
           selectedIndex={this.state.selectedIndex}
           indicatorStyle={{height: 0}}
           onSelect={this.onTabSelect}>
-          <BottomNavigationTab icon={this.icon('home', 0)} />
-          <BottomNavigationTab icon={this.icon('calendar', 1)} />
-          <BottomNavigationTab icon={this.icon('pdffile1', 2)} />
-          <BottomNavigationTab icon={this.icon('bells', 3)} />
-          <BottomNavigationTab icon={this.icon('user', 4)} />
+          <BottomNavigationTab icon={this.icon('database', 0)} />
+          <BottomNavigationTab icon={this.icon('inbox', 1)} />
+          <BottomNavigationTab icon={this.icon('pluscircle', 2)} />
+          <BottomNavigationTab icon={this.icon('mail', 3)} />
+          <BottomNavigationTab icon={this.icon('calendar', 4)} />
         </BottomNavigation>
       </SafeAreaView>
     );
