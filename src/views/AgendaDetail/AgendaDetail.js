@@ -19,10 +19,7 @@ class AgendaDetail extends Component {
 
   componentDidMount() {
     const title = this.props.navigation.getParam('title', 'Title');
-
-    this.setState({
-      title
-    });
+    this.setState({ title });
   }
 
   icon = (name) => () => {
@@ -55,7 +52,8 @@ class AgendaDetail extends Component {
             style={styles.header}
             titleStyle={styles.headerTitle} />
           <View style={styles.container}>
-            <Text>Lorem ipsum dolor sit amet settings</Text>
+            <Text>Lorem ipsum dolor sit amet</Text>
+            <Text>{this.state.title}</Text>
           </View>
         </SafeAreaView>
       </Fragment>
