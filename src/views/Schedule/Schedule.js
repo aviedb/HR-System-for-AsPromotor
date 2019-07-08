@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
   TouchableNativeFeedback
 } from 'react-native';
-import {ExpandableCalendar, AgendaList, CalendarProvider} from 'react-native-calendars';
+import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import {
   Text
 } from 'react-native-ui-kitten';
@@ -32,21 +32,23 @@ function getPastDate(days) {
   return new Date(Date.now() - (864e5 * days)).toISOString().split('T')[0];
 }
 
-const ITEMS = [
-  {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
-  {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
-  {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
-  {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
-  {title: dates[4], data: [{}]},
-  {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-  {title: dates[6], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
-  {title: dates[7], data: [{}]},
-  {title: dates[8], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-  {title: dates[9], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
-  {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
-];
-
 export default class ExpandableCalendarScreen extends Component {
+
+  state = {
+    items: [
+      {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
+      {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
+      {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
+      {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
+      {title: dates[4], data: [{}]},
+      {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
+      {title: dates[6], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
+      {title: dates[7], data: [{}]},
+      {title: dates[8], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
+      {title: dates[9], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
+      {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
+    ]
+  }
 
   onDateChanged = (date, updateSource) => {
     console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
@@ -54,49 +56,12 @@ export default class ExpandableCalendarScreen extends Component {
   }
 
   onMonthChange = (month, updateSource) => {
-    console.log('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
-  }
-
-  renderEmptyItem() {
-    return (
-      <View style={styles.emptyItem}>
-        <Text style={styles.emptyItemText}>No Events Planned</Text>
-      </View>
-    );
-  }
-
-  renderItem = ({item}) => {
-    if (_.isEmpty(item)) {
-      return this.renderEmptyItem();
-    }
-
-    const TouchableComponent = Platform.select({
-      android: TouchableNativeFeedback,
-      ios: TouchableOpacity
-    });
-    
-    return (
-      <TouchableComponent 
-        onPress={() => this.props.navigation.navigate('AgendaDetail', {
-          title: item.title
-        })} 
-      >
-        <View style={styles.item}>
-          <View>
-            <Text style={styles.itemHourText}>{item.hour}</Text>
-            <Text style={styles.itemDurationText}>{item.duration}</Text>
-          </View>
-          <View style={{paddingLeft: 16}}>
-            <Text style={styles.itemTitleText}>{item.title}</Text>
-          </View>
-        </View>
-      </TouchableComponent>
-    );
+    // console.log('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
 
   getMarkedDates = () => {
     const marked = {};
-    ITEMS.forEach(item => {
+    this.state.items.forEach(item => {
       // only mark dates with data
       if (item.data && item.data.length > 0 && !_.isEmpty(item.data[0])) {
         marked[item.title] = {marked: true};
@@ -145,10 +110,47 @@ export default class ExpandableCalendarScreen extends Component {
     };
   }
 
+  renderEmptyItem() {
+    return (
+      <View style={styles.emptyItem}>
+        <Text style={styles.emptyItemText}>No Events Planned</Text>
+      </View>
+    );
+  }
+
+  renderItem = ({item}) => {
+    if (_.isEmpty(item)) {
+      return this.renderEmptyItem();
+    }
+
+    const TouchableComponent = Platform.select({
+      android: TouchableNativeFeedback,
+      ios: TouchableOpacity
+    });
+    
+    return (
+      <TouchableComponent 
+        onPress={() => this.props.navigation.navigate('AgendaDetail', {
+          title: item.title
+        })} 
+      >
+        <View style={styles.item}>
+          <View>
+            <Text style={styles.itemHourText}>{item.hour}</Text>
+            <Text style={styles.itemDurationText}>{item.duration}</Text>
+          </View>
+          <View style={{paddingLeft: 16}}>
+            <Text style={styles.itemTitleText}>{item.title}</Text>
+          </View>
+        </View>
+      </TouchableComponent>
+    );
+  }
+
   render() {
     return (
-      <CalendarProvider 
-        date={new Date().toISOString().split('T')[0]} 
+      <CalendarProvider
+        date={dates[0]} 
         onDateChanged={this.onDateChanged} 
         onMonthChange={this.onMonthChange}
         disabledOpacity={0.6}
@@ -163,13 +165,13 @@ export default class ExpandableCalendarScreen extends Component {
           theme={this.getTheme()}
           leftArrowImageSource={require('../../assets/previous.png')}
           rightArrowImageSource={require('../../assets/next.png')}
-          // calendarStyle={styles.calendar}
+          style={styles.calendarHeader}
           // headerStyle={styles.calendar} // for horizontal only
         />
         <AgendaList
-          sections={ITEMS}
+          sections={this.state.items}
           renderItem={this.renderItem}
-          // sectionStyle={styles.section}
+          sectionStyle={styles.section}
         />
       </CalendarProvider>
     );
@@ -177,9 +179,14 @@ export default class ExpandableCalendarScreen extends Component {
 }
 
 const styles = StyleSheet.create({
-  calendar: {
-    paddingLeft: 20, 
-    paddingRight: 20
+  calendarHeader: {
+    shadowColor: '#858F96',
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 6,
+      width: 0
+    }
   },
   section: {
     backgroundColor: '#F7F9FC', 
@@ -213,6 +220,7 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end'
   },
   emptyItem: {
+    backgroundColor: 'white', 
     paddingLeft: 20,
     height: 52, 
     justifyContent: 'center',

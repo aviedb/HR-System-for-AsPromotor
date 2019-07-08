@@ -70,14 +70,14 @@ const styles = StyleSheet.create({
     backgroundColor: '#F7F9FC'
   },
   header: {
-    shadowColor: "#000",
+    shadowColor: '#858F96',
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
     shadowOffset: {
-      width: 0,
-      height: 4,
+      height: 6,
+      width: 0
     },
-    shadowOpacity: 0.23,
-    shadowRadius: 2.62,
-    elevation: 16,
+    elevation: 3,
     zIndex: 1
   },
   headerTitle: {

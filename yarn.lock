@@ -3902,9 +3902,9 @@ react-native-branch@2.2.5:
   version "2.2.5"
   resolved "https://registry.yarnpkg.com/react-native-branch/-/react-native-branch-2.2.5.tgz#4074dd63b4973e6397d9ce50e97b57c77a518e9d"
 
-react-native-calendars@^1.194.0:
-  version "1.194.0"
-  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.194.0.tgz#2b769cd85b4782628918482a9c75e49c4ad4dac1"
+react-native-calendars@^1.196.0:
+  version "1.196.0"
+  resolved "https://registry.yarnpkg.com/react-native-calendars/-/react-native-calendars-1.196.0.tgz#24f41d0a80cd78123ca9892e9cdcc22b1bd943c1"
   dependencies:
     lodash.get "^4.4.2"
     lodash.isequal "^4.5.0"
