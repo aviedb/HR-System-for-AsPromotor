@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  View,
-  FlatList
+  View
 } from 'react-native';
-import { Text, Input, ListItem, List, RefreshControl } from 'react-native-ui-kitten';
+import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
+import { AntDesign } from '@expo/vector-icons';
 
 class MSISDN extends Component {
 
@@ -41,7 +41,15 @@ class MSISDN extends Component {
 
   handleChange = (key) => (value) => {
     this.setState({ [key]: value });
-  } 
+  }
+
+  icon = (name) => () => {
+    return <AntDesign
+      name={name}
+      size={24}
+      color="#909DB4"
+    />
+  }
 
   renderItem = ({ item }) => {
     return (
@@ -79,6 +87,7 @@ class MSISDN extends Component {
               value={this.state.search}
               onChangeText={this.handleChange('search')}
               size="small"
+              icon={this.icon('search1')}
             />
           </View>
         </View>

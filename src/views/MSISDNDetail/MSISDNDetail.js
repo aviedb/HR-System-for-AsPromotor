@@ -5,9 +5,9 @@ import {
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
-import { Ionicons } from '@expo/vector-icons';
+import {Ionicons } from '@expo/vector-icons';
 
-class AgendaDetail extends Component {
+class MSISDNDetail extends Component {
 
   static navigationOptions = {
     header: null,
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AgendaDetail;
+export default MSISDNDetail;
