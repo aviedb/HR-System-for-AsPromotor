@@ -12,6 +12,7 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 import Schedule from '../Schedule';
+import MSISDN from '../MSISDN';
 
 class Home extends Component {
 
@@ -87,7 +88,7 @@ class Home extends Component {
         <StatusBar
           backgroundColor="#eee"
           barStyle="dark-content" />
-        {this.state.selectedIndex !== 4 &&
+        {this.state.selectedIndex !== 4 && this.state.selectedIndex !== 0 &&
           <TopNavigation
             title={this.state.title}
             alignment="center"
@@ -95,8 +96,21 @@ class Home extends Component {
             titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
-          {this.state.selectedIndex === 4?
-            <Schedule navigation={this.props.navigation}/>:
+          {this.state.selectedIndex === 4 && <Schedule {...this.props}/>}
+          {this.state.selectedIndex === 0 && <MSISDN />}
+          {this.state.selectedIndex === 1 && 
+            <View style={styles.view}>
+              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>{text}</Text>
+            </View>
+          }
+          {this.state.selectedIndex === 2 && 
+            <View style={styles.view}>
+              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>{text}</Text>
+            </View>
+          }
+          {this.state.selectedIndex === 3 && 
             <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
               <Text>{text}</Text>

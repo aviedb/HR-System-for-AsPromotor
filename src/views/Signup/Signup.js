@@ -17,28 +17,11 @@ class Login extends Component {
     username: '',
     email: '',
     password: '',
-    password2: '',
-    refreshing: false
-  }
-
-  _onRefresh = () => {
-    this.setState({ refreshing: true});
-    
-    setTimeout(() => {
-      this.setState({ 
-        refreshing: false,
-        username: '',
-        email: '',
-        password: '',
-        password2: ''
-      });
-    }, 2000);
+    password2: ''
   }
 
   handleChange = (key) => (value) => {
-    this.setState({
-      [key]: value
-    });
+    this.setState({ [key]: value });
   }
 
   render() {
@@ -48,14 +31,7 @@ class Login extends Component {
         <SafeAreaView style={styles.safeArea}>
           <Layout style={{flex: 1}}>
             <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
-            <ScrollView refreshControl={
-              <RefreshControl
-                refreshing={this.state.refreshing}
-                onRefresh={this._onRefresh}
-                colors={["#3267FF"]}
-                tintColor="#3267FF"
-              />
-            }>
+            <ScrollView>
               <View style={styles.logo}>
                 <Text category="h1" style={styles.logoTitle}>Sign up</Text>
                 <Text category="p1" style={styles.logoSubtitle}>Lorem ipsum dolor sit amet</Text>

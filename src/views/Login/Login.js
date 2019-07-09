@@ -19,9 +19,7 @@ class Login extends Component {
   }
 
   handleChange = (key) => (value) => {
-    this.setState({
-      [key]: value
-    });
+    this.setState({ [key]: value });
   }
 
   render() {
