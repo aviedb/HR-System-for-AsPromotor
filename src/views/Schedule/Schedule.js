@@ -1,18 +1,16 @@
 import _ from 'lodash';
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   Platform,
   StyleSheet,
-  View,
-  TouchableOpacity,
-  TouchableNativeFeedback
+  View
 } from 'react-native';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
-import {
-  Text
-} from 'react-native-ui-kitten';
+import { Text } from 'react-native-ui-kitten';
 
+import Touchable from '../../components/Touchable';
 
+// generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
 const fastDate = getPastDate(3); 
 const futureDates = getFutureDates(9);
@@ -35,6 +33,7 @@ function getPastDate(days) {
 export default class ExpandableCalendarScreen extends Component {
 
   state = {
+    //dummy data
     items: [
       {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
       {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
@@ -122,14 +121,9 @@ export default class ExpandableCalendarScreen extends Component {
     if (_.isEmpty(item)) {
       return this.renderEmptyItem();
     }
-
-    const TouchableComponent = Platform.select({
-      android: TouchableNativeFeedback,
-      ios: TouchableOpacity
-    });
     
     return (
-      <TouchableComponent 
+      <Touchable 
         onPress={() => this.props.navigation.navigate('AgendaDetail', {
           title: item.title
         })} 
@@ -143,7 +137,7 @@ export default class ExpandableCalendarScreen extends Component {
             <Text style={styles.itemTitleText}>{item.title}</Text>
           </View>
         </View>
-      </TouchableComponent>
+      </Touchable>
     );
   }
 
