@@ -96,8 +96,8 @@ class Home extends Component {
             titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
-          {this.state.selectedIndex === 4 && <Schedule {...this.props}/>}
-          {this.state.selectedIndex === 0 && <MSISDN />}
+          <Schedule {...this.props} selectedIndex={this.state.selectedIndex}/>
+          <MSISDN {...this.props} selectedIndex={this.state.selectedIndex}/>
           {this.state.selectedIndex === 1 && 
             <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>

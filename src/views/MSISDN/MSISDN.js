@@ -49,7 +49,10 @@ class MSISDN extends Component {
         title={item.MSISDN}
         description={`${item.subAgent}\n${item.shipOutDate}`}
         style={styles.item}
-      ></ListItem>
+        onPress={() => this.props.navigation.navigate('MSISDNDetail', {
+          title: item.MSISDN
+        })}
+      />
     );
   }
 
@@ -62,6 +65,8 @@ class MSISDN extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 0) return <View />
+
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>

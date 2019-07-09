@@ -8,12 +8,14 @@ import Login from './src/views/Login';
 import Signup from './src/views/Signup';
 import Home from './src/views/Home';
 import AgendaDetail from './src/views/AgendaDetail';
+import MSISDNDetail from './src/views/MSISDNDetail';
 
 const AppNavigator = createStackNavigator({
   Login,
   Signup,
   Home,
-  AgendaDetail
+  AgendaDetail,
+  MSISDNDetail
 });
 const AppContainer = createAppContainer(AppNavigator);
 
