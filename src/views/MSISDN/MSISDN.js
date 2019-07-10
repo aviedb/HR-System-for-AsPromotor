@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import {
-  Platform,
   StyleSheet,
   View
 } from 'react-native';
 import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
-import { AntDesign } from '@expo/vector-icons';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+
+import { icon } from '../../services/stores';
 
 @observer
 class MSISDN extends Component {
@@ -38,14 +38,6 @@ class MSISDN extends Component {
 
   handleChange = (key) => (value) => {
     this[key] = value;
-  }
-
-  icon = (name) => () => {
-    return <AntDesign
-      name={name}
-      size={24}
-      color="#909DB4"
-    />
   }
 
   renderItem = ({ item }) => {
@@ -84,7 +76,7 @@ class MSISDN extends Component {
               value={this.search}
               onChangeText={this.handleChange('search')}
               size="small"
-              icon={this.icon('search1')}
+              icon={() => icon.getIcon('search1', null, '#909DB4')}
             />
           </View>
         </View>

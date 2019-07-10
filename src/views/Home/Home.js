@@ -13,6 +13,7 @@ import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
+import { icon } from '../../services/stores';
 import Schedule from '../Schedule';
 import MSISDN from '../MSISDN';
 
@@ -59,17 +60,11 @@ class Home extends Component {
     this.title = title[selectedIndex];
   };
 
-  icon = (name, index, IconComponent) => () => {
-    if (!IconComponent) IconComponent = AntDesign;
-    
+  icon = (name, index) => () => {
     let color = '#333A4F';
     if (index !== null) color = this.selectedIndex === index? '#3267FF':'#8F9BB3';
 
-    return <IconComponent
-      name={name}
-      size={24}
-      color={color}
-    />
+    return icon.getIcon(name, null, color);
   }
 
   render() {

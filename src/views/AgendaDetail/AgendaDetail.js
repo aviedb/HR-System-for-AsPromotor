@@ -9,6 +9,13 @@ import { Ionicons } from '@expo/vector-icons';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
+import { icon } from '../../services/stores';
+
+backIcon = () => {
+  const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back'
+  return icon.getIcon(name, Ionicons);
+}
+
 @observer
 class AgendaDetail extends Component {
 
@@ -23,18 +30,6 @@ class AgendaDetail extends Component {
     this.title = title;
   }
 
-  icon = (name) => () => {
-    if (name === 'back') {
-      name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back'
-    }
-
-    return <Ionicons
-      name={name}
-      size={24}
-      color="#22273E"
-    />
-  }
-
   render() {
     return (
       <Fragment>
@@ -47,7 +42,7 @@ class AgendaDetail extends Component {
             title={this.title}
             alignment={Platform.OS==='android'? "start": "center"}
             leftControl={<TopNavigationAction
-              icon={this.icon('back')}
+              icon={backIcon}
               onPress={() => this.props.navigation.goBack()}
             />}
             style={styles.header}
