@@ -146,7 +146,7 @@ export default class ExpandableCalendarScreen extends Component {
 
     return (
       <CalendarProvider
-        date={dates[0]} 
+        date={today} 
         onDateChanged={this.onDateChanged} 
         onMonthChange={this.onMonthChange}
         disabledOpacity={0.6}

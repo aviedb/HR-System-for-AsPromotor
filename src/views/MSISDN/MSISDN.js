@@ -83,7 +83,7 @@ class MSISDN extends Component {
           </View>
           <View style={styles.search}>
             <Input 
-              placeholder="Search"
+              placeholder="Search..."
               value={this.state.search}
               onChangeText={this.handleChange('search')}
               size="small"
