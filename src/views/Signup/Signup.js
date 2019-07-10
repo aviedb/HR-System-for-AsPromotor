@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, RefreshControl, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
+import { StyleSheet, StatusBar, Platform, ScrollView, View, SafeAreaView, TouchableOpacity } from 'react-native';
 import {
   Button, 
   Input,

@@ -8,7 +8,6 @@ import {
 } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import { AntDesign } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
@@ -80,13 +79,15 @@ class Home extends Component {
       <SafeAreaView style={styles.safeArea}>
         <StatusBar
           backgroundColor="#eee"
-          barStyle="dark-content" />
+          barStyle="dark-content"
+        />
         {this.selectedIndex !== 4 && this.selectedIndex !== 0 &&
           <TopNavigation
             title={this.title}
             alignment="center"
             style={styles.header}
-            titleStyle={styles.headerTitle} />
+            titleStyle={styles.headerTitle}
+          />
         }
         <View style={styles.container}>
           <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
@@ -114,7 +115,8 @@ class Home extends Component {
           style={styles.bottomNav}
           selectedIndex={this.selectedIndex}
           indicatorStyle={{height: 0}}
-          onSelect={this.onTabSelect}>
+          onSelect={this.onTabSelect}
+        >
           <BottomNavigationTab icon={this.icon('database', 0)} />
           <BottomNavigationTab icon={this.icon('inbox', 1)} />
           <BottomNavigationTab icon={this.icon('pluscircle', 2)} />
