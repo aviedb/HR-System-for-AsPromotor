@@ -6,6 +6,8 @@ import {
   BottomNavigation,
   BottomNavigationTab,
 } from 'react-native-ui-kitten';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 import { AntDesign } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
@@ -14,24 +16,21 @@ import * as Permissions from 'expo-permissions';
 import Schedule from '../Schedule';
 import MSISDN from '../MSISDN';
 
+@observer
 class Home extends Component {
 
   static navigationOptions = {
     header: null,
   };
 
-  state = {
-    selectedIndex: 0,
-    title: 'MSISDN',
-    location: '',
-    errorMessage: ''
-  };
+  @observable selectedIndex = 0;
+  @observable title = 'MSISDN';
+  @observable location = '';
+  @observable errorMessage = '';
 
   componentWillMount() {
     if (Platform.OS === 'android' && !Constants.isDevice) {
-      this.setState({
-        errorMessage: 'Oops, this will not work on Sketch in an Android emulator. Try it on your device!',
-      });
+      this.errorMessage = 'Oops, this will not work on Sketch in an ANdroid emulator. Try it on your device!'
     } else {
       this.getLocationAsync();
     }
@@ -40,13 +39,11 @@ class Home extends Component {
   getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
     if (status !== 'granted') {
-      this.setState({
-        errorMessage: 'Permission to access location was denied',
-      });
+      this.errorMessage = 'Permission to access location was denied';
     }
 
     let location = await Location.getCurrentPositionAsync({});
-    this.setState({ location });
+    this.location = location;
   };
 
   onTabSelect = (selectedIndex) => {
@@ -58,14 +55,15 @@ class Home extends Component {
       'Schedule'
     ];
 
-    this.setState({ selectedIndex, title: title[selectedIndex] });
+    this.selectedIndex = selectedIndex;
+    this.title = title[selectedIndex];
   };
 
   icon = (name, index, IconComponent) => () => {
     if (!IconComponent) IconComponent = AntDesign;
     
     let color = '#333A4F';
-    if (index !== null) color = this.state.selectedIndex === index? '#3267FF':'#8F9BB3';
+    if (index !== null) color = this.selectedIndex === index? '#3267FF':'#8F9BB3';
 
     return <IconComponent
       name={name}
@@ -77,10 +75,10 @@ class Home extends Component {
   render() {
 
     let text = 'Waiting..';
-    if (this.state.errorMessage) {
-      text = this.state.errorMessage;
-    } else if (this.state.location) {
-      text = JSON.stringify(this.state.location);
+    if (this.errorMessage) {
+      text = this.errorMessage;
+    } else if (this.location) {
+      text = JSON.stringify(this.location);
     }
 
     return (
@@ -88,38 +86,38 @@ class Home extends Component {
         <StatusBar
           backgroundColor="#eee"
           barStyle="dark-content" />
-        {this.state.selectedIndex !== 4 && this.state.selectedIndex !== 0 &&
+        {this.selectedIndex !== 4 && this.selectedIndex !== 0 &&
           <TopNavigation
-            title={this.state.title}
+            title={this.title}
             alignment="center"
             style={styles.header}
             titleStyle={styles.headerTitle} />
         }
         <View style={styles.container}>
-          <Schedule {...this.props} selectedIndex={this.state.selectedIndex}/>
-          <MSISDN {...this.props} selectedIndex={this.state.selectedIndex}/>
-          {this.state.selectedIndex === 1 && 
+          <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
+          <MSISDN {...this.props} selectedIndex={this.selectedIndex}/>
+          {this.selectedIndex === 1 && 
             <View style={styles.view}>
-              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
               <Text>{text}</Text>
             </View>
           }
-          {this.state.selectedIndex === 2 && 
+          {this.selectedIndex === 2 && 
             <View style={styles.view}>
-              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
               <Text>{text}</Text>
             </View>
           }
-          {this.state.selectedIndex === 3 && 
+          {this.selectedIndex === 3 && 
             <View style={styles.view}>
-              <Text>Lorem ipsum dolor sit amet {this.state.selectedIndex}</Text>
+              <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
               <Text>{text}</Text>
             </View>
           }
         </View>
         <BottomNavigation
           style={styles.bottomNav}
-          selectedIndex={this.state.selectedIndex}
+          selectedIndex={this.selectedIndex}
           indicatorStyle={{height: 0}}
           onSelect={this.onTabSelect}>
           <BottomNavigationTab icon={this.icon('database', 0)} />

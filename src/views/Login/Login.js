@@ -6,20 +6,21 @@ import {
   Layout, 
   Text
 } from 'react-native-ui-kitten';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
+@observer
 class Login extends Component {
 
   static navigationOptions = {
     header: null,
   };
 
-  state = {
-    username: '',
-    password: ''
-  }
+  @observable username = '';
+  @observable password = '';
 
   handleChange = (key) => (value) => {
-    this.setState({ [key]: value });
+    this[key] = value;
   }
 
   render() {
@@ -37,13 +38,13 @@ class Login extends Component {
               <View style={styles.container}>
                 <Input 
                   placeholder="Username"
-                  value={this.state.username}
+                  value={this.username}
                   onChangeText={this.handleChange('username')}
                   style={styles.input}
                 />
                 <Input 
                   placeholder="Password"
-                  value={this.state.password}
+                  value={this.password}
                   onChangeText={this.handleChange('password')}
                   secureTextEntry
                   style={styles.input}

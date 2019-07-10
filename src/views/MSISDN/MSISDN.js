@@ -6,41 +6,38 @@ import {
 } from 'react-native';
 import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
 import { AntDesign } from '@expo/vector-icons';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
+@observer
 class MSISDN extends Component {
 
-  state = {
-    search: '',
-    data: [],
-    isFetching: true
-  }
+  @observable search = '';
+  @observable data = [];
+  @observable isFetching = true;
 
   componentDidMount() {
     setTimeout(() => {
-      this.setState({
-        data: [
-          { MSISDN: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
-          { MSISDN: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
-          { MSISDN: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
-          { MSISDN: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
-        ],
-        isFetching: false
-      })
+      this.data = [
+        { MSISDN: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
+        { MSISDN: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
+        { MSISDN: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
+        { MSISDN: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
+      ];
+      this.isFetching = false;
     }, 2000);
   }
 
   _onRefresh = () => {
-    this.setState({ isFetching: true});
+    this.isFetching = true;
     
     setTimeout(() => {
-      this.setState({ 
-        isFetching: false
-      });
+      this.isFetching = false;
     }, 2000);
   }
 
   handleChange = (key) => (value) => {
-    this.setState({ [key]: value });
+    this[key] = value;
   }
 
   icon = (name) => () => {
@@ -84,7 +81,7 @@ class MSISDN extends Component {
           <View style={styles.search}>
             <Input 
               placeholder="Search..."
-              value={this.state.search}
+              value={this.search}
               onChangeText={this.handleChange('search')}
               size="small"
               icon={this.icon('search1')}
@@ -92,11 +89,11 @@ class MSISDN extends Component {
           </View>
         </View>
         <List 
-          data={this.state.data}
+          data={this.data}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
-          refreshing={this.state.isFetching}
+          refreshing={this.isFetching}
         />
       </View>
     );

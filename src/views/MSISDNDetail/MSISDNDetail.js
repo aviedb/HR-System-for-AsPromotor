@@ -6,20 +6,21 @@ import {
   TopNavigationAction
 } from 'react-native-ui-kitten';
 import {Ionicons } from '@expo/vector-icons';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
+@observer
 class MSISDNDetail extends Component {
 
   static navigationOptions = {
     header: null,
   };
 
-  state = {
-    title: ''
-  }
+  @observable title = '';
 
   componentDidMount() {
     const title = this.props.navigation.getParam('title', 'Title');
-    this.setState({ title });
+    this.title = title;
   }
 
   icon = (name) => () => {
@@ -43,7 +44,7 @@ class MSISDNDetail extends Component {
             backgroundColor="#eee"
             barStyle="dark-content" />
           <TopNavigation
-            title={this.state.title}
+            title={this.title}
             alignment={Platform.OS==='android'? "start": "center"}
             leftControl={<TopNavigationAction
               icon={this.icon('back')}
@@ -53,7 +54,7 @@ class MSISDNDetail extends Component {
             titleStyle={styles.headerTitle} />
           <View style={styles.container}>
             <Text>Lorem ipsum dolor sit amet</Text>
-            <Text>{this.state.title}</Text>
+            <Text>{this.title}</Text>
           </View>
         </SafeAreaView>
       </Fragment>

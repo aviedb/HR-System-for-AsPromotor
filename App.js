@@ -3,6 +3,8 @@ import { mapping, light as lightTheme } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import * as Font from 'expo-font';
+import { observer } from 'mobx-react';
+import { observable } from 'mobx';
 
 import Login from './src/views/Login';
 import Signup from './src/views/Signup';
@@ -19,7 +21,10 @@ const AppNavigator = createStackNavigator({
 });
 const AppContainer = createAppContainer(AppNavigator);
 
+@observer
 class App extends Component {
+
+  @observable fontLoaded = false;
 
   async componentDidMount() {
     await Font.loadAsync({
@@ -31,11 +36,7 @@ class App extends Component {
       'helvetica_neue_hv': require('./src/assets/fonts/helvetica_neue_hv.ttf')
     });
 
-    this.setState({ fontLoaded: true });
-  }
-
-  state = {
-    fontLoaded: false
+    this.fontLoaded = true;
   }
 
   render() {
@@ -44,7 +45,7 @@ class App extends Component {
       <ApplicationProvider
         mapping={mapping}
         theme={lightTheme}>
-        {this.state.fontLoaded &&
+        {this.fontLoaded &&
           <AppContainer />
         }
       </ApplicationProvider>
