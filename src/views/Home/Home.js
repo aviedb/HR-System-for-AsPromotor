@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { StyleSheet, StatusBar, Platform, View, SafeAreaView } from 'react-native';
+import { StyleSheet, StatusBar, Platform, View } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import {
   Text,
   TopNavigation,

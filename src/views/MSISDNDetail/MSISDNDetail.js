@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, View, SafeAreaView } from 'react-native';
+import { StyleSheet, StatusBar, Platform, View } from 'react-native';
+import { SafeAreaView } from 'react-navigation';
 import {
   Text,
   TopNavigation,
@@ -33,7 +34,6 @@ class MSISDNDetail extends Component {
   render() {
     return (
       <Fragment>
-        <SafeAreaView style={{flex: 0, backgroundColor: 'white'}} />
         <SafeAreaView style={styles.safeArea}>
           <StatusBar
             backgroundColor="#eee"
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingTop: Platform.OS === 'android'? StatusBar.currentHeight:0,
-    backgroundColor: '#F7F9FC'
+    backgroundColor: '#fff',
   },
   header: {
     shadowColor: '#858F96',

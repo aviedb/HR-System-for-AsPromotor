@@ -19,10 +19,10 @@ class MSISDN extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.data = [
-        { MSISDN: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
-        { MSISDN: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
-        { MSISDN: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
-        { MSISDN: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
+        { msisdn: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
+        { msisdn: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
+        { msisdn: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
+        { msisdn: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
       ];
       this.isFetching = false;
     }, 2000);
@@ -43,21 +43,13 @@ class MSISDN extends Component {
   renderItem = ({ item }) => {
     return (
       <ListItem 
-        title={item.MSISDN}
+        title={item.msisdn}
         description={`${item.subAgent}\n${item.shipOutDate}`}
         style={styles.item}
         onPress={() => this.props.navigation.navigate('MSISDNDetail', {
-          title: item.MSISDN
+          title: item.msisdn
         })}
       />
-    );
-  }
-
-  renderListHeader = () => {
-    return (
-      <View>
-        <Text>Hehe</Text>
-      </View>
     );
   }
 
@@ -128,7 +120,7 @@ const styles = StyleSheet.create({
   },
   item: {
     borderBottomColor: '#EAEEF1',
-    borderBottomWidth: 1,
+    borderBottomWidth: 1
   }
 });
 
