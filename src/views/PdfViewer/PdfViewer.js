@@ -14,7 +14,7 @@ import { icon } from '../../services/stores';
 import styles from './styles';
 
 backIcon = () => {
-  const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back'
+  const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
   return icon.getIcon(name, Ionicons);
 }
 
@@ -28,8 +28,7 @@ class PdfViewer extends Component {
   @observable title = '';
 
   componentDidMount() {
-    const title = this.props.navigation.getParam('title', 'Title');
-    this.title = title;
+    this.title = this.props.navigation.getParam('title', 'PDF Viewer');
   }
 
   render() {
