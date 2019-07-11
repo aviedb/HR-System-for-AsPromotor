@@ -56,6 +56,11 @@ class MSISDN extends Component {
   render() {
     if (this.props.selectedIndex !== 0) return <View />
 
+    const data = this.data.filter(e => 
+      e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
+      e.subAgent.toLowerCase().includes(this.search.toLowerCase())
+    );
+
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
@@ -64,7 +69,7 @@ class MSISDN extends Component {
           </View>
           <View style={styles.search}>
             <Input 
-              placeholder="Search..."
+              placeholder="Search by MSISDN or sub agent"
               value={this.search}
               onChangeText={this.handleChange('search')}
               size="small"
@@ -73,7 +78,7 @@ class MSISDN extends Component {
           </View>
         </View>
         <List 
-          data={this.data}
+          data={data}
           renderItem={this.renderItem}
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
