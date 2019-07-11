@@ -1,8 +1,7 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, View, WebView } from 'react-native';
+import { StatusBar, Platform, View, WebView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
-  Text,
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
@@ -11,6 +10,8 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
+
+import styles from './styles';
 
 backIcon = () => {
   const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back'
@@ -60,43 +61,5 @@ class KnowledgeDetail extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-    paddingTop: Platform.OS === 'android'? StatusBar.currentHeight:0,
-    backgroundColor: '#fff',
-  },
-  header: {
-    shadowColor: '#858F96',
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    shadowOffset: {
-      height: 6,
-      width: 0
-    },
-    elevation: 3,
-    zIndex: 1
-  },
-  headerTitle: {
-    fontFamily: 'helvetica_neue_md',
-    fontWeight: "normal",
-    fontSize: 16,
-    marginHorizontal: Platform.OS==='ios'? 16:0
-  },
-  container: {
-    flex: 1,
-    backgroundColor: '#F7F9FC'
-  },
-  webviewState: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center'
-  },
-  divider: {
-    borderTopColor: '#EAEEF1',
-    borderTopWidth: 1
-  }
-});
 
 export default KnowledgeDetail;

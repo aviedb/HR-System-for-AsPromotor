@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import { View } from 'react-native';
 import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+
+import styles from './styles';
 
 @observer
 class KnowledgeBase extends Component {
@@ -68,31 +67,5 @@ class KnowledgeBase extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
-  header: {
-    shadowColor: '#858F96',
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    shadowOffset: {
-      height: 6,
-      width: 0
-    },
-    elevation: 3,
-    zIndex: 1
-  },
-  headerTitle: {
-    fontFamily: 'helvetica_neue_md',
-    fontWeight: "normal",
-    fontSize: 16
-  },
-  item: {
-    borderBottomColor: '#EAEEF1',
-    borderBottomWidth: 1
-  }
-});
 
 export default KnowledgeBase;

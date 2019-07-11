@@ -1,16 +1,14 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  View
-} from 'react-native';
+import { Platform, View } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import { Text } from 'react-native-ui-kitten';
 
 import Touchable from '../../components/Touchable';
+
+import styles from './styles';
 
 // generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
@@ -173,60 +171,5 @@ class ExpandableCalendarScreen extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  calendarHeader: {
-    shadowColor: '#858F96',
-    shadowOpacity: 0.25,
-    shadowRadius: 5,
-    shadowOffset: {
-      height: 6,
-      width: 0
-    }
-  },
-  section: {
-    backgroundColor: '#F7F9FC', 
-    color: '#79838a'
-  },
-  item: {
-    padding: 20, 
-    backgroundColor: 'white', 
-    borderBottomWidth: 1, 
-    borderBottomColor: '#e8ecf0', 
-    flexDirection: 'row'
-  },
-  itemHourText: {
-    color: 'black',
-    fontFamily: 'helvetica_neue_lt'
-  },
-  itemDurationText: {
-    color: 'grey', 
-    fontFamily: 'helvetica_neue_lt',
-    fontSize: 12, 
-    marginTop: 4,
-    marginLeft: 4
-  },
-  itemTitleText: {
-    color: 'black',
-    fontFamily: 'helvetica_neue_md',
-    fontSize: 16
-  },
-  itemButtonContainer: {
-    flex: 1, 
-    alignItems: 'flex-end'
-  },
-  emptyItem: {
-    backgroundColor: 'white', 
-    paddingLeft: 20,
-    height: 52, 
-    justifyContent: 'center',
-    borderBottomWidth: 1, 
-    borderBottomColor: '#e8ecf0' 
-  },
-  emptyItemText: {
-    color: '#79838a',
-    fontSize: 14
-  }
-});
 
 export default ExpandableCalendarScreen;
