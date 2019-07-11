@@ -51,6 +51,7 @@ class MSISDNDetail extends Component {
             <Text>Lorem ipsum dolor sit amet</Text>
             <Text>{this.title}</Text>
           </View>
+          <View style={styles.divider}/>
         </SafeAreaView>
       </Fragment>
     );
@@ -85,6 +86,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#F7F9FC'
+  },
+  divider: {
+    borderTopColor: '#EAEEF1',
+    borderTopWidth: 1
   }
 });
 

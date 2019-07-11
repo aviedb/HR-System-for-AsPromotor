@@ -14,8 +14,9 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 import { icon } from '../../services/stores';
-import Schedule from '../Schedule';
 import MSISDN from '../MSISDN';
+import PayrollSlip from '../PayrollSlip';
+import Schedule from '../Schedule';
 
 @observer
 class Home extends Component {
@@ -92,6 +93,7 @@ class Home extends Component {
         }
         <View style={styles.container}>
           <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
+          <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
           <MSISDN {...this.props} selectedIndex={this.selectedIndex}/>
           {this.selectedIndex === 1 && 
             <View style={styles.view}>
@@ -100,12 +102,6 @@ class Home extends Component {
             </View>
           }
           {this.selectedIndex === 2 && 
-            <View style={styles.view}>
-              <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
-              <Text>{text}</Text>
-            </View>
-          }
-          {this.selectedIndex === 3 && 
             <View style={styles.view}>
               <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
               <Text>{text}</Text>

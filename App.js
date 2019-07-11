@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { setCustomText } from 'react-native-global-props'
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -9,15 +10,17 @@ import { observable } from 'mobx';
 import Login from './src/views/Login';
 import Signup from './src/views/Signup';
 import Home from './src/views/Home';
-import AgendaDetail from './src/views/AgendaDetail';
 import MSISDNDetail from './src/views/MSISDNDetail';
+import PayrollDetail from './src/views/PayrollDetail';
+import AgendaDetail from './src/views/AgendaDetail';
 
 const AppNavigator = createStackNavigator({
   Login,
   Signup,
   Home,
-  AgendaDetail,
-  MSISDNDetail
+  MSISDNDetail,
+  PayrollDetail,
+  AgendaDetail
 });
 const AppContainer = createAppContainer(AppNavigator);
 
@@ -37,10 +40,19 @@ class App extends Component {
     });
 
     this.fontLoaded = true;
+    this.defaultFonts();
+  }
+
+  defaultFonts(){
+    const customTextProps = {
+      style: {
+        fontFamily: 'helvetica_neue_md'
+      }
+    }
+    setCustomText(customTextProps);
   }
 
   render() {
-
     return (
       <ApplicationProvider
         mapping={mapping}

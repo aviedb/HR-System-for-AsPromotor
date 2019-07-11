@@ -4,7 +4,6 @@ import { SafeAreaView } from 'react-navigation';
 import {
   Button, 
   Input,
-  Layout, 
   Text
 } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
@@ -31,7 +30,7 @@ class Login extends Component {
       <Fragment>
         <SafeAreaView style={{flex: 0, backgroundColor: '#3267FF'}}/>
         <SafeAreaView style={styles.safeArea}>
-          <Layout style={{flex: 1}}>
+          <View style={{flex: 1}}>
             <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
             <ScrollView>
               <View style={styles.logo}>
@@ -81,7 +80,7 @@ class Login extends Component {
                 </Text>
               </TouchableOpacity>
             </View>
-          </Layout>
+          </View>
         </SafeAreaView>
       </Fragment>
     );

@@ -1,12 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { StyleSheet, StatusBar, Platform, View } from 'react-native';
+import { StyleSheet, StatusBar, Platform, View, WebView } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
   Text,
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
-import { Ionicons } from '@expo/vector-icons';
+import {Ionicons } from '@expo/vector-icons';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
@@ -18,7 +18,7 @@ backIcon = () => {
 }
 
 @observer
-class AgendaDetail extends Component {
+class PayrollDetail extends Component {
 
   static navigationOptions = {
     header: null,
@@ -48,10 +48,13 @@ class AgendaDetail extends Component {
             style={styles.header}
             titleStyle={styles.headerTitle} />
           <View style={styles.container}>
-            <Text>Lorem ipsum dolor sit amet</Text>
-            <Text>{this.title}</Text>
+            <WebView
+              bounces={false}
+              scrollEnabled={false}
+              source={{ uri: 'http://www.africau.edu/images/default/sample.pdf' }}
+            />
+            <View style={styles.divider}/>
           </View>
-          <View style={styles.divider} />
         </SafeAreaView>
       </Fragment>
     );
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
     paddingTop: Platform.OS === 'android'? StatusBar.currentHeight:0,
-    backgroundColor: '#fff'
+    backgroundColor: '#fff',
   },
   header: {
     shadowColor: '#858F96',
@@ -83,9 +86,12 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
     backgroundColor: '#F7F9FC'
+  },
+  webviewState: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   divider: {
     borderTopColor: '#EAEEF1',
@@ -93,4 +99,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default AgendaDetail;
+export default PayrollDetail;
