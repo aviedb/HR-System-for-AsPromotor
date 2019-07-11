@@ -38,7 +38,7 @@ class KnowledgeBase extends Component {
         title={item.title}
         description={item.createdAt}
         style={styles.item}
-        onPress={() => this.props.navigation.navigate('KnowledgeDetail', {
+        onPress={() => this.props.navigation.navigate('PdfViewer', {
           title: item.title
         })}
       />

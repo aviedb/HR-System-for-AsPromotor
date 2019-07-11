@@ -19,7 +19,7 @@ backIcon = () => {
 }
 
 @observer
-class PayrollDetail extends Component {
+class PdfViewer extends Component {
 
   static navigationOptions = {
     header: null,
@@ -62,4 +62,4 @@ class PayrollDetail extends Component {
   }
 }
 
-export default PayrollDetail;
+export default PdfViewer;
