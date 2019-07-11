@@ -3,7 +3,6 @@ import { StyleSheet, StatusBar, Platform, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
   Text,
-  TopNavigation,
   BottomNavigation,
   BottomNavigationTab,
 } from 'react-native-ui-kitten';
@@ -27,7 +26,6 @@ class Home extends Component {
   };
 
   @observable selectedIndex = 0;
-  @observable title = 'MSISDN';
   @observable location = '';
   @observable errorMessage = '';
 
@@ -50,16 +48,7 @@ class Home extends Component {
   };
 
   onTabSelect = (selectedIndex) => {
-    let title = [
-      'MSISDN',
-      'Knowledge Base',
-      'ASpro Report',
-      'Payroll Slip',
-      'Schedule'
-    ];
-
     this.selectedIndex = selectedIndex;
-    this.title = title[selectedIndex];
   };
 
   icon = (name, index) => () => {
@@ -84,14 +73,6 @@ class Home extends Component {
           backgroundColor="#eee"
           barStyle="dark-content"
         />
-        {this.selectedIndex !== 4 && this.selectedIndex !== 0 &&
-          <TopNavigation
-            title={this.title}
-            alignment="center"
-            style={styles.header}
-            titleStyle={styles.headerTitle}
-          />
-        }
         <View style={styles.container}>
           <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
           <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
@@ -112,7 +93,7 @@ class Home extends Component {
         >
           <BottomNavigationTab icon={this.icon('database', 0)} />
           <BottomNavigationTab icon={this.icon('inbox', 1)} />
-          <BottomNavigationTab icon={this.icon('pluscircle', 2)} />
+          <BottomNavigationTab icon={this.icon('book', 2)} />
           <BottomNavigationTab icon={this.icon('mail', 3)} />
           <BottomNavigationTab icon={this.icon('calendar', 4)} />
         </BottomNavigation>

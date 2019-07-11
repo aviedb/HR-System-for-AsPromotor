@@ -3,7 +3,7 @@ import {
   StyleSheet,
   View
 } from 'react-native';
-import { ListItem, List } from 'react-native-ui-kitten';
+import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
@@ -51,6 +51,12 @@ class PayrollSlip extends Component {
 
     return (
       <View style={styles.container}>
+        <TopNavigation
+          title="Payroll Slip"
+          alignment="center"
+          style={styles.header}
+          titleStyle={styles.headerTitle}
+        />
         <List 
           data={this.data}
           renderItem={this.renderItem}
@@ -66,6 +72,22 @@ class PayrollSlip extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1
+  },
+  header: {
+    shadowColor: '#858F96',
+    shadowOpacity: 0.25,
+    shadowRadius: 5,
+    shadowOffset: {
+      height: 6,
+      width: 0
+    },
+    elevation: 3,
+    zIndex: 1
+  },
+  headerTitle: {
+    fontFamily: 'helvetica_neue_md',
+    fontWeight: "normal",
+    fontSize: 16
   },
   item: {
     borderBottomColor: '#EAEEF1',
