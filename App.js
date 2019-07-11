@@ -11,6 +11,7 @@ import Login from './src/views/Login';
 import Signup from './src/views/Signup';
 import Home from './src/views/Home';
 import MSISDNDetail from './src/views/MSISDNDetail';
+import KnowledgeDetail from './src/views/KnowledgeDetail';
 import PayrollDetail from './src/views/PayrollDetail';
 import AgendaDetail from './src/views/AgendaDetail';
 
@@ -20,6 +21,7 @@ const AppNavigator = createStackNavigator({
   Home,
   MSISDNDetail,
   PayrollDetail,
+  KnowledgeDetail,
   AgendaDetail
 });
 const AppContainer = createAppContainer(AppNavigator);
