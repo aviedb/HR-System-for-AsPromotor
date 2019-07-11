@@ -5,6 +5,7 @@ import {
   Text,
   BottomNavigation,
   BottomNavigationTab,
+  TopNavigation
 } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -74,6 +75,14 @@ class Home extends Component {
           barStyle="dark-content"
         />
         <View style={styles.container}>
+          {this.selectedIndex === 2 &&
+            <TopNavigation
+              title="Knowledge Base"
+              alignment="center"
+              style={styles.header}
+              titleStyle={styles.headerTitle}
+            />
+          }
           <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
           <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
           <MSISDN {...this.props} selectedIndex={this.selectedIndex}/>
