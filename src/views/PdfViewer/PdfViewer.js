@@ -26,15 +26,17 @@ class PdfViewer extends Component {
   };
 
   @observable title = '';
+  @observable uri = '';
 
   componentDidMount() {
     this.title = this.props.navigation.getParam('title', 'PDF Viewer');
+    this.uri = this.props.navigation.getParam('uri', 'http://www.africau.edu/images/default/sample.pdf');
 
     // this is temporary?
     // WebView cannot display pdf for android for some reason
     if (Platform.OS === 'android') {
       this.props.navigation.goBack();
-      Linking.openURL('http://www.africau.edu/images/default/sample.pdf');
+      Linking.openURL(this.uri);
     }
   }
 
@@ -58,7 +60,7 @@ class PdfViewer extends Component {
             <WebView
               bounces={false}
               scrollEnabled={false}
-              source={{ uri: 'http://www.africau.edu/images/default/sample.pdf' }}
+              source={{ uri: this.uri }}
             />
             <View style={styles.divider}/>
           </View>
