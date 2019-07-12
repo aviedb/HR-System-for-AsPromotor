@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
       height: 6,
       width: 0
     },
-    elevation: 3,
+    elevation: 7,
     zIndex: 1
   },
   header: {

@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, Platform, View, WebView } from 'react-native';
+import { StatusBar, Platform, View, WebView, Linking } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
   TopNavigation,
@@ -29,6 +29,13 @@ class PdfViewer extends Component {
 
   componentDidMount() {
     this.title = this.props.navigation.getParam('title', 'PDF Viewer');
+
+    // this is temporary?
+    // WebView cannot display pdf for android for some reason
+    if (Platform.OS === 'android') {
+      this.props.navigation.goBack();
+      Linking.openURL('http://www.africau.edu/images/default/sample.pdf');
+    }
   }
 
   render() {
