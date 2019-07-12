@@ -2,10 +2,8 @@ import React, { Component } from 'react';
 import { StatusBar, Platform, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
-  Text,
   BottomNavigation,
-  BottomNavigationTab,
-  TopNavigation
+  BottomNavigationTab
 } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -15,8 +13,9 @@ import * as Permissions from 'expo-permissions';
 
 import { icon } from '../../services/stores';
 import MSISDN from '../MSISDN';
-import PayrollSlip from '../PayrollSlip';
 import KnowledgeBase from '../KnowledgeBase';
+import ASproReport from '../ASproReport';
+import PayrollSlip from '../PayrollSlip';
 import Schedule from '../Schedule';
 
 import styles from './styles';
@@ -77,24 +76,11 @@ class Home extends Component {
           barStyle="dark-content"
         />
         <View style={styles.container}>
-          {this.selectedIndex === 2 &&
-            <TopNavigation
-              title="Knowledge Base"
-              alignment="center"
-              style={styles.header}
-              titleStyle={styles.headerTitle}
-            />
-          }
-          <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
-          <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
           <MSISDN {...this.props} selectedIndex={this.selectedIndex}/>
           <KnowledgeBase {...this.props} selectedIndex={this.selectedIndex}/>
-          {this.selectedIndex === 2 && 
-            <View style={styles.view}>
-              <Text>Lorem ipsum dolor sit amet {this.selectedIndex}</Text>
-              <Text>{text}</Text>
-            </View>
-          }
+          <ASproReport {...this.props} selectedIndex={this.selectedIndex}/>
+          <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
+          <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
         </View>
         <BottomNavigation
           style={styles.bottomNav}
