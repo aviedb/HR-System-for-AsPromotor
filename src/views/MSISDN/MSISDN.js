@@ -45,6 +45,7 @@ class MSISDN extends Component {
         title={item.msisdn}
         description={`${item.subAgent}\n${item.shipOutDate}`}
         style={styles.item}
+        titleStyle={styles.itemTitle}
         onPress={() => this.props.navigation.navigate('MSISDNDetail', {
           title: item.msisdn
         })}

@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     borderBottomColor: '#EAEEF1',
     borderBottomWidth: 1
   },
+  itemTitle: {
+    fontWeight: 'normal'
+  },
   fab: {
     zIndex: 10,
     alignItems:'center',

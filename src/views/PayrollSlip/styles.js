@@ -23,6 +23,9 @@ const styles = StyleSheet.create({
   item: {
     borderBottomColor: '#EAEEF1',
     borderBottomWidth: 1
+  },
+  itemTitle: {
+    fontWeight: 'normal'
   }
 });
 

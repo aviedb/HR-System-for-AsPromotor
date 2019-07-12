@@ -38,6 +38,7 @@ class PayrollSlip extends Component {
         title={item.title}
         description={item.createdAt}
         style={styles.item}
+        titleStyle={styles.itemTitle}
         onPress={() => this.props.navigation.navigate('PdfViewer', {
           title: item.title
         })}

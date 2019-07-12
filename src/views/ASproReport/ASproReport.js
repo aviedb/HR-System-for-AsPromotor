@@ -30,6 +30,10 @@ class ASproReport extends Component {
         { title: 'ASpro Report 2', createdAt: '2019-06-25' },
         { title: 'ASpro Report 3', createdAt: '2019-07-01' },
         { title: 'ASpro Report 4', createdAt: '2019-07-04' },
+        { title: 'ASpro Report 1', createdAt: '2019-06-20' },
+        { title: 'ASpro Report 2', createdAt: '2019-06-25' },
+        { title: 'ASpro Report 3', createdAt: '2019-07-01' },
+        { title: 'ASpro Report 4', createdAt: '2019-07-04' },
       ];
       this.isFetching = false;
     }, 2000);
@@ -49,6 +53,7 @@ class ASproReport extends Component {
         title={item.title}
         description={item.createdAt}
         style={styles.item}
+        titleStyle={styles.itemTitle}
         onPress={() => this.props.navigation.navigate('PdfViewer', {
           title: item.title
         })}
@@ -74,9 +79,7 @@ class ASproReport extends Component {
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
         />
-        <Fab onPress={() => this.props.navigation.navigate('PdfViewer', {
-          title: 'title'
-        })}>
+        <Fab onPress={() => this.props.navigation.navigate('PdfViewer')}>
           {icon.getIcon('plus', null, '#fff')}
         </Fab>
       </View>
