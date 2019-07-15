@@ -88,9 +88,9 @@ class Home extends Component {
           indicatorStyle={{height: 0}}
           onSelect={this.onTabSelect}
         >
-          <BottomNavigationTab icon={this.icon('database', 0)} />
-          <BottomNavigationTab icon={this.icon('inbox', 1)} />
-          <BottomNavigationTab icon={this.icon('book', 2)} />
+          <BottomNavigationTab icon={this.icon('home', 0)} />
+          <BottomNavigationTab icon={this.icon('iconfontdesktop', 1)} />
+          <BottomNavigationTab icon={this.icon('pluscircle', 2)} />
           <BottomNavigationTab icon={this.icon('mail', 3)} />
           <BottomNavigationTab icon={this.icon('calendar', 4)} />
         </BottomNavigation>

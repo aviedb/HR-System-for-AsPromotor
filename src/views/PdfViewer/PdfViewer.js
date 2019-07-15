@@ -28,7 +28,7 @@ class PdfViewer extends Component {
   @observable title = '';
   @observable uri = '';
 
-  componentDidMount() {
+  componentWillMount() {
     this.title = this.props.navigation.getParam('title', 'PDF Viewer');
     this.uri = this.props.navigation.getParam('uri', 'http://www.africau.edu/images/default/sample.pdf');
 
@@ -57,11 +57,13 @@ class PdfViewer extends Component {
             style={styles.header}
             titleStyle={styles.headerTitle} />
           <View style={styles.container}>
-            <WebView
-              bounces={false}
-              scrollEnabled={false}
-              source={{ uri: this.uri }}
-            />
+            {this.uri &&
+              <WebView
+                bounces={false}
+                scrollEnabled={false}
+                source={{ uri: this.uri }}
+              />
+            }
             <View style={styles.divider}/>
           </View>
         </SafeAreaView>

@@ -18,22 +18,7 @@ class ASproReport extends Component {
   componentDidMount() {
     setTimeout(() => {
       this.data = [
-        { title: 'ASpro Report 1', createdAt: '2019-06-20' },
-        { title: 'ASpro Report 2', createdAt: '2019-06-25' },
-        { title: 'ASpro Report 3', createdAt: '2019-07-01' },
-        { title: 'ASpro Report 4', createdAt: '2019-07-04' },
-        { title: 'ASpro Report 1', createdAt: '2019-06-20' },
-        { title: 'ASpro Report 2', createdAt: '2019-06-25' },
-        { title: 'ASpro Report 3', createdAt: '2019-07-01' },
-        { title: 'ASpro Report 4', createdAt: '2019-07-04' },
-        { title: 'ASpro Report 1', createdAt: '2019-06-20' },
-        { title: 'ASpro Report 2', createdAt: '2019-06-25' },
-        { title: 'ASpro Report 3', createdAt: '2019-07-01' },
-        { title: 'ASpro Report 4', createdAt: '2019-07-04' },
-        { title: 'ASpro Report 1', createdAt: '2019-06-20' },
-        { title: 'ASpro Report 2', createdAt: '2019-06-25' },
-        { title: 'ASpro Report 3', createdAt: '2019-07-01' },
-        { title: 'ASpro Report 4', createdAt: '2019-07-04' },
+        
       ];
       this.isFetching = false;
     }, 2000);
