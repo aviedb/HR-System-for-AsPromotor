@@ -1,6 +1,8 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
+import globalStyles from '../../styles/globalStyles';
 
 const styles = StyleSheet.create({
+  ...globalStyles,
   calendarHeader: {
     shadowColor: '#858F96',
     shadowOpacity: 0.25,

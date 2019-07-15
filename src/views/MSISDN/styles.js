@@ -1,9 +1,8 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
+import globalStyles from '../../styles/globalStyles';
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  },
+  ...globalStyles,
   headerContainer: {
     backgroundColor: '#fff',
     shadowColor: '#858F96',
