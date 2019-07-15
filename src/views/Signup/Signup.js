@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, ScrollView, View, TouchableOpacity, AsyncStorage } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import { StatusBar, ScrollView, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
 import {
   Button, 
   Input,

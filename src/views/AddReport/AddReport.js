@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { StatusBar, Platform, View } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import { StatusBar, Platform, View, SafeAreaView } from 'react-native';
 import {
   TopNavigation,
   TopNavigationAction

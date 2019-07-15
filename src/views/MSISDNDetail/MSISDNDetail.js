@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, Platform, View } from 'react-native';
-import { SafeAreaView } from 'react-navigation';
+import { StatusBar, Platform, View, SafeAreaView } from 'react-native';
 import {
   Text,
   TopNavigation,
