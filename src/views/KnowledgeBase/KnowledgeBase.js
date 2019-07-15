@@ -63,6 +63,7 @@ class KnowledgeBase extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
+          style={styles.container}
         />
       </View>
     );

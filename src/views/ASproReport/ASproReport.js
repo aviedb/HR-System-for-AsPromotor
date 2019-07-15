@@ -63,6 +63,7 @@ class ASproReport extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
+          style={styles.container}
         />
         <Fab onPress={() => this.props.navigation.navigate('AddReport')}>
           {icon.getIcon('plus', null, '#fff')}

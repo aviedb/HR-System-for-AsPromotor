@@ -97,6 +97,7 @@ class MSISDN extends Component {
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
           ListFooterComponent={this.renderListFooter}
+          style={styles.container}
         />
       </View>
     );

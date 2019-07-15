@@ -23,7 +23,7 @@ const globalStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#F7F9FC'
+    backgroundColor: '#fafafa'
   },
   divider: {
     borderTopColor: '#EAEEF1',

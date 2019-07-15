@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     }
   },
   section: {
-    backgroundColor: '#F7F9FC', 
+    backgroundColor: '#fafafa', 
     color: '#79838a'
   },
   item: {
