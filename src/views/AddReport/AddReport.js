@@ -1,5 +1,5 @@
-import React, { Component, Fragment } from 'react';
-import { StatusBar, Platform, View, WebView, Linking } from 'react-native';
+import React, { Component } from 'react';
+import { StatusBar, Platform, View } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
   TopNavigation,
@@ -19,26 +19,11 @@ backIcon = () => {
 }
 
 @observer
-class PdfViewer extends Component {
+class AddReport extends Component {
 
   static navigationOptions = {
     header: null,
   };
-
-  @observable title = '';
-  @observable uri = '';
-
-  componentWillMount() {
-    this.title = this.props.navigation.getParam('title', 'PDF Viewer');
-    this.uri = this.props.navigation.getParam('uri', 'http://www.africau.edu/images/default/sample.pdf');
-
-    // this is temporary?
-    // WebView cannot display pdf for android for some reason
-    if (Platform.OS === 'android') {
-      this.props.navigation.goBack();
-      Linking.openURL(this.uri);
-    }
-  }
 
   render() {
     return (
@@ -47,22 +32,17 @@ class PdfViewer extends Component {
           backgroundColor="#eee"
           barStyle="dark-content" />
         <TopNavigation
-          title={this.title}
+          title="Add Report"
           alignment={Platform.OS==='android'? "start": "center"}
           leftControl={<TopNavigationAction
             icon={backIcon}
             onPress={() => this.props.navigation.goBack()}
           />}
           style={styles.header}
-          titleStyle={styles.headerTitle} />
+          titleStyle={styles.headerTitle}
+        />
         <View style={styles.container}>
-          {this.uri &&
-            <WebView
-              bounces={false}
-              scrollEnabled={false}
-              source={{ uri: this.uri }}
-            />
-          }
+
         </View>
         <View style={styles.divider}/>
       </SafeAreaView>
@@ -70,4 +50,4 @@ class PdfViewer extends Component {
   }
 }
 
-export default PdfViewer;
+export default AddReport;

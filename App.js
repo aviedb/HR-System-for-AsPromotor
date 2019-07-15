@@ -13,6 +13,7 @@ import Home from './src/views/Home';
 import MSISDNDetail from './src/views/MSISDNDetail';
 import PdfViewer from './src/views/PdfViewer';
 import AgendaDetail from './src/views/AgendaDetail';
+import AddReport from './src/views/AddReport';
 
 const AppNavigator = createStackNavigator({
   Login,
@@ -20,7 +21,8 @@ const AppNavigator = createStackNavigator({
   Home,
   MSISDNDetail,
   PdfViewer,
-  AgendaDetail
+  AgendaDetail,
+  AddReport
 });
 const AppContainer = createAppContainer(AppNavigator);
 

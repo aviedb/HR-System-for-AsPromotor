@@ -64,7 +64,7 @@ class ASproReport extends Component {
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
         />
-        <Fab onPress={() => this.props.navigation.navigate('PdfViewer')}>
+        <Fab onPress={() => this.props.navigation.navigate('AddReport')}>
           {icon.getIcon('plus', null, '#fff')}
         </Fab>
       </View>
