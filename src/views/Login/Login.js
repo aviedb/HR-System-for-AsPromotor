@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, ScrollView, View, TouchableOpacity } from 'react-native';
+import { StatusBar, ScrollView, View, TouchableOpacity, AsyncStorage } from 'react-native';
 import { SafeAreaView } from 'react-navigation';
 import {
   Button, 
@@ -23,6 +23,11 @@ class Login extends Component {
 
   handleChange = (key) => (value) => {
     this[key] = value;
+  }
+
+  attemptLogin = async () => {
+    await AsyncStorage.setItem('userToken', 'abc');
+    this.props.navigation.navigate('AppStack');
   }
 
   render() {
@@ -51,7 +56,7 @@ class Login extends Component {
                   secureTextEntry
                   style={styles.input}
                 />
-                <Button onPress={() => this.props.navigation.navigate('Home')}>Login</Button>
+                <Button onPress={this.attemptLogin}>Login</Button>
                 <Text category="p1" style={styles.forget}>Forgot your password?</Text>
               </View>
             </ScrollView>

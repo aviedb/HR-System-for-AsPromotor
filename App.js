@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
-import { createStackNavigator, createAppContainer } from 'react-navigation';
+import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { setCustomText } from 'react-native-global-props'
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
@@ -14,17 +14,30 @@ import MSISDNDetail from './src/views/MSISDNDetail';
 import PdfViewer from './src/views/PdfViewer';
 import AgendaDetail from './src/views/AgendaDetail';
 import AddReport from './src/views/AddReport';
+import AuthLoading from './src/views/AuthLoading';
 
-const AppNavigator = createStackNavigator({
-  Login,
-  Signup,
+const AppStack = createStackNavigator({
   Home,
   MSISDNDetail,
   PdfViewer,
   AgendaDetail,
   AddReport
 });
-const AppContainer = createAppContainer(AppNavigator);
+
+const AuthStack = createStackNavigator({
+  Login,
+  Signup,
+});
+
+const AppContainer = createAppContainer(createSwitchNavigator(
+  {
+    AuthLoading,
+    AppStack,
+    AuthStack
+  }, {
+    initialRouteName: 'AuthLoading'
+  }
+));
 
 @observer
 class App extends Component {

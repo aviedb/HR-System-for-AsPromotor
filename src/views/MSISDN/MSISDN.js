@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, AsyncStorage } from 'react-native';
 import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -39,6 +39,11 @@ class MSISDN extends Component {
     this[key] = value;
   }
 
+  attemptLogout = async () => {
+    await AsyncStorage.clear();
+    this.props.navigation.navigate('AuthStack');
+  }
+
   renderItem = ({ item }) => {
     return (
       <ListItem 
@@ -50,6 +55,14 @@ class MSISDN extends Component {
           title: item.msisdn
         })}
       />
+    );
+  }
+
+  renderListFooter = () => {
+    return (
+      <View>
+        <Text onPress={this.attemptLogout}>Logout</Text>
+      </View>
     );
   }
 
@@ -83,6 +96,7 @@ class MSISDN extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
+          ListFooterComponent={this.renderListFooter}
         />
       </View>
     );
