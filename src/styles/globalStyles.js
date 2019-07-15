@@ -15,13 +15,12 @@ const globalStyles = StyleSheet.create({
       width: 0
     },
     elevation: 7,
-    zIndex: 1
+    zIndex: 100
   },
   headerTitle: {
     fontFamily: 'helvetica_neue_md',
     fontWeight: "normal",
-    fontSize: 16,
-    marginHorizontal: Platform.OS==='ios'? 16:0
+    fontSize: 16
   },
   container: {
     flex: 1,
