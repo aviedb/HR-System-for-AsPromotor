@@ -88,7 +88,11 @@ class MSISDN extends Component {
               value={this.search}
               onChangeText={this.handleChange('search')}
               size="small"
-              icon={() => icon.getIcon('search1', null, '#909DB4')}
+              icon={(style) => {
+                let color = style.tintColor;
+                delete style.tintColor;
+                return icon.getIcon('search1', null, color);
+              }}
             />
           </View>
         </View>

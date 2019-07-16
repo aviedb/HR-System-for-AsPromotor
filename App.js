@@ -8,14 +8,14 @@ import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import Login from './src/views/Login';
-import Signup from './src/views/Signup';
+import Login from './src/views/Auth/Login';
+import Signup from './src/views/Auth/Signup';
 import Home from './src/views/Home';
 import MSISDNDetail from './src/views/MSISDNDetail';
 import PdfViewer from './src/views/PdfViewer';
 import AgendaDetail from './src/views/AgendaDetail';
 import AddReport from './src/views/AddReport';
-import AuthLoading from './src/views/AuthLoading';
+import AuthLoading from './src/views/Auth/AuthLoading';
 
 // disable font scaling
 Text.defaultProps = Text.defaultProps || {};

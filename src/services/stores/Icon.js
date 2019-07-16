@@ -9,7 +9,7 @@ class Icon {
     if (!color) color = "#1A2138";
     if (!size) size = 24;
 
-    return <Component 
+    return <Component
       name={name}
       size={size}
       color={color}

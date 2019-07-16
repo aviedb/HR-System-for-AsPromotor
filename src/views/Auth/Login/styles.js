@@ -29,7 +29,8 @@ const styles = StyleSheet.create({
   },
   logoTitle: {
     color: '#fff',
-    fontFamily: 'helvetica_neue_bd'
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_bold'
   },
   logoSubtitle: {
     color: '#fff',
@@ -37,6 +38,11 @@ const styles = StyleSheet.create({
   },
   input: {
     marginBottom: 8
+  },
+  forget: {
+    marginTop: 16,
+    alignSelf: 'flex-end',
+    color: '#3267FF'
   },
   footer: {
     flexDirection: 'row',

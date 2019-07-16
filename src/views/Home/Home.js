@@ -52,7 +52,8 @@ class Home extends Component {
     this.selectedIndex = selectedIndex;
   };
 
-  icon = (name, index) => () => {
+  icon = (name, index) => (style) => {
+    delete style.tintColor;
     let color = '#333A4F';
     if (index !== null) color = this.selectedIndex === index? '#3267FF':'#8F9BB3';
 
