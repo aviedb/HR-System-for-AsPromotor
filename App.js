@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Text } from 'react-native';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
@@ -15,6 +16,10 @@ import PdfViewer from './src/views/PdfViewer';
 import AgendaDetail from './src/views/AgendaDetail';
 import AddReport from './src/views/AddReport';
 import AuthLoading from './src/views/AuthLoading';
+
+// disable font scaling
+Text.defaultProps = Text.defaultProps || {};
+Text.defaultProps.allowFontScaling = false;
 
 const AppStack = createStackNavigator({
   Home,
@@ -51,7 +56,12 @@ class App extends Component {
       'helvetica_neue_it': require('./src/assets/fonts/helvetica_neue_it.ttf'),
       'helvetica_neue_md': require('./src/assets/fonts/helvetica_neue_md.ttf'),
       'helvetica_neue_bd': require('./src/assets/fonts/helvetica_neue_bd.ttf'),
-      'helvetica_neue_hv': require('./src/assets/fonts/helvetica_neue_hv.ttf')
+      'helvetica_neue_hv': require('./src/assets/fonts/helvetica_neue_hv.ttf'),
+      'product_sans_bold': require('./src/assets/fonts/product_sans_bold.ttf'),
+      'product_sans_light': require('./src/assets/fonts/product_sans_light.ttf'),
+      'product_sans_medium': require('./src/assets/fonts/product_sans_medium.ttf'),
+      'product_sans_regular': require('./src/assets/fonts/product_sans_regular.ttf'),
+      'product_sans_thin': require('./src/assets/fonts/product_sans_thin.ttf')
     });
 
     this.fontLoaded = true;
@@ -61,7 +71,8 @@ class App extends Component {
   defaultFonts(){
     const customTextProps = {
       style: {
-        fontFamily: 'helvetica_neue_md'
+        fontFamily: 'helvetica_neue_md',
+        fontSize: 16
       }
     }
     setCustomText(customTextProps);

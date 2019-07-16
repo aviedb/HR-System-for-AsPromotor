@@ -15,20 +15,6 @@ const styles = StyleSheet.create({
     elevation: 7,
     zIndex: 1
   },
-  header: {
-    minHeight: 56,
-    paddingVertical: 8,
-    paddingHorizontal: 8,
-    alignItems: 'center',
-    justifyContent: 'center'
-  },
-  headerTitle: {
-    fontFamily: 'helvetica_neue_md',
-    fontWeight: "normal",
-    fontSize: 16,
-    lineHeight: 24,
-    color: '#1A2138'
-  },
   search: {
     paddingHorizontal: 16,
     paddingBottom: 8

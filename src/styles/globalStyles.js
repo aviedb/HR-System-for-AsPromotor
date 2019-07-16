@@ -17,9 +17,9 @@ const globalStyles = StyleSheet.create({
     zIndex: 100
   },
   headerTitle: {
-    fontFamily: 'helvetica_neue_md',
+    fontFamily: 'product_sans_medium',
     fontWeight: "normal",
-    fontSize: 16
+    fontSize: 18
   },
   container: {
     flex: 1,

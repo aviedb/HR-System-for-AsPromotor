@@ -69,7 +69,7 @@ class ExpandableCalendarScreen extends Component {
     const themeColor = '#3267FF';
     const lightThemeColor = '#e6efff';
     const disabledColor = '#a6acb1';
-    const black = '#20303c';
+    const black = '#1A2138';
     const white = '#ffffff';
     
     return {
@@ -78,19 +78,19 @@ class ExpandableCalendarScreen extends Component {
       arrowStyle: {padding: 0},
       // month
       monthTextColor: black,
-      textMonthFontFamily: 'helvetica_neue_md',
-      textMonthFontSize: 16,
+      textMonthFontFamily: 'product_sans_medium',
+      textMonthFontSize: 18,
       // day names
-      textSectionTitleColor: black,
+      textSectionTitleColor: 'grey',
       textDayHeaderFontSize: 12,
-      textDayHeaderFontFamily: 'helvetica_neue_lt',
+      textDayHeaderFontFamily: 'product_sans_medium',
       // today
       todayBackgroundColor: lightThemeColor,
       todayTextColor: themeColor,
       // dates
       dayTextColor: themeColor,
       textDayFontSize: 18,
-      textDayFontFamily: 'helvetica_neue_lt',
+      textDayFontFamily: 'product_sans_regular',
       textDayStyle: {marginTop: Platform.OS === 'android' ? 2 : 4},
       // selected date
       selectedDayBackgroundColor: themeColor,

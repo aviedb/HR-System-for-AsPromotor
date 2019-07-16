@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
-import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
+import { Text, Input, ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
@@ -77,9 +77,12 @@ class MSISDN extends Component {
     return (
       <View style={styles.container}>
         <View style={styles.headerContainer}>
-          <View style={styles.header}>
-            <Text style={styles.headerTitle}>MSISDN</Text>
-          </View>
+          <TopNavigation 
+            title="MSISDN"
+            alignment="center"
+            allowFontScaling={false}
+            titleStyle={styles.headerTitle}
+          />
           <View style={styles.search}>
             <Input 
               placeholder="Search by MSISDN or sub agent"
