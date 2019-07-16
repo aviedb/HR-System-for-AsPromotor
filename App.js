@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { mapping, light as lightTheme } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
-import { setCustomText } from 'react-native-global-props'
+import { setCustomText } from 'react-native-global-props';
 import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -71,7 +71,8 @@ class App extends Component {
     return (
       <ApplicationProvider
         mapping={mapping}
-        theme={lightTheme}>
+        theme={lightTheme}
+      >
         {this.fontLoaded &&
           <AppContainer />
         }

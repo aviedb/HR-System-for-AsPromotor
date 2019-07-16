@@ -11,11 +11,11 @@ import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
 
 import { icon } from '../../services/stores';
-import MSISDN from '../MSISDN';
-import KnowledgeBase from '../KnowledgeBase';
-import ASproReport from '../ASproReport';
-import PayrollSlip from '../PayrollSlip';
-import Schedule from '../Schedule';
+import MSISDN from './MSISDN';
+import KnowledgeBase from './KnowledgeBase';
+import ASproReport from './ASproReport';
+import PayrollSlip from './PayrollSlip';
+import Schedule from './Schedule';
 
 import styles from './styles';
 

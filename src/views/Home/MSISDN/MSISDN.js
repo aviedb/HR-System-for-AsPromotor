@@ -4,7 +4,7 @@ import { Text, Input, ListItem, List } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import { icon } from '../../services/stores';
+import { icon } from '../../../services/stores';
 
 import styles from './styles';
 

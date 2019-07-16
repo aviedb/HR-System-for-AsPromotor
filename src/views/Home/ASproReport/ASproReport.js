@@ -4,10 +4,10 @@ import { ListItem, List, TopNavigation, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import Fab from '../../components/FloatingActionButton';
+import Fab from '../../../components/FloatingActionButton';
 
 import styles from './styles';
-import { icon } from '../../services/stores';
+import { icon } from '../../../services/stores';
 
 @observer
 class ASproReport extends Component {
