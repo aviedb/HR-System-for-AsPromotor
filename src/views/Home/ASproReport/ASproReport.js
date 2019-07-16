@@ -55,7 +55,7 @@ class ASproReport extends Component {
           title="ASpro Report"
           alignment="center"
           style={styles.header}
-          titleStyle={styles.headerTitle}
+          titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
         />
         <List 
           data={this.data}

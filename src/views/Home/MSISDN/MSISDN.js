@@ -80,8 +80,7 @@ class MSISDN extends Component {
           <TopNavigation 
             title="MSISDN"
             alignment="center"
-            allowFontScaling={false}
-            titleStyle={styles.headerTitle}
+            titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
           />
           <View style={styles.search}>
             <Input 

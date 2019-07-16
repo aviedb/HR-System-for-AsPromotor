@@ -55,7 +55,7 @@ class KnowledgeBase extends Component {
           title="Knowledge Base"
           alignment="center"
           style={styles.header}
-          titleStyle={styles.headerTitle}
+          titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
         />
         <List 
           data={this.data}

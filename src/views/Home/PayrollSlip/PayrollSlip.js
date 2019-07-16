@@ -55,7 +55,7 @@ class PayrollSlip extends Component {
           title="Payroll Slip"
           alignment="center"
           style={styles.header}
-          titleStyle={styles.headerTitle}
+          titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
         />
         <List 
           data={this.data}

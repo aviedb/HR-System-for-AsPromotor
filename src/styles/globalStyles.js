@@ -19,7 +19,11 @@ const globalStyles = StyleSheet.create({
   headerTitle: {
     fontFamily: 'product_sans_medium',
     fontWeight: "normal",
-    fontSize: 18
+    fontSize: 18,
+    marginLeft: Platform.OS === 'android'? 8:0
+  },
+  headerCenterTitle: {
+    marginLeft: 0
   },
   container: {
     flex: 1,
