@@ -13,10 +13,11 @@ import { icon } from '../../services/stores';
 import Divider from '../../components/Divider';
 
 import styles from './styles';
+import theme from '../../styles/theme';
 
 backIcon = () => {
   const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back'
-  return icon.getIcon(name, Ionicons);
+  return icon.getIcon(name, Ionicons, theme["text-primary-active-color"]);
 }
 
 @observer
@@ -38,7 +39,7 @@ class AgendaDetail extends Component {
       <Fragment>
         <SafeAreaView style={styles.safeArea}>
           <StatusBar
-            backgroundColor="#eee"
+            backgroundColor={theme["status-bar-android"]}
             barStyle="dark-content" />
           <TopNavigation
             title={this.title}

@@ -27,10 +27,11 @@ import Fab from '../../components/FloatingActionButton';
 import Divider from '../../components/Divider';
 
 import styles from './styles';
+import theme from '../../styles/theme';
 
 backIcon = () => {
   const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-  return icon.getIcon(name, Ionicons);
+  return icon.getIcon(name, Ionicons, theme["text-primary-active-color"]);
 }
 
 @observer
@@ -120,7 +121,7 @@ class AddReport extends Component {
           </View>
           <Fab
             style={styles.upload}
-            underlayColor="rgba(50, 103, 255, .7)"
+            underlayColor={theme["text-primary-active-color"]}
             onPress={() => this.ActionSheet.show()}
           >
             {icon.getIcon('upload', null, '#fff', 20)}

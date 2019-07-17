@@ -1,9 +1,10 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
+import theme from './theme';
 
 const globalStyles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: theme["background-basic-color-1"],
   },
   header: {
     shadowColor: '#858F96',
@@ -20,6 +21,7 @@ const globalStyles = StyleSheet.create({
     fontFamily: 'product_sans_medium',
     fontWeight: "normal",
     fontSize: 18,
+    color: theme["text-primary-active-color"],
     marginLeft: Platform.OS === 'android'? 8:0,
     paddingHorizontal: Platform.OS === 'ios'? 16:0
   },
@@ -28,7 +30,7 @@ const globalStyles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: '#fafafa'
+    backgroundColor: theme["background-basic-color-2"]
   }
 });
 

@@ -9,6 +9,7 @@ import { Text } from 'react-native-ui-kitten';
 import Touchable from '../../../components/Touchable';
 
 import styles from './styles';
+import theme from '../../../styles/theme';
 
 // generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
@@ -66,22 +67,23 @@ class ExpandableCalendarScreen extends Component {
   }
 
   getTheme = () => {
-    const themeColor = '#3267FF';
-    const lightThemeColor = '#e6efff';
-    const disabledColor = '#a6acb1';
-    const black = '#1A2138';
-    const white = '#ffffff';
+    const themeColor = theme["color-primary-default"];
+    const lightThemeColor = theme["color-primary-disabled"];
+    const disabledColor = theme["color-basic-disabled"];
+    const black = theme["text-basic-color"];
+    const grey = theme["text-hint-color"];
+    const white = theme["text-alternate-color"];
     
     return {
       // arrows
-      arrowColor: black,
+      arrowColor: theme["text-primary-active-color"],
       arrowStyle: {padding: 0},
       // month
-      monthTextColor: black,
+      monthTextColor: theme["text-primary-active-color"],
       textMonthFontFamily: 'product_sans_medium',
       textMonthFontSize: 18,
       // day names
-      textSectionTitleColor: 'grey',
+      textSectionTitleColor: grey,
       textDayHeaderFontSize: 12,
       textDayHeaderFontFamily: 'product_sans_medium',
       // today

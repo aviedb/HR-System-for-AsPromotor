@@ -8,7 +8,8 @@ import {
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import styles from './styles';
+import styles from '../styles';
+import theme from '../../../styles/theme';
 
 @observer
 class Login extends Component {
@@ -32,9 +33,13 @@ class Login extends Component {
   render() {
     return (
       <Fragment>
-        <SafeAreaView style={{flex: 0, backgroundColor: '#3267FF'}}/>
+        <SafeAreaView style={styles.safeAreaTop}/>
         <SafeAreaView style={styles.safeArea}>
-          <StatusBar translucent backgroundColor="#3267FF" barStyle="light-content" />
+          <StatusBar 
+            translucent 
+            backgroundColor={theme["color-primary-default"]} 
+            barStyle="light-content"
+          />
           <View style={{flex: 1}}>
             <ScrollView>
               <View style={styles.logo}>

@@ -1,5 +1,6 @@
 import { StyleSheet, Platform, StatusBar, Dimensions } from 'react-native';
 import globalStyles from '../../styles/globalStyles';
+import theme from '../../styles/theme';
 
 const { width, height } = Dimensions.get('window');
 
@@ -8,8 +9,8 @@ const styles = StyleSheet.create({
   imageContainer: {
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EAECEE',
-    borderBottomColor: '#DADADA',
+    backgroundColor: theme["background-basic-color-3"],
+    borderBottomColor: theme["border-basic-color-5"],
     borderBottomWidth: 1
   },
   image: {
@@ -24,7 +25,7 @@ const styles = StyleSheet.create({
     height:52,
     top: (width*1/2)-26,
     right: 20,
-    backgroundColor:'#3267FF',
+    backgroundColor: theme["text-primary-color"],
     borderRadius:50,
     shadowColor: "#000",
     shadowOffset: {
@@ -40,8 +41,8 @@ const styles = StyleSheet.create({
     paddingTop: 40
   },
   input: {
-    backgroundColor: '#FFFFFF',
-    borderColor: '#D3DDE9',
+    backgroundColor: theme["background-basic-color-1"],
+    borderColor: theme["border-basic-color-4"],
     marginVertical: 4
   },
   labelStyle: {

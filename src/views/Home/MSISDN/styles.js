@@ -1,5 +1,6 @@
 import { StyleSheet, Platform, StatusBar } from 'react-native';
 import globalStyles from '../../../styles/globalStyles';
+import theme from '../../../styles/theme';
 
 const styles = StyleSheet.create({
   ...globalStyles,
@@ -20,11 +21,11 @@ const styles = StyleSheet.create({
     paddingBottom: 8
   },
   item: {
-    borderBottomColor: '#EAEEF1',
+    borderBottomColor: theme["border-basic-color-3"],
     borderBottomWidth: 1
   },
   itemTitle: {
-    fontWeight: 'normal'
+    fontWeight: 'normal',
   }
 });
 

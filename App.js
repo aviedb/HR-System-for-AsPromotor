@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
-import { mapping, light as lightTheme } from '@eva-design/eva';
+import { mapping } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import { createStackNavigator, createAppContainer, createSwitchNavigator } from 'react-navigation';
 import { setCustomText } from 'react-native-global-props';
@@ -8,6 +8,7 @@ import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
+import lightTheme from './src/styles/theme';
 import Login from './src/views/Auth/Login';
 import Signup from './src/views/Auth/Signup';
 import Home from './src/views/Home';

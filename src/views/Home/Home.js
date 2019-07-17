@@ -18,6 +18,7 @@ import PayrollSlip from './PayrollSlip';
 import Schedule from './Schedule';
 
 import styles from './styles';
+import theme from '../../styles/theme';
 
 @observer
 class Home extends Component {
@@ -54,8 +55,12 @@ class Home extends Component {
 
   icon = (name, index) => (style) => {
     delete style.tintColor;
-    let color = '#333A4F';
-    if (index !== null) color = this.selectedIndex === index? '#3267FF':'#8F9BB3';
+    let color = theme["icon-basic-color"];
+    if (index !== null){ 
+      color = this.selectedIndex === index 
+        ? theme["icon-active-color"]
+        : theme["icon-control-color"];
+    }
 
     return icon.getIcon(name, null, color);
   }
@@ -72,7 +77,7 @@ class Home extends Component {
     return (
       <SafeAreaView style={styles.safeArea}>
         <StatusBar
-          backgroundColor="#eee"
+          backgroundColor={theme["status-bar-android"]}
           barStyle="dark-content"
         />
         <View style={styles.container}>
