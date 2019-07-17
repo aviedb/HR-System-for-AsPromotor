@@ -9,6 +9,7 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
+import Divider from '../../components/Divider';
 
 import styles from './styles';
 
@@ -63,7 +64,7 @@ class PdfViewer extends Component {
             />
           }
         </View>
-        <View style={styles.divider}/>
+        <Divider />
       </SafeAreaView>
     );
   }

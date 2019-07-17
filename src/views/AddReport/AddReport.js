@@ -8,6 +8,8 @@ import {
   Image
 } from 'react-native';
 import {
+  Button,
+  Input,
   Text,
   TopNavigation,
   TopNavigationAction
@@ -22,6 +24,7 @@ import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
 import Fab from '../../components/FloatingActionButton';
+import Divider from '../../components/Divider';
 
 import styles from './styles';
 
@@ -38,6 +41,7 @@ class AddReport extends Component {
   };
 
   @observable image = null;
+  @observable sold = '';
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -49,20 +53,24 @@ class AddReport extends Component {
   }
 
   pickImage = async (index) => {
-    if (index === 2) return;
+    if (index === 3) return;
+    if (index === 2) return this.image = null;
+
     await this.getPermissionAsync();
 
     const pickerType = index === 0? 'launchCameraAsync':'launchImageLibraryAsync';
 
-    let result = await ImagePicker[pickerType]({
+    ImagePicker[pickerType]({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
       aspect: [3, 2]
+    }).then(res => {
+      if (!res.cancelled) {
+        this.image = res.uri
+      }
+    }).catch(err => {
+      console.log(err);
     });
-
-    if (!result.cancelled) {
-      this.image = result.uri
-    }
   }
 
   render() {
@@ -83,11 +91,31 @@ class AddReport extends Component {
         />
         <ScrollView style={styles.container}>
           <View style={styles.imageContainer}>
-            <Text style={{position: 'absolute'}}>Image</Text>
+            <Text style={{position: 'absolute'}}>Foto Event</Text>
             <Image
               style={styles.image}
               resizeMode="cover"
               source={{uri: this.image}}
+            />
+          </View>
+          <View style={styles.formContainer}>
+            <Text category="h5">Report Detail</Text>
+            <Divider color="#D3DDE9" marginBottom={20}/>
+            <Input 
+              label="Field 1"
+              value={this.sold}
+              onChangeText={value => this.sold = value}
+              keyboardType="numeric"
+              style={styles.input}
+              labelStyle={styles.labelStyle}
+            />
+            <Input 
+              label="Field 2"
+              value={this.sold}
+              onChangeText={value => this.sold = value}
+              keyboardType="numeric"
+              style={styles.input}
+              labelStyle={styles.labelStyle}
             />
           </View>
           <Fab
@@ -97,14 +125,17 @@ class AddReport extends Component {
           >
             {icon.getIcon('upload', null, '#fff', 20)}
           </Fab>
-          <ActionSheet
-            ref={o => this.ActionSheet = o}
-            options={['Open Camera', 'Select from Photos', 'Cancel']}
-            cancelButtonIndex={2}
-            onPress={this.pickImage}
-          />
         </ScrollView>
-        <View style={styles.divider}/>
+        <View style={styles.buttonContainer}>
+          <Button>Next</Button>
+        </View>
+        <ActionSheet
+          ref={o => this.ActionSheet = o}
+          options={['Open Camera', 'Select from Photos', 'Delete Image', 'Cancel']}
+          cancelButtonIndex={3}
+          destructiveButtonIndex={2}
+          onPress={this.pickImage}
+        />
       </SafeAreaView>
     );
   }

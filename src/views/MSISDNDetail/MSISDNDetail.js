@@ -10,6 +10,7 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
+import Divider from '../../components/Divider';
 
 import styles from './styles';
 
@@ -52,7 +53,7 @@ class MSISDNDetail extends Component {
             <Text>Lorem ipsum dolor sit amet</Text>
             <Text>{this.title}</Text>
           </View>
-          <View style={styles.divider}/>
+          <Divider />
         </SafeAreaView>
       </Fragment>
     );
