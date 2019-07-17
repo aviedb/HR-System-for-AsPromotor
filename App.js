@@ -72,7 +72,6 @@ class App extends Component {
     const customTextProps = {
       style: {
         fontFamily: 'helvetica_neue_md',
-        fontSize: 16
       }
     }
     setCustomText(customTextProps);

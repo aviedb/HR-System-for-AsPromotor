@@ -176,7 +176,11 @@ class ASproReport extends Component {
             sectionStyle={styles.section}
           />
         </CalendarProvider>
-        <Fab onPress={() => this.props.navigation.navigate('AddReport')}>
+        <Fab 
+          underlayColor="rgba(50, 103, 255, .7)"
+          onPress={() => this.props.navigation.navigate('AddReport')}
+          style={styles.fab}
+        >
           {icon.getIcon('plus', null, '#fff')}
         </Fab>
       </View>

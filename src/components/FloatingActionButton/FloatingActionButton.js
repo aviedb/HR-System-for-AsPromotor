@@ -4,7 +4,7 @@ import { TouchableHighlight as TouchableOpacity } from 'react-native';
 import styles from './styles';
 
 const FloatingActionButton = (props) => (
-  <TouchableOpacity {...props} style={styles.fab} underlayColor="rgba(50, 103, 255, .7)">
+  <TouchableOpacity {...props}>
     {props.children}
   </TouchableOpacity>
 );

@@ -4,16 +4,15 @@ import globalStyles from '../../../styles/globalStyles';
 const styles = StyleSheet.create({
   ...globalStyles,
   fab: {
-    zIndex: 10,
-    alignItems:'center',
+    position: 'absolute',
+    alignItems: 'center',
     justifyContent:'center',
-    width:48,
-    height:48,
-    position: 'absolute',                                       
-    bottom: 16,                                                    
+    width:56,
+    height:56,
+    bottom: 16,
     right: 20,
     backgroundColor:'#3267FF',
-    borderRadius:100,
+    borderRadius:50,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
