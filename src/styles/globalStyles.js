@@ -21,7 +21,7 @@ const globalStyles = StyleSheet.create({
     fontFamily: 'product_sans_medium',
     fontWeight: "normal",
     fontSize: 18,
-    color: theme["text-primary-active-color"],
+    color: theme["text-basic-color"],
     marginLeft: Platform.OS === 'android'? 8:0,
     paddingHorizontal: Platform.OS === 'ios'? 16:0
   },

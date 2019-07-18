@@ -16,7 +16,7 @@ import theme from '../../styles/theme';
 
 backIcon = () => {
   const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-  return icon.getIcon(name, Ionicons, theme["text-primary-active-color"]);
+  return icon.getIcon(name, Ionicons);
 }
 
 @observer

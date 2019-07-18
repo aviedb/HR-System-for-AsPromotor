@@ -79,10 +79,10 @@ class ASproReport extends Component {
     
     return {
       // arrows
-      arrowColor: theme["text-primary-active-color"],
+      arrowColor: black,
       arrowStyle: {padding: 0},
       // month
-      monthTextColor: theme["text-primary-active-color"],
+      monthTextColor: black,
       textMonthFontFamily: 'product_sans_medium',
       textMonthFontSize: 18,
       // day names

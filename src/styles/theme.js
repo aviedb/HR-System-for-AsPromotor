@@ -31,7 +31,7 @@ const pallete = {
   "color-success-600": "#1B655E",
   "color-success-700": "#124543",
 
-  // info colors
+  // info colors - blue
   "color-info-100": "#EEF8FF",
   "color-info-200": "#A9D4F5",
   "color-info-300": "#64A2D8",
@@ -67,9 +67,9 @@ const theme = {
   "color-basic-disabled"  : pallete["color-basic-600"],
 
   // primary colors
-  "color-primary-default" : pallete["color-primary-500"],
-  "color-primary-active"  : pallete["color-primary-600"],
-  "color-primary-focus"   : pallete["color-primary-700"],
+  "color-primary-default" : pallete["color-primary-400"],
+  "color-primary-active"  : pallete["color-primary-500"],
+  "color-primary-focus"   : pallete["color-primary-600"],
   "color-primary-disabled": pallete["color-primary-200"],
 
   // success colors

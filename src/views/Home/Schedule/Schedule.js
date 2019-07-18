@@ -35,8 +35,8 @@ function getPastDate(days) {
 class ExpandableCalendarScreen extends Component {
 
   @observable items = [
-    {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
-    {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
+    {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Wohoooo!'}]},
+    {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Lorem lorem lorem'}]},
     {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
     {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
     {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
@@ -76,10 +76,10 @@ class ExpandableCalendarScreen extends Component {
     
     return {
       // arrows
-      arrowColor: theme["text-primary-active-color"],
+      arrowColor: black,
       arrowStyle: {padding: 0},
       // month
-      monthTextColor: theme["text-primary-active-color"],
+      monthTextColor: black,
       textMonthFontFamily: 'product_sans_medium',
       textMonthFontSize: 18,
       // day names
