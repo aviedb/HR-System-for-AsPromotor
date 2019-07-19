@@ -76,6 +76,8 @@ class AddReport extends Component {
     }).then(res => {
       if (!res.cancelled) {
         this.image = res.uri
+      } else {
+        this.openActionSheet();
       }
     }).catch(err => {
       console.log(err);
@@ -90,7 +92,7 @@ class AddReport extends Component {
         options: ['Take photo', 'Choose image', 'Remove picture', 'Cancel'],
         destructiveButtonIndex: 2,
         cancelButtonIndex: 3,
-        title: 'Complete action using:'
+        title: 'Foto Event'
       }, this.pickImage);
     }
   }
@@ -108,7 +110,7 @@ class AddReport extends Component {
         }}
       >
         <Text style={styles.bottomSheetTitle}>
-          Complete Action Using:
+          Foto Event
         </Text>
         <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
         <Touchable onPress={() => this.pickImage(0)}>
