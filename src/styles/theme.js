@@ -91,10 +91,10 @@ const theme = {
   "color-warning-disabled": pallete["color-warning-300"],
 
   // danger colors
-  "color-danger-default"  : pallete["color-danger-500"],
-  "color-danger-active"   : pallete["color-danger-600"],
-  "color-danger-focus"    : pallete["color-danger-700"],
-  "color-danger-disabled" : pallete["color-danger-300"],
+  "color-danger-default"  : pallete["color-danger-300"],
+  "color-danger-active"   : pallete["color-danger-400"],
+  "color-danger-focus"    : pallete["color-danger-500"],
+  "color-danger-disabled" : pallete["color-danger-200"],
 }
 
 const basic = {

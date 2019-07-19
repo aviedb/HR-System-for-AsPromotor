@@ -54,6 +54,37 @@ const styles = StyleSheet.create({
     paddingVertical: 20,
     borderTopColor: '#EAEEF1',
     borderTopWidth: 1
+  },
+  bottomSheetContainer: {
+    paddingTop: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20
+  },
+  bottomSheetTitle: {
+    color: theme["text-basic-color"],
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_medium',
+    fontSize: 16,
+    alignSelf: 'center'
+  },
+  bottomSheetItem: {
+    flexDirection: 'row',
+    paddingVertical: 12,
+    alignItems: 'center',
+    paddingHorizontal: 20
+  },
+  bottomSheetItemTitle: {
+    marginLeft: 24,
+    color: theme["text-hint-color"],
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_medium',
+    marginLeft: 8
+  },
+  bottomSheetItemTitleDanger: {
+    color: theme["text-danger-color"],
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_medium',
+    marginLeft: 8
   }
 });
 
