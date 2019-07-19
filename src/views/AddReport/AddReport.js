@@ -124,7 +124,7 @@ class AddReport extends Component {
             underlayColor={theme["text-primary-active-color"]}
             onPress={() => this.ActionSheet.show()}
           >
-            {icon.getIcon('upload', null, '#fff', 20)}
+            {icon.getIcon(this.image?'edit':'upload', null, '#fff', 20)}
           </Fab>
         </ScrollView>
         <View style={styles.buttonContainer}>

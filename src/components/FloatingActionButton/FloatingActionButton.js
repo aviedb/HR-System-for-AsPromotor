@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
-import { TouchableHighlight as TouchableOpacity } from 'react-native';
+import React from 'react';
+import { TouchableHighlight } from 'react-native';
 
 import styles from './styles';
 
 const FloatingActionButton = (props) => (
-  <TouchableOpacity {...props}>
+  <TouchableHighlight {...props}>
     {props.children}
-  </TouchableOpacity>
+  </TouchableHighlight>
 );
 
 export default FloatingActionButton;

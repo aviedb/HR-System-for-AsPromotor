@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
-import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
+import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
+import Card from '../../../components/Card';
 import styles from './styles';
 
 @observer
@@ -34,15 +35,7 @@ class KnowledgeBase extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <ListItem 
-        title={item.title}
-        description={item.createdAt}
-        style={styles.item}
-        titleStyle={styles.itemTitle}
-        onPress={() => this.props.navigation.navigate('PdfViewer', {
-          title: item.title
-        })}
-      />
+      <Card {...this.props} {...item} />
     );
   }
 
@@ -60,6 +53,7 @@ class KnowledgeBase extends Component {
         <List 
           data={this.data}
           renderItem={this.renderItem}
+          ListHeaderComponent={<View style={{height: 12}}/>}
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}

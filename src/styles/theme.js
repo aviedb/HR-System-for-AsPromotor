@@ -115,7 +115,7 @@ const basic = {
   "text-basic-color"    : pallete["color-basic-1000"],
   "text-alternate-color": pallete["color-basic-100"],
   "text-control-color"  : pallete["color-basic-100"],
-  "text-disabled-color" : pallete["color-basic-500"],
+  "text-disabled-color" : pallete["color-basic-700"],
   "text-hint-color"     : pallete["color-basic-800"],
 
   "text-primary-color"         : theme["color-primary-default"],
