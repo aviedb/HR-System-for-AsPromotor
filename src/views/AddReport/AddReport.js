@@ -101,7 +101,7 @@ class AddReport extends Component {
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={220}
+        height={230}
         duration={250}
         customStyles={{
           container: styles.bottomSheetContainer
@@ -110,7 +110,7 @@ class AddReport extends Component {
         <Text style={styles.bottomSheetTitle}>
           Complete Action Using:
         </Text>
-        <Divider marginTop={12} marginBottom={12} color={theme["border-basic-color-4"]} />
+        <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
         <Touchable onPress={() => this.pickImage(0)}>
           <View style={styles.bottomSheetItem}>
             {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}

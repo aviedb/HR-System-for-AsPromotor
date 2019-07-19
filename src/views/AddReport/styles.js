@@ -74,17 +74,16 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20
   },
   bottomSheetItemTitle: {
-    marginLeft: 24,
     color: theme["text-hint-color"],
     fontWeight: 'normal',
     fontFamily: 'product_sans_medium',
-    marginLeft: 8
+    marginLeft: 16
   },
   bottomSheetItemTitleDanger: {
     color: theme["text-danger-color"],
     fontWeight: 'normal',
     fontFamily: 'product_sans_medium',
-    marginLeft: 8
+    marginLeft: 16
   }
 });
 
