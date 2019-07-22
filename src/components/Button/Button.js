@@ -10,11 +10,11 @@ const Button = (props) => {
 
   let backgroundColor = theme["text-primary-color"];
   if (props.danger) {
-    backgroundColor = theme["text-danger-color"]
+    backgroundColor = theme["text-danger-color"];
   }
 
   return (
-    <Touchable activeOpacity={.9} onPress={props.onPress}>
+    <Touchable onPress={props.onPress}>
       <View style={{...styles.container, backgroundColor}}>
         <Text style={styles.text}>
           {props.children || props.title}

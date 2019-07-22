@@ -22,7 +22,7 @@ const Card = (props) => {
           {props.createdAt}
         </Text>
       </View>
-      <Touchable activeOpacity={0.9} onPress={() => props.navigation.navigate('PdfViewer', {
+      <Touchable onPress={() => props.navigation.navigate('PdfViewer', {
         title: props.title
       })}>
         <View style={styles.viewButton}>
