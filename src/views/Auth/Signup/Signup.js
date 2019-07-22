@@ -1,12 +1,10 @@
 import React, { Component, Fragment } from 'react';
 import { StatusBar, ScrollView, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
-import {
-  Button, 
-  Input,
-  Text
-} from 'react-native-ui-kitten';
+import { Input, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+
+import Button from '../../../components/Button';
 
 import styles from '../styles';
 import theme from '../../../styles/theme';
@@ -77,7 +75,7 @@ class Login extends Component {
                   secureTextEntry
                   style={styles.input}
                 />
-                <Button onPress={this.attemptSignup}>Sign up</Button>
+                <Button onPress={this.attemptSignup}>Sign Up</Button>
               </View>
             </ScrollView>
             <View style={styles.footer}>

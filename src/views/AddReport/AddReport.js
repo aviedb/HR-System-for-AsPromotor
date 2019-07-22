@@ -9,7 +9,6 @@ import {
   ActionSheetIOS
 } from 'react-native';
 import {
-  Button,
   Input,
   Text,
   TopNavigation,
@@ -25,6 +24,7 @@ import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { icon } from '../../services/stores';
+import Button from '../../components/Button';
 import Fab from '../../components/FloatingActionButton';
 import Divider from '../../components/Divider';
 import Touchable from '../../components/Touchable';
