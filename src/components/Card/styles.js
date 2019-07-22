@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   preview: {
     borderTopLeftRadius: 5,
     borderTopRightRadius: 5,
-    backgroundColor: theme["color-primary-200"],
+    backgroundColor: theme["color-primary-100"],
     height: 140,
     alignItems: 'center',
     justifyContent: 'center'

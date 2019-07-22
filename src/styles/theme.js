@@ -14,13 +14,15 @@ const pallete = {
   "color-basic-1000": "#202833",
 
   // primary colors
-  "color-primary-100": "#EEF8FF",
-  "color-primary-200": "#A9D4F5",
-  "color-primary-300": "#64A2D8",
-  "color-primary-400": "#3183C8",
-  "color-primary-500": "#2368A1",
-  "color-primary-600": "#1A4971",
-  "color-primary-700": "#203D54",
+  "color-primary-100": "#C6E1F3",
+  "color-primary-200": "#A5CFED",
+  "color-primary-300": "#7DB9E5",
+  "color-primary-400": "#4A9EDA",
+  "color-primary-500": "#0077CC",
+  "color-primary-600": "#006BB7",
+  "color-primary-700": "#005DA0",
+  "color-primary-800": "#004D84",
+  "color-primary-900": "#00365D",
 
   // success colors - green
   "color-success-100": "#E7FFFE",
@@ -67,10 +69,10 @@ const theme = {
   "color-basic-disabled"  : pallete["color-basic-600"],
 
   // primary colors
-  "color-primary-default" : pallete["color-primary-400"],
-  "color-primary-active"  : pallete["color-primary-500"],
-  "color-primary-focus"   : pallete["color-primary-600"],
-  "color-primary-disabled": pallete["color-primary-200"],
+  "color-primary-default" : pallete["color-primary-500"],
+  "color-primary-active"  : pallete["color-primary-600"],
+  "color-primary-focus"   : pallete["color-primary-700"],
+  "color-primary-disabled": pallete["color-primary-300"],
 
   // success colors
   "color-success-default" : pallete["color-success-500"],
