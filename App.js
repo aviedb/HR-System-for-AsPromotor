@@ -58,11 +58,11 @@ class App extends Component {
       'helvetica_neue_md': require('./src/assets/fonts/helvetica_neue_md.ttf'),
       'helvetica_neue_bd': require('./src/assets/fonts/helvetica_neue_bd.ttf'),
       'helvetica_neue_hv': require('./src/assets/fonts/helvetica_neue_hv.ttf'),
-      'product_sans_bold': require('./src/assets/fonts/product_sans_bold.ttf'),
+      'product_sans_thin': require('./src/assets/fonts/product_sans_thin.ttf'),
       'product_sans_light': require('./src/assets/fonts/product_sans_light.ttf'),
-      'product_sans_medium': require('./src/assets/fonts/product_sans_medium.ttf'),
       'product_sans_regular': require('./src/assets/fonts/product_sans_regular.ttf'),
-      'product_sans_thin': require('./src/assets/fonts/product_sans_thin.ttf')
+      'product_sans_medium': require('./src/assets/fonts/product_sans_medium.ttf'),
+      'product_sans_bold': require('./src/assets/fonts/product_sans_bold.ttf')
     });
 
     this.fontLoaded = true;

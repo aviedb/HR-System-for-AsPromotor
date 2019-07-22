@@ -78,7 +78,7 @@ const theme = {
   "color-success-default" : pallete["color-success-500"],
   "color-success-active"  : pallete["color-success-600"],
   "color-success-focus"   : pallete["color-success-700"],
-  "color-success-disabled": pallete["color-success-200"],
+  "color-success-disabled": pallete["color-success-300"],
 
   // info colors
   "color-info-default"    : pallete["color-info-500"],
@@ -93,10 +93,10 @@ const theme = {
   "color-warning-disabled": pallete["color-warning-300"],
 
   // danger colors
-  "color-danger-default"  : pallete["color-danger-300"],
-  "color-danger-active"   : pallete["color-danger-400"],
-  "color-danger-focus"    : pallete["color-danger-500"],
-  "color-danger-disabled" : pallete["color-danger-200"],
+  "color-danger-default"  : pallete["color-danger-500"],
+  "color-danger-active"   : pallete["color-danger-600"],
+  "color-danger-focus"    : pallete["color-danger-700"],
+  "color-danger-disabled" : pallete["color-danger-300"],
 }
 
 const basic = {
