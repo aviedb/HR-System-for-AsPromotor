@@ -18,7 +18,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import Modal from "react-native-modal";
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -60,7 +59,7 @@ class AddReport extends Component {
 
   pickImage = async (index) => {
     if (Platform.OS === 'android') {
-      this.closeActionSheet();
+      this.closeBottomSheet();
     }
 
     if (index === 3) return;
@@ -97,7 +96,7 @@ class AddReport extends Component {
     }
   }
 
-  closeActionSheet = () => {
+  closeBottomSheet = () => {
     this.bottomSheetVisible = false;
   }
 
@@ -105,7 +104,7 @@ class AddReport extends Component {
     return (
       <BottomSheet
         isVisible={this.bottomSheetVisible}
-        closeBottomSheet={this.closeActionSheet}
+        closeBottomSheet={this.closeBottomSheet}
         title="Foto Event"
       >
         <Touchable onPress={() => this.pickImage(0)}>
@@ -127,7 +126,7 @@ class AddReport extends Component {
           </View>
         </Touchable>
       </BottomSheet>
-    )
+    );
   }
 
   render() {
