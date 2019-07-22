@@ -56,9 +56,17 @@ const styles = StyleSheet.create({
     borderTopWidth: 1
   },
   bottomSheetContainer: {
-    paddingTop: 20,
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20
+  },
+  bottomSheetHandle: {
+    alignSelf: 'center',
+    width: 40,
+    height: 4,
+    backgroundColor: theme["background-basic-color-3"],
+    borderRadius: 50,
+    marginTop: 12,
+    marginBottom: 12
   },
   bottomSheetTitle: {
     color: theme["text-basic-color"],

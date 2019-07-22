@@ -19,7 +19,6 @@ import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-// import ActionSheet from 'react-native-actionsheet';
 import RBSheet from "react-native-raw-bottom-sheet";
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -91,8 +90,7 @@ class AddReport extends Component {
       ActionSheetIOS.showActionSheetWithOptions({
         options: ['Take photo', 'Choose image', 'Remove picture', 'Cancel'],
         destructiveButtonIndex: 2,
-        cancelButtonIndex: 3,
-        title: 'Foto Event'
+        cancelButtonIndex: 3
       }, this.pickImage);
     }
   }
@@ -103,12 +101,13 @@ class AddReport extends Component {
         ref={ref => {
           this.RBSheet = ref;
         }}
-        height={230}
+        height={240}
         duration={250}
         customStyles={{
           container: styles.bottomSheetContainer
         }}
       >
+        <View style={styles.bottomSheetHandle}/>
         <Text style={styles.bottomSheetTitle}>
           Foto Event
         </Text>
