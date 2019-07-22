@@ -19,7 +19,7 @@ import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
-import RBSheet from "react-native-raw-bottom-sheet";
+import Modal from "react-native-modal";
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
@@ -46,6 +46,7 @@ class AddReport extends Component {
 
   @observable image = null;
   @observable sold = '';
+  @observable bottomSheetVisible = false;
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -58,7 +59,7 @@ class AddReport extends Component {
 
   pickImage = async (index) => {
     if (Platform.OS === 'android') {
-      this.RBSheet.close();
+      this.closeActionSheet();
     }
 
     if (index === 3) return;
@@ -85,7 +86,7 @@ class AddReport extends Component {
 
   openActionSheet = () => {
     if (Platform.OS === 'android') {
-      this.RBSheet.open();
+      this.bottomSheetVisible = true;
     } else if (Platform.OS === 'ios') {
       ActionSheetIOS.showActionSheetWithOptions({
         options: ['Take photo', 'Choose image', 'Remove picture', 'Cancel'],
@@ -95,42 +96,48 @@ class AddReport extends Component {
     }
   }
 
+  closeActionSheet = () => {
+    this.bottomSheetVisible = false;
+  }
+
   renderBottomSheet = () => {
     return (
-      <RBSheet
-        ref={ref => {
-          this.RBSheet = ref;
-        }}
-        height={240}
-        duration={250}
-        customStyles={{
-          container: styles.bottomSheetContainer
-        }}
+      <Modal
+        isVisible={this.bottomSheetVisible}
+        swipeDirection="down"
+        onBackButtonPress={this.closeActionSheet}
+        onBackdropPress={this.closeActionSheet}
+        onSwipeComplete={this.closeActionSheet}
+        useNativeDriver={true}
+        style={styles.bottomSheetModal}
       >
-        <View style={styles.bottomSheetHandle}/>
-        <Text style={styles.bottomSheetTitle}>
-          Foto Event
-        </Text>
-        <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
-        <Touchable onPress={() => this.pickImage(0)}>
-          <View style={styles.bottomSheetItem}>
-            {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}
-            <Text style={styles.bottomSheetItemTitle}>Take photo</Text>
-          </View>
-        </Touchable>
-        <Touchable onPress={() => this.pickImage(1)}>
-          <View style={styles.bottomSheetItem}>
-            {icon.getIcon('image', MaterialIcons, theme["text-disabled-color"])}
-            <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
-          </View>
-        </Touchable>
-        <Touchable onPress={() => this.pickImage(2)}>
-          <View style={styles.bottomSheetItem}>
-            {icon.getIcon('clear', MaterialIcons, theme["text-danger-color"])}
-            <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
-          </View>
-        </Touchable>
-      </RBSheet>
+        <View style={styles.bottomSheetContainer}>
+          <StatusBar backgroundColor="rgba(0,0,0,.725)"/>
+          <View style={styles.bottomSheetHandle}/>
+          <Text style={styles.bottomSheetTitle}>
+            Foto Event
+          </Text>
+          <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
+          <Touchable onPress={() => this.pickImage(0)}>
+            <View style={styles.bottomSheetItem}>
+              {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}
+              <Text style={styles.bottomSheetItemTitle}>Take photo</Text>
+            </View>
+          </Touchable>
+          <Touchable onPress={() => this.pickImage(1)}>
+            <View style={styles.bottomSheetItem}>
+              {icon.getIcon('image', MaterialIcons, theme["text-disabled-color"])}
+              <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
+            </View>
+          </Touchable>
+          <Touchable onPress={() => this.pickImage(2)}>
+            <View style={styles.bottomSheetItem}>
+              {icon.getIcon('clear', MaterialIcons, theme["text-danger-color"])}
+              <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
+            </View>
+          </Touchable>
+        </View>
+      </Modal>
     );
   }
 

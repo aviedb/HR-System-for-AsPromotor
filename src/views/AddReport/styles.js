@@ -55,9 +55,15 @@ const styles = StyleSheet.create({
     borderTopColor: '#EAEEF1',
     borderTopWidth: 1
   },
+  bottomSheetModal: {
+    margin: 0, 
+    justifyContent: 'flex-end'
+  },
   bottomSheetContainer: {
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20
+    backgroundColor: 'white',
+    borderTopLeftRadius: 12,
+    borderTopRightRadius: 12,
+    paddingBottom: 12
   },
   bottomSheetHandle: {
     alignSelf: 'center',
