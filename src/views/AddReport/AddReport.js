@@ -108,11 +108,10 @@ class AddReport extends Component {
         onBackButtonPress={this.closeActionSheet}
         onBackdropPress={this.closeActionSheet}
         onSwipeComplete={this.closeActionSheet}
-        useNativeDriver={true}
         style={styles.bottomSheetModal}
       >
         <View style={styles.bottomSheetContainer}>
-          <StatusBar backgroundColor="rgba(0,0,0,.725)"/>
+          <StatusBar backgroundColor="#474747"/>
           <View style={styles.bottomSheetHandle}/>
           <Text style={styles.bottomSheetTitle}>
             Foto Event
