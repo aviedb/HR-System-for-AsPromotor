@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     marginLeft: 16
   },
   bottomSheetItemTitleDanger: {
-    color: theme["text-danger-color"],
+    color: theme["text-danger-disabled-color"],
     fontWeight: 'normal',
     fontFamily: 'product_sans_medium',
     marginLeft: 16

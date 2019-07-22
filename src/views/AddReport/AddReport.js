@@ -26,6 +26,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { icon } from '../../services/stores';
 import Button from '../../components/Button';
 import Fab from '../../components/FloatingActionButton';
+import BottomSheet from '../../components/BottomSheet';
 import Divider from '../../components/Divider';
 import Touchable from '../../components/Touchable';
 
@@ -102,42 +103,31 @@ class AddReport extends Component {
 
   renderBottomSheet = () => {
     return (
-      <Modal
+      <BottomSheet
         isVisible={this.bottomSheetVisible}
-        swipeDirection="down"
-        onBackButtonPress={this.closeActionSheet}
-        onBackdropPress={this.closeActionSheet}
-        onSwipeComplete={this.closeActionSheet}
-        style={styles.bottomSheetModal}
+        closeBottomSheet={this.closeActionSheet}
+        title="Foto Event"
       >
-        <View style={styles.bottomSheetContainer}>
-          <StatusBar backgroundColor="#474747"/>
-          <View style={styles.bottomSheetHandle}/>
-          <Text style={styles.bottomSheetTitle}>
-            Foto Event
-          </Text>
-          <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
-          <Touchable onPress={() => this.pickImage(0)}>
-            <View style={styles.bottomSheetItem}>
-              {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}
-              <Text style={styles.bottomSheetItemTitle}>Take photo</Text>
-            </View>
-          </Touchable>
-          <Touchable onPress={() => this.pickImage(1)}>
-            <View style={styles.bottomSheetItem}>
-              {icon.getIcon('image', MaterialIcons, theme["text-disabled-color"])}
-              <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
-            </View>
-          </Touchable>
-          <Touchable onPress={() => this.pickImage(2)}>
-            <View style={styles.bottomSheetItem}>
-              {icon.getIcon('clear', MaterialIcons, theme["text-danger-color"])}
-              <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
-            </View>
-          </Touchable>
-        </View>
-      </Modal>
-    );
+        <Touchable onPress={() => this.pickImage(0)}>
+          <View style={styles.bottomSheetItem}>
+            {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}
+            <Text style={styles.bottomSheetItemTitle}>Take photo</Text>
+          </View>
+        </Touchable>
+        <Touchable onPress={() => this.pickImage(1)}>
+          <View style={styles.bottomSheetItem}>
+            {icon.getIcon('image', MaterialIcons, theme["text-disabled-color"])}
+            <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
+          </View>
+        </Touchable>
+        <Touchable onPress={() => this.pickImage(2)}>
+          <View style={styles.bottomSheetItem}>
+            {icon.getIcon('clear', MaterialIcons, theme["text-danger-disabled-color"])}
+            <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
+          </View>
+        </Touchable>
+      </BottomSheet>
+    )
   }
 
   render() {
