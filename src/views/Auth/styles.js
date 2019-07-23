@@ -23,6 +23,7 @@ const styles = StyleSheet.create({
   },
   container: {
     paddingHorizontal: 40,
+    paddingBottom: 8,
     flex: 1
   },
   logo: {
