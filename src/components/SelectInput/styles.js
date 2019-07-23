@@ -11,7 +11,10 @@ const styles = StyleSheet.create({
     borderColor: theme["border-basic-color-4"],
     borderWidth: 1,
     borderRadius: 4,
-    padding: Platform.OS === 'ios'? 15:0,
+    padding: Platform.OS === 'ios'? 15:0
+  },
+  value: {
+    alignSelf: Platform.OS === 'ios'? 'flex-start':null
   }
 });
 

@@ -16,6 +16,7 @@ const SelectInput = (props) => {
         value={props.value}
         onSubmitEditing={props.onValueChange}
         style={styles.input}
+        labelStyle={styles.value}
         options={props.options.map(
           e => { return {
             value: e,
