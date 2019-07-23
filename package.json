@@ -26,6 +26,7 @@
     "react-native-calendars": "^1.196.0",
     "react-native-global-props": "^1.1.5",
     "react-native-modal": "^11.1.0",
+    "react-native-select-input-ios": "^2.0.2",
     "react-native-ui-kitten": "^4.0.3",
     "react-native-web": "^0.11.4",
     "react-navigation": "^3.11.0"

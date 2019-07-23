@@ -24,6 +24,7 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 import { icon } from '../../services/stores';
 import Button from '../../components/Button';
+import SelectInput from '../../components/SelectInput';
 import Fab from '../../components/FloatingActionButton';
 import BottomSheet from '../../components/BottomSheet';
 import Divider from '../../components/Divider';
@@ -45,7 +46,9 @@ class AddReport extends Component {
   };
 
   @observable image = null;
+  @observable title = '';
   @observable sold = '';
+  @observable stok = 'Stok Toko';
   @observable bottomSheetVisible = false;
 
   getPermissionAsync = async () => {
@@ -158,20 +161,26 @@ class AddReport extends Component {
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
             <Input 
-              label="Field 1"
+              label="Report Title"
+              value={this.title}
+              onChangeText={value => this.title = value}
+              style={styles.input}
+              labelStyle={styles.labelStyle}
+            />
+            <Input 
+              label="Nomor yang dijual"
               value={this.sold}
               onChangeText={value => this.sold = value}
               keyboardType="numeric"
               style={styles.input}
               labelStyle={styles.labelStyle}
             />
-            <Input 
-              label="Field 2"
-              value={this.sold}
-              onChangeText={value => this.sold = value}
-              keyboardType="numeric"
-              style={styles.input}
-              labelStyle={styles.labelStyle}
+            <SelectInput 
+              label="Pilih stok"
+              value={this.stok}
+              onValueChange={value => this.stok = value}
+              options={["Stok Toko", "Stok Telin"]}
+              style={styles.select}
             />
           </View>
           <Fab

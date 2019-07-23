@@ -45,6 +45,9 @@ const styles = StyleSheet.create({
     borderColor: theme["border-basic-color-4"],
     marginVertical: 4
   },
+  select: {
+    marginVertical: 4
+  },
   labelStyle: {
     color: '#1A2138'
   },
