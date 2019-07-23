@@ -79,8 +79,6 @@ class AddReport extends Component {
     }).then(res => {
       if (!res.cancelled) {
         this.image = res.uri
-      } else {
-        this.openActionSheet();
       }
     }).catch(err => {
       console.log(err);
