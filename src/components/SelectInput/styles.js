@@ -14,7 +14,9 @@ const styles = StyleSheet.create({
     padding: Platform.OS === 'ios'? 15:0
   },
   value: {
-    alignSelf: Platform.OS === 'ios'? 'flex-start':null
+    alignSelf: Platform.OS === 'ios'? 'flex-start':null,
+    color: theme["text-hint-color"],
+    fontFamily: null
   }
 });
 
