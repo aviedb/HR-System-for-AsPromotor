@@ -9,10 +9,10 @@ class EmptyList extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.playAnimation) {
-      this.emptyAnimation.play(10, 144);
+      this.emptyAnimation.play(0, 144);
     } else {
       this.emptyAnimation.reset();
-      this.emptyAnimation.play(10, 100);
+      this.emptyAnimation.play(0, 100);
     }
   }
 
