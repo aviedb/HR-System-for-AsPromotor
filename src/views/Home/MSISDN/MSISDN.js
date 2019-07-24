@@ -71,8 +71,6 @@ class MSISDN extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 0) return <View />
-
     const data = this.data.filter(e => 
       e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
       e.subAgent.toLowerCase().includes(this.search.toLowerCase())
@@ -111,8 +109,8 @@ class MSISDN extends Component {
             message={this.isFetching? 'Loading...':'Empty in MSISDN'}
             playAnimation={this.isFetching}
           />}
-          style={styles.container}
           contentContainerStyle={{ flexGrow: 1 }}
+          style={styles.container}
         />
       </View>
     );

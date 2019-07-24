@@ -7,6 +7,7 @@ import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-c
 import { Text } from 'react-native-ui-kitten';
 
 import Touchable from '../../../components/Touchable';
+import EmptyList from '../../../components/EmptyList';
 
 import styles from './styles';
 import theme from '../../../styles/theme';
@@ -35,15 +36,7 @@ function getPastDate(days) {
 class ExpandableCalendarScreen extends Component {
 
   @observable items = [
-    {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Wohoooo!'}]},
-    {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Lorem lorem lorem'}]},
-    {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
-    {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
-    {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[6], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
-    {title: dates[8], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[9], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
-    {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
+    
   ]
 
   onDateChanged = (date, updateSource) => {
@@ -140,8 +133,6 @@ class ExpandableCalendarScreen extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 4) return <View />
-
     return (
       <CalendarProvider
         date={today} 
@@ -166,6 +157,11 @@ class ExpandableCalendarScreen extends Component {
           sections={this.items.slice()}
           renderItem={this.renderItem}
           sectionStyle={styles.section}
+          ListEmptyComponent={<EmptyList 
+            message={this.isFetching? 'Loading...':'Empty in Schedule'}
+            playAnimation={false}
+          />}
+          contentContainerStyle={{ flexGrow: 1 }}
         />
       </CalendarProvider>
     );

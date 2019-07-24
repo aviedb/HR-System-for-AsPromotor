@@ -7,13 +7,21 @@ import styles from './styles';
 
 class EmptyList extends Component {
 
+  componentDidMount() {
+    this._playAnimation();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.playAnimation) {
       this.emptyAnimation.play(0, 144);
     } else {
-      this.emptyAnimation.reset();
-      this.emptyAnimation.play(0, 100);
+      this._playAnimation();
     }
+  }
+
+  _playAnimation = () => {
+    this.emptyAnimation.reset();
+    this.emptyAnimation.play(0, 100);
   }
 
   render() {

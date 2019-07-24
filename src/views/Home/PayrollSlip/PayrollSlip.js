@@ -4,6 +4,8 @@ import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
+import EmptyList from '../../../components/EmptyList';
+
 import styles from './styles';
 
 @observer
@@ -14,12 +16,6 @@ class PayrollSlip extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.data = [
-        { title: 'Payroll Slip 1', createdAt: '2019-06-29' },
-        { title: 'Payroll Slip 2', createdAt: '2019-07-01' },
-        { title: 'Payroll Slip 3', createdAt: '2019-07-03' },
-        { title: 'Payroll Slip 4', createdAt: '2019-07-10' },
-      ];
       this.isFetching = false;
     }, 2000);
   }
@@ -28,6 +24,13 @@ class PayrollSlip extends Component {
     this.isFetching = true;
     
     setTimeout(() => {
+      this.data = [
+        { title: 'Payroll Slip 1', createdAt: '2019-06-29' },
+        { title: 'Payroll Slip 2', createdAt: '2019-07-01' },
+        { title: 'Payroll Slip 3', createdAt: '2019-07-03' },
+        { title: 'Payroll Slip 4', createdAt: '2019-07-10' },
+      ];
+
       this.isFetching = false;
     }, 2000);
   }
@@ -47,8 +50,6 @@ class PayrollSlip extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 3) return <View />
-
     return (
       <View style={styles.container}>
         <TopNavigation
@@ -63,6 +64,11 @@ class PayrollSlip extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
+          ListEmptyComponent={<EmptyList 
+            message={this.isFetching? 'Loading...':'Empty in Payroll Slip'}
+            playAnimation={this.isFetching}
+          />}
+          contentContainerStyle={{ flexGrow: 1 }}
           style={styles.container}
         />
       </View>

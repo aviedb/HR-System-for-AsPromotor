@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import Card from '../../../components/Card';
+import EmptyList from '../../../components/EmptyList';
 import styles from './styles';
 
 @observer
@@ -15,12 +16,7 @@ class KnowledgeBase extends Component {
 
   componentDidMount() {
     setTimeout(() => {
-      this.data = [
-        { title: 'Knowledge Base 1', createdAt: '2019-06-20' },
-        { title: 'Knowledge Base 2', createdAt: '2019-06-25' },
-        { title: 'Knowledge Base 3', createdAt: '2019-07-01' },
-        { title: 'Knowledge Base 4', createdAt: '2019-07-04' },
-      ];
+      
       this.isFetching = false;
     }, 2000);
   }
@@ -29,6 +25,13 @@ class KnowledgeBase extends Component {
     this.isFetching = true;
     
     setTimeout(() => {
+      this.data = [
+        { title: 'Knowledge Base 1', createdAt: '2019-06-20' },
+        { title: 'Knowledge Base 2', createdAt: '2019-06-25' },
+        { title: 'Knowledge Base 3', createdAt: '2019-07-01' },
+        { title: 'Knowledge Base 4', createdAt: '2019-07-04' },
+      ];
+
       this.isFetching = false;
     }, 2000);
   }
@@ -40,8 +43,6 @@ class KnowledgeBase extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 1) return <View />
-
     return (
       <View style={styles.container}>
         <TopNavigation
@@ -57,6 +58,11 @@ class KnowledgeBase extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
+          ListEmptyComponent={<EmptyList 
+            message={this.isFetching? 'Loading...':'Empty in Knowledge Base'}
+            playAnimation={this.isFetching}
+          />}
+          contentContainerStyle={{ flexGrow: 1 }}
           style={styles.container}
         />
       </View>
