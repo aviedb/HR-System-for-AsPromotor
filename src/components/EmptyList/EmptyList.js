@@ -1,47 +1,44 @@
 import React, { Component } from 'react';
-import { ScrollView, RefreshControl } from 'react-native';
+import { View } from 'react-native';
 import { Text } from 'react-native-ui-kitten';
 import Lottie from 'lottie-react-native';
+import { observable } from 'mobx';
+import { observer } from 'mobx-react';
 
 import styles from './styles';
 
+@observer
 class EmptyList extends Component {
-  componentDidMount() {
-    this._playEmptyAnimation();
-  }
 
-  _playEmptyAnimation = () => {
-    this.emptyAnimation.reset();
-    this.emptyAnimation.play(10, 100);
-  }
+  @observable finished = false;
+  @observable firstTimeFinished = false;
 
-  _onRefresh = () => {
-    this._playEmptyAnimation();
-    this.props.onRefresh();
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.playAnimation) {
+      this.emptyAnimation.play(10, 144);
+    } else {
+      this.emptyAnimation.reset();
+      this.emptyAnimation.play(10, 100);
+    }
   }
 
   render() {
+    const message = this.props.message || 'Empty List';
+    
     return (
-      <ScrollView 
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={styles.container}
-        refreshControl={<RefreshControl 
-          refreshing={this.props.refreshing}
-          onRefresh={this._onRefresh}
-        />}
-      >
+      <View style={styles.container}>
         <Lottie 
           ref={animation => {
             this.emptyAnimation = animation;
           }}
           style={styles.lottie}
-          loop={false}
+          loop={this.props.playAnimation}
           source={require(`../../assets/animations/empty.json`)}
         />
         <Text style={styles.title}>
-          {this.props.refreshing? 'Loading...':this.props.title}
+          {message}
         </Text>
-      </ScrollView>
+      </View>
     );
   }
 }
