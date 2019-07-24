@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
 import { Text, Input, ListItem, List, TopNavigation } from 'react-native-ui-kitten';
+import _ from 'lodash';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import { icon } from '../../../services/stores';
+import EmptyList from '../../../components/EmptyList';
 
 import styles from './styles';
 
@@ -13,16 +15,17 @@ class MSISDN extends Component {
 
   @observable search = '';
   @observable data = [];
-  @observable isFetching = true;
+  @observable isFetching = false;
 
   componentDidMount() {
+    this.isFetching = true;
     setTimeout(() => {
-      this.data = [
-        { msisdn: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
-        { msisdn: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
-        { msisdn: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
-        { msisdn: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
-      ];
+      // this.data = [
+      //   { msisdn: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
+      //   { msisdn: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
+      //   { msisdn: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
+      //   { msisdn: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
+      // ];
       this.isFetching = false;
     }, 2000);
   }
@@ -96,15 +99,23 @@ class MSISDN extends Component {
             />
           </View>
         </View>
-        <List 
-          data={data}
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => String(index)}
-          onRefresh={this._onRefresh}
-          refreshing={this.isFetching}
-          ListFooterComponent={this.renderListFooter}
-          style={styles.container}
-        />
+        {_.isEmpty(this.data)?
+          <EmptyList
+            title="Empty in MSISDN"
+            onRefresh={this._onRefresh}
+            refreshing={this.isFetching}
+          /> :
+          <List 
+            data={data}
+            renderItem={this.renderItem}
+            keyExtractor={(item, index) => String(index)}
+            onRefresh={this._onRefresh}
+            refreshing={this.isFetching}
+            ListFooterComponent={this.renderListFooter}
+            // ListEmptyComponent={this.renderListEmpty}
+            style={styles.container}
+          />
+        }
       </View>
     );
   }
