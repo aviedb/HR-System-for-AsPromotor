@@ -50,6 +50,8 @@ class PayrollSlip extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 3) return <View />
+
     return (
       <View style={styles.container}>
         <TopNavigation

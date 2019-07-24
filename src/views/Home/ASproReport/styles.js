@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   itemHourText: {
-    color: theme["text-primary-active-color"],
     fontFamily: 'helvetica_neue_lt'
   },
   itemDurationText: {

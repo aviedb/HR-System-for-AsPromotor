@@ -81,11 +81,11 @@ class Home extends Component {
           barStyle="dark-content"
         />
         <View style={styles.container}>
-          {this.selectedIndex === 0 && <MSISDN {...this.props}/>}
-          {this.selectedIndex === 1 && <KnowledgeBase {...this.props}/>}
-          {this.selectedIndex === 2 && <ASproReport {...this.props}/>}
-          {this.selectedIndex === 3 && <PayrollSlip {...this.props}/>}
-          {this.selectedIndex === 4 && <Schedule {...this.props}/>}
+          <MSISDN {...this.props} selectedIndex={this.selectedIndex}/>
+          <KnowledgeBase {...this.props} selectedIndex={this.selectedIndex}/>
+          <ASproReport {...this.props} selectedIndex={this.selectedIndex}/>
+          <PayrollSlip {...this.props} selectedIndex={this.selectedIndex}/>
+          <Schedule {...this.props} selectedIndex={this.selectedIndex}/>
         </View>
         <BottomNavigation
           style={styles.bottomNav}

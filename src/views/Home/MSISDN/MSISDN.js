@@ -71,6 +71,8 @@ class MSISDN extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 0) return <View />
+
     const data = this.data.filter(e => 
       e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
       e.subAgent.toLowerCase().includes(this.search.toLowerCase())

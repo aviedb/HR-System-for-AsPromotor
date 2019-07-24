@@ -143,6 +143,8 @@ class ASproReport extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 2) return <View />
+
     return (
       <View style={styles.container}>
         <TopNavigation

@@ -133,6 +133,8 @@ class ExpandableCalendarScreen extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 4) return <View />
+
     return (
       <CalendarProvider
         date={today} 

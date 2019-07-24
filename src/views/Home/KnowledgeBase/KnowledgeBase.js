@@ -43,6 +43,8 @@ class KnowledgeBase extends Component {
   }
 
   render() {
+    if (this.props.selectedIndex !== 1) return <View />
+
     return (
       <View style={styles.container}>
         <TopNavigation
