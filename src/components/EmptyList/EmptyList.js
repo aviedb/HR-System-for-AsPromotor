@@ -18,6 +18,7 @@ class EmptyList extends Component {
 
   render() {
     const message = this.props.message || 'Empty List';
+    const { playAnimation } = this.props;
     
     return (
       <View style={styles.container}>
@@ -26,7 +27,7 @@ class EmptyList extends Component {
             this.emptyAnimation = animation;
           }}
           style={styles.lottie}
-          loop={this.props.playAnimation}
+          loop={playAnimation}
           source={require(`../../assets/animations/empty.json`)}
         />
         <Text style={styles.title}>
