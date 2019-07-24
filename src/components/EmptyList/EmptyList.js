@@ -2,16 +2,10 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Text } from 'react-native-ui-kitten';
 import Lottie from 'lottie-react-native';
-import { observable } from 'mobx';
-import { observer } from 'mobx-react';
 
 import styles from './styles';
 
-@observer
 class EmptyList extends Component {
-
-  @observable finished = false;
-  @observable firstTimeFinished = false;
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.playAnimation) {
