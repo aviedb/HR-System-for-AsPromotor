@@ -20,10 +20,14 @@ const BottomSheet = (props) => {
       <View style={styles.bottomSheetContainer}>
         <StatusBar backgroundColor="#474747"/>
         <View style={styles.bottomSheetHandle}/>
-        <Text style={styles.bottomSheetTitle}>
-          {props.title}
-        </Text>
-        <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
+        {props.title &&
+          <View>
+            <Text style={styles.bottomSheetTitle}>
+              {props.title}
+            </Text>
+            <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
+          </View>
+        }
         {props.children}
       </View>
     </Modal>
