@@ -63,6 +63,8 @@ class MSISDN extends Component {
   }
 
   renderListFooter = () => {
+    if (_.isEmpty(this.data)) return <View />;
+
     return (
       <View>
         <Text onPress={this.attemptLogout}>Logout</Text>
@@ -106,7 +108,7 @@ class MSISDN extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
-          // ListFooterComponent={this.renderListFooter}
+          ListFooterComponent={this.renderListFooter}
           ListEmptyComponent={<EmptyList 
             message={this.isFetching? 'Loading...':'Empty in MSISDN'}
             playAnimation={this.isFetching}
