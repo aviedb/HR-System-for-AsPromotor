@@ -78,7 +78,7 @@ class AddReport extends Component {
       aspect: [3, 2]
     }).then(res => {
       if (!res.cancelled) {
-        this.image = res.uri
+        this.image = res.uri;
       }
     }).catch(err => {
       console.log(err);
