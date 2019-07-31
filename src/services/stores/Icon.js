@@ -1,5 +1,5 @@
 import React from 'react';
-import { action } from 'mobx';
+import { action, computed } from 'mobx';
 import { AntDesign, Ionicons } from '@expo/vector-icons';
 import { Platform } from 'react-native';
 
@@ -10,17 +10,19 @@ class Icon {
     if (!color) color = "#1A2138";
     if (!size) size = 24;
 
-    return <Component
-      name={name}
-      size={size}
-      color={color}
-    />
+    return (
+      <Component
+        name={name}
+        size={size}
+        color={color}
+      />
+    );
   }
 
-  @action
-  backIcon = () => {
+  @computed
+  get backIcon() {
     const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-    return this.getIcon(name, Ionicons);
+    return () => this.getIcon(name, Ionicons);
   }
 }
 
