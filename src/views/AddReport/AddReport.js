@@ -14,7 +14,6 @@ import {
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
-import { Ionicons } from '@expo/vector-icons';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';

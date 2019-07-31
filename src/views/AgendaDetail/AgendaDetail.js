@@ -5,7 +5,6 @@ import {
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
-import { Ionicons } from '@expo/vector-icons';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
