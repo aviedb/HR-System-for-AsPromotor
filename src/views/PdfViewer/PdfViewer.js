@@ -14,11 +14,6 @@ import Divider from '../../components/Divider';
 import styles from './styles';
 import theme from '../../styles/theme';
 
-backIcon = () => {
-  const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-  return icon.getIcon(name, Ionicons);
-}
-
 @observer
 class PdfViewer extends Component {
 
@@ -51,7 +46,7 @@ class PdfViewer extends Component {
           title={this.title}
           alignment={Platform.OS==='android'? "start": "center"}
           leftControl={<TopNavigationAction
-            icon={backIcon}
+            icon={icon.backIcon}
             onPress={() => this.props.navigation.goBack()}
           />}
           style={styles.header}

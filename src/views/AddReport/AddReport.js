@@ -33,11 +33,6 @@ import Touchable from '../../components/Touchable';
 import styles from './styles';
 import theme from '../../styles/theme';
 
-backIcon = () => {
-  const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-  return icon.getIcon(name, Ionicons);
-}
-
 @observer
 class AddReport extends Component {
 
@@ -145,7 +140,7 @@ class AddReport extends Component {
           title="Add Report"
           alignment={Platform.OS==='android'? "start": "center"}
           leftControl={<TopNavigationAction
-            icon={backIcon}
+            icon={icon.backIcon}
             onPress={() => this.props.navigation.goBack()}
           />}
           style={styles.header}

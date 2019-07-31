@@ -1,6 +1,7 @@
 import React from 'react';
 import { action } from 'mobx';
-import { AntDesign } from '@expo/vector-icons';
+import { AntDesign, Ionicons } from '@expo/vector-icons';
+import { Platform } from 'react-native';
 
 class Icon {
   @action
@@ -14,6 +15,12 @@ class Icon {
       size={size}
       color={color}
     />
+  }
+
+  @action
+  backIcon = () => {
+    const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
+    return this.getIcon(name, Ionicons);
   }
 }
 
