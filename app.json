@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "HR System for AsPromotor",
-    "slug": "hr_system_for_aspromotor",
+    "name": "HR System for AsPromoter",
+    "slug": "hr_system_for_aspromoter",
     "privacy": "public",
     "sdkVersion": "33.0.0",
     "platforms": [
