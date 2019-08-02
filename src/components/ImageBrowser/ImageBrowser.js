@@ -6,11 +6,11 @@ import {
   FlatList,
   Dimensions,
   Button,
-  ActivityIndicator
+  ActivityIndicator,
+  SafeAreaView
 } from 'react-native'
 
 import * as MediaLibrary from 'expo-media-library'
-import SafeAreaView from 'react-native-safe-area-view'
 
 import ImageTile from './ImageTile'
 
@@ -100,7 +100,7 @@ export default class ImageBrowser extends React.Component {
     const headerButtonColor = this.props.headerButtonColor ? this.props.headerButtonColor : '#007aff'
 
     return (
-      <SafeAreaView forceInset={{ top: 'always' }} style={{ height: 52 }}>
+      <SafeAreaView>
         <View style={styles.header}>
 
           <Button

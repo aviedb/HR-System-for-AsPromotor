@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
-import { Text, Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
+import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
