@@ -1,5 +1,7 @@
-import { StyleSheet, Platform, StatusBar } from 'react-native';
+import { StyleSheet, Platform, StatusBar, Dimensions } from 'react-native';
 import theme from '../../styles/theme';
+
+const { height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   safeAreaTop: {
@@ -27,7 +29,7 @@ const styles = StyleSheet.create({
     flex: 1
   },
   logo: {
-    height: 200,
+    height: height/4,
     marginBottom: 40,
     justifyContent: 'center',
     alignItems: 'center',

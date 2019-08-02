@@ -38,7 +38,8 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     paddingHorizontal: 32,
-    paddingTop: 40
+    paddingTop: 40,
+    paddingBottom: 40
   },
   input: {
     backgroundColor: theme["background-basic-color-1"],
