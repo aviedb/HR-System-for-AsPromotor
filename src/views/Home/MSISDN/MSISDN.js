@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, AsyncStorage } from 'react-native';
-import { Text, Input, ListItem, List, TopNavigation } from 'react-native-ui-kitten';
+import { Text, Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -62,16 +62,6 @@ class MSISDN extends Component {
     );
   }
 
-  renderListFooter = () => {
-    if (_.isEmpty(this.data)) return <View />;
-
-    return (
-      <View>
-        <Text onPress={this.attemptLogout}>Logout</Text>
-      </View>
-    );
-  }
-
   render() {
     if (this.props.selectedIndex !== 0) return <View />
 
@@ -87,6 +77,10 @@ class MSISDN extends Component {
             title="MSISDN"
             alignment="center"
             titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
+            rightControls={<TopNavigationAction
+              icon={() => icon.getIcon('logout')}
+              onPress={this.attemptLogout}
+            />}
           />
           <View style={styles.search}>
             <Input 
@@ -108,7 +102,6 @@ class MSISDN extends Component {
           keyExtractor={(item, index) => String(index)}
           onRefresh={this._onRefresh}
           refreshing={this.isFetching}
-          ListFooterComponent={this.renderListFooter}
           ListEmptyComponent={<EmptyList 
             message={this.isFetching? 'Loading...':'Empty in MSISDN'}
             playAnimation={this.isFetching}

@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     elevation: 6,
   },
   formContainer: {
-    paddingHorizontal: 40,
+    paddingHorizontal: 32,
     paddingTop: 40
   },
   input: {

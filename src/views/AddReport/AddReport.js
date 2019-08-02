@@ -181,13 +181,6 @@ class AddReport extends Component {
           <View style={styles.formContainer}>
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
-            {/* <Input 
-              label="Report Title"
-              value={this.title}
-              onChangeText={value => this.title = value}
-              style={styles.input}
-              labelStyle={styles.labelStyle}
-            /> */}
             <SelectInput 
               label="Pilih stok"
               value={this.stok}
@@ -214,16 +207,9 @@ class AddReport extends Component {
             />
             <Button onPress={this.openActionSheet}>Upload Foto</Button>
           </View>
-          {/* <Fab
-            style={styles.upload}
-            underlayColor={theme["text-primary-active-color"]}
-            onPress={this.openActionSheet}
-          >
-            {icon.getIcon(this.image?'edit':'upload', null, '#fff', 20)}
-          </Fab> */}
         </ScrollView>
         <View style={styles.buttonContainer}>
-          <Button>Done</Button>
+          <Button onPress={this.handleAddReport}>Done</Button>
         </View>
         {this.renderBottomSheet()}
       </SafeAreaView>
