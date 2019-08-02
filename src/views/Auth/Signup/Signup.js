@@ -44,7 +44,7 @@ class Login extends Component {
             <ScrollView>
               <View style={styles.logo}>
                 <Text category="h1" style={styles.logoTitle}>Sign up</Text>
-                <Text category="p1" style={styles.logoSubtitle}>Lorem ipsum dolor sit amet</Text>
+                <Text category="p1" style={styles.logoSubtitle}>HR System for AsPromoter</Text>
               </View>
               <View style={styles.container}>
                 <Input 
