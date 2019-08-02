@@ -24,10 +24,10 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { icon } from '../../services/stores';
 import Button from '../../components/Button';
 import SelectInput from '../../components/SelectInput';
-import Fab from '../../components/FloatingActionButton';
 import BottomSheet from '../../components/BottomSheet';
 import Divider from '../../components/Divider';
 import Touchable from '../../components/Touchable';
+import ImageBrowser from '../../components/ImageBrowser';
 
 import styles from './styles';
 import theme from '../../styles/theme';
@@ -39,11 +39,13 @@ class AddReport extends Component {
     header: null,
   };
 
-  @observable image = null;
+  @observable images = [];
   @observable title = '';
   @observable sold = '';
   @observable stok = 'Stok Toko';
+  @observable comment = '';
   @observable bottomSheetVisible = false;
+  @observable imageBrowserVisible = false;
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -56,7 +58,7 @@ class AddReport extends Component {
 
   pickImage = async (index) => {
     if (Platform.OS === 'android') {
-      this.closeBottomSheet();
+      await this.closeBottomSheet();
     }
 
     if (index === 0) return;
@@ -64,15 +66,16 @@ class AddReport extends Component {
 
     await this.getPermissionAsync();
 
-    const pickerType = index === 1? 'launchCameraAsync':'launchImageLibraryAsync';
+    if (index === 2) return this.imageBrowserVisible = true;
 
-    ImagePicker[pickerType]({
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
-      allowsEditing: true,
-      aspect: [3, 2]
+    ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images
     }).then(res => {
       if (!res.cancelled) {
-        this.image = res.uri;
+        this.images = [
+          ...this.image,
+          res.uri
+        ];
       }
     }).catch(err => {
       console.log(err);
@@ -96,6 +99,17 @@ class AddReport extends Component {
 
   closeBottomSheet = () => {
     this.bottomSheetVisible = false;
+  }
+
+  imageBrowserCallback = (callback) => {
+    callback.then(images => {
+      console.log(images)
+      this.imageBrowserVisible = false;
+      this.images = [
+        ...this.images,
+        images
+      ];
+    }).catch((e) => console.log(e))
   }
 
   renderBottomSheet = () => {
@@ -130,6 +144,16 @@ class AddReport extends Component {
   }
 
   render() {
+    if (this.imageBrowserVisible) {
+      return (
+        <ImageBrowser
+          headerButtonColor={'#E31676'} // Button color on header.
+          emptyText={'No photos'} // Empty Text
+          callback={this.imageBrowserCallback} // Callback functinon on press Done or Cancel Button. Argument is Asset Infomartion of the picked images wrapping by the Promise.
+        />
+      );
+    }
+    
     return (
       <SafeAreaView style={styles.safeArea}>
         <StatusBar
@@ -146,23 +170,30 @@ class AddReport extends Component {
           titleStyle={styles.headerTitle}
         />
         <ScrollView style={styles.container}>
-          <View style={styles.imageContainer}>
+          {/* <View style={styles.imageContainer}>
             <Text style={{position: 'absolute'}}>Foto Event</Text>
             <Image
               style={styles.image}
               resizeMode="cover"
               source={{uri: this.image}}
             />
-          </View>
+          </View> */}
           <View style={styles.formContainer}>
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
-            <Input 
+            {/* <Input 
               label="Report Title"
               value={this.title}
               onChangeText={value => this.title = value}
               style={styles.input}
               labelStyle={styles.labelStyle}
+            /> */}
+            <SelectInput 
+              label="Pilih stok"
+              value={this.stok}
+              onValueChange={value => this.stok = value}
+              options={["Stok Toko", "Stok Telin"]}
+              style={styles.select}
             />
             <Input 
               label="Nomor yang dijual"
@@ -172,24 +203,27 @@ class AddReport extends Component {
               style={styles.input}
               labelStyle={styles.labelStyle}
             />
-            <SelectInput 
-              label="Pilih stok"
-              value={this.stok}
-              onValueChange={value => this.stok = value}
-              options={["Stok Toko", "Stok Telin"]}
-              style={styles.select}
+            <Input 
+              label="Komentar"
+              multiline={true}
+              numberOfLines={3}
+              value={this.comment}
+              onChangeText={value => this.comment = value}
+              style={styles.input}
+              labelStyle={styles.labelStyle}
             />
+            <Button onPress={this.openActionSheet}>Upload Foto</Button>
           </View>
-          <Fab
+          {/* <Fab
             style={styles.upload}
             underlayColor={theme["text-primary-active-color"]}
             onPress={this.openActionSheet}
           >
             {icon.getIcon(this.image?'edit':'upload', null, '#fff', 20)}
-          </Fab>
+          </Fab> */}
         </ScrollView>
         <View style={styles.buttonContainer}>
-          <Button>Next</Button>
+          <Button>Done</Button>
         </View>
         {this.renderBottomSheet()}
       </SafeAreaView>

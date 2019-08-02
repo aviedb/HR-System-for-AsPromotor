@@ -12,13 +12,10 @@ import Divider from '../../components/Divider';
 
 import styles from './styles';
 import theme from '../../styles/theme';
+import Container from './class';
 
 @observer
-class PdfViewer extends Component {
-
-  static navigationOptions = {
-    header: null,
-  };
+class PdfViewer extends Container {
 
   @observable title = '';
   @observable uri = '';
