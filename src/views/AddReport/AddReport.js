@@ -201,7 +201,7 @@ class AddReport extends Component {
           );
 
           return (
-            <View style={{paddingLeft: 28, paddingRight: 8, alignItems: 'center', justifyContent: 'center'}}>
+            <View style={{paddingLeft: 32, paddingRight: 4, alignItems: 'center', justifyContent: 'center'}}>
               <Fab 
                 underlayColor={theme["color-primary-active"]}
                 onPress={this.openActionSheet}
