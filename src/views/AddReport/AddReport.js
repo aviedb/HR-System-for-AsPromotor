@@ -7,7 +7,8 @@ import {
   ScrollView, 
   ImageBackground,
   ActionSheetIOS,
-  FlatList
+  FlatList,
+  TouchableOpacity
 } from 'react-native';
 import {
   Input,
@@ -47,6 +48,8 @@ class AddReport extends Component {
   @observable comment = '';
   @observable bottomSheetVisible = false;
   @observable imageBrowserVisible = false;
+  @observable removeBottomSheetVisible = false;
+  @observable removeImageIndex = null;
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -74,7 +77,7 @@ class AddReport extends Component {
     }).then(res => {
       if (!res.cancelled) {
         this.images = [
-          ...this.image,
+          ...this.images,
           res
         ];
       }
@@ -98,8 +101,28 @@ class AddReport extends Component {
     }
   }
 
+  openRemoveActionSheet = (imageIndex) => () => {
+    if (Platform.OS === 'android') {
+      this.removeBottomSheetVisible = true;
+      this.removeImageIndex = imageIndex;
+    } else if (Platform.OS === 'ios') {
+      let options = ['Cancel', 'Remove picture'];
+
+      ActionSheetIOS.showActionSheetWithOptions({
+        options,
+        destructiveButtonIndex: 1,
+        cancelButtonIndex: 0
+      }, (index) => {
+        if (index === 1) {
+          this.images = this.images.filter((e, i) => i !== imageIndex);
+        }
+      });
+    }
+  }
+
   closeBottomSheet = () => {
     this.bottomSheetVisible = false;
+    this.removeBottomSheetVisible = false;
   }
 
   imageBrowserCallback = (callback) => {
@@ -108,8 +131,8 @@ class AddReport extends Component {
       this.images = [
         ...this.images,
         ...images
-      ]
-    }).catch((e) => console.log(e))
+      ];
+    }).catch((e) => console.log(e));
   }
 
   renderBottomSheet = () => {
@@ -143,6 +166,27 @@ class AddReport extends Component {
     );
   }
 
+  renderRemoveBottomSheet = () => {
+    return (
+      <BottomSheet
+        isVisible={this.removeBottomSheetVisible}
+        closeBottomSheet={this.closeBottomSheet}
+        title="Remove picture?"
+      >
+        <Touchable onPress={() => { 
+          this.images = this.images.filter((e, i) => i !== this.removeImageIndex);
+          this.removeImageIndex = null;
+          this.closeBottomSheet();
+        }}>
+          <View style={styles.bottomSheetItem}>
+            {icon.getIcon('clear', MaterialIcons, theme["text-danger-disabled-color"])}
+            <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
+          </View>
+        </Touchable>
+      </BottomSheet>
+    );
+  }
+
   renderImages() {
     return (
       <FlatList 
@@ -151,14 +195,16 @@ class AddReport extends Component {
         keyExtractor={(item, index) => String(index)}
         ListHeaderComponent={<View style={{width: 28}}/>}
         ListFooterComponent={<View style={{width: 28}}/>}
-        renderItem={({item}) => 
-          <ImageBackground
-            source={{uri: item.uri}}
-            resizeMode="cover"
-            style={styles.imageBackground}
-            imageStyle={styles.imageStyle}
-          />
-        }
+        renderItem={({item, index}) => (
+          <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
+            <ImageBackground
+              source={{uri: item.uri}}
+              resizeMode="cover"
+              style={styles.imageBackground}
+              imageStyle={styles.imageStyle}
+            />
+          </TouchableOpacity>
+        )}
       />
     );
   }
@@ -167,8 +213,8 @@ class AddReport extends Component {
     if (this.imageBrowserVisible) {
       return (
         <ImageBrowser
-          emptyText={'No photos'} // Empty Text
-          callback={this.imageBrowserCallback} // Callback functinon on press Done or Cancel Button. Argument is Asset Infomartion of the picked images wrapping by the Promise.
+          emptyText={'No photos'}
+          callback={this.imageBrowserCallback}
         />
       );
     }
@@ -224,6 +270,7 @@ class AddReport extends Component {
           <Button onPress={this.handleAddReport}>Done</Button>
         </View>
         {this.renderBottomSheet()}
+        {this.renderRemoveBottomSheet()}
       </SafeAreaView>
     );
   }
