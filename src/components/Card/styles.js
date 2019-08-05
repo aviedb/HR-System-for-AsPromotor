@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     shadowRadius: 2.22,
     elevation: 3,
     backgroundColor: theme["background-basic-color-1"],
-    borderRadius: 5,
+    borderRadius: 4,
     marginBottom: 12,
     marginHorizontal: 16
   },

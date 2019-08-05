@@ -6,16 +6,22 @@ const { width, height } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   ...globalStyles,
-  imageContainer: {
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: theme["background-basic-color-3"],
-    borderBottomColor: theme["border-basic-color-5"],
-    borderBottomWidth: 1
+  imageBackground: {
+    width: width/3,
+    height: width/4,
+    marginHorizontal: 4,
+    marginBottom: 16,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
   },
-  image: {
-    width: width,
-    height: width*1/2
+  imageStyle: {
+    borderRadius: 4,
   },
   upload: {
     position: 'absolute',

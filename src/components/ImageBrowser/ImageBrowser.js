@@ -5,7 +5,6 @@ import {
   View,
   FlatList,
   Dimensions,
-  Button,
   ActivityIndicator,
   SafeAreaView
 } from 'react-native'
@@ -13,6 +12,8 @@ import {
 import * as MediaLibrary from 'expo-media-library'
 
 import ImageTile from './ImageTile'
+import Button from '../../components/Button';
+import theme from '../../styles/theme';
 
 const { width } = Dimensions.get('window')
 
@@ -97,20 +98,19 @@ export default class ImageBrowser extends React.Component {
     if (selectedCount === this.props.max) headerText = headerText + ' (Max)'
     const headerCloseText = this.props.headerCloseText ? this.props.headerCloseText : 'Close'
     const headerDoneText = this.props.headerDoneText ? this.props.headerDoneText : 'Done'
-    const headerButtonColor = this.props.headerButtonColor ? this.props.headerButtonColor : '#007aff'
 
     return (
       <SafeAreaView>
         <View style={styles.header}>
 
           <Button
-            color={headerButtonColor}
+            ghost
             title={headerCloseText}
             onPress={() => this.props.callback(Promise.resolve([]))}
           />
           <Text style={styles.headerText}>{headerText}</Text>
           <Button
-            color={headerButtonColor}
+            ghost
             title={headerDoneText}
             onPress={() => this.prepareCallback()}
           />
@@ -192,9 +192,9 @@ const styles = StyleSheet.create({
     padding: 10
   },
   headerText: {
-    fontWeight: 'bold',
     fontSize: 16,
-    lineHeight: 19
+    lineHeight: 19,
+    fontFamily: 'product_sans_medium'
   },
   emptyContent: {
     flexGrow: 1,

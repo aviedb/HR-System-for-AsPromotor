@@ -5,8 +5,9 @@ import {
   View, 
   SafeAreaView, 
   ScrollView, 
-  Image,
-  ActionSheetIOS
+  ImageBackground,
+  ActionSheetIOS,
+  FlatList
 } from 'react-native';
 import {
   Input,
@@ -62,7 +63,7 @@ class AddReport extends Component {
     }
 
     if (index === 0) return;
-    if (index === 3) return this.image = null;
+    if (index === 3) return this.images = [];
 
     await this.getPermissionAsync();
 
@@ -74,7 +75,7 @@ class AddReport extends Component {
       if (!res.cancelled) {
         this.images = [
           ...this.image,
-          res.uri
+          res
         ];
       }
     }).catch(err => {
@@ -87,11 +88,11 @@ class AddReport extends Component {
       this.bottomSheetVisible = true;
     } else if (Platform.OS === 'ios') {
       let options = ['Cancel', 'Take photo', 'Choose image'];
-      if (this.image) options.push('Remove picture');
+      if (this.images.length > 0) options.push('Remove pictures');
 
       ActionSheetIOS.showActionSheetWithOptions({
         options,
-        destructiveButtonIndex: this.image? 3:null,
+        destructiveButtonIndex: this.images.length > 0? 3:null,
         cancelButtonIndex: 0
       }, this.pickImage);
     }
@@ -103,12 +104,11 @@ class AddReport extends Component {
 
   imageBrowserCallback = (callback) => {
     callback.then(images => {
-      console.log(images)
       this.imageBrowserVisible = false;
       this.images = [
         ...this.images,
-        images
-      ];
+        ...images
+      ]
     }).catch((e) => console.log(e))
   }
 
@@ -131,11 +131,11 @@ class AddReport extends Component {
             <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
           </View>
         </Touchable>
-        {this.image &&
+        {this.images.length > 0 &&
           <Touchable onPress={() => this.pickImage(3)}>
             <View style={styles.bottomSheetItem}>
               {icon.getIcon('clear', MaterialIcons, theme["text-danger-disabled-color"])}
-              <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
+              <Text style={styles.bottomSheetItemTitleDanger}>Remove pictures</Text>
             </View>
           </Touchable>
         }
@@ -143,11 +143,30 @@ class AddReport extends Component {
     );
   }
 
+  renderImages() {
+    return (
+      <FlatList 
+        data={this.images}
+        horizontal
+        keyExtractor={(item, index) => String(index)}
+        ListHeaderComponent={<View style={{width: 28}}/>}
+        ListFooterComponent={<View style={{width: 28}}/>}
+        renderItem={({item}) => 
+          <ImageBackground
+            source={{uri: item.uri}}
+            resizeMode="cover"
+            style={styles.imageBackground}
+            imageStyle={styles.imageStyle}
+          />
+        }
+      />
+    );
+  }
+
   render() {
     if (this.imageBrowserVisible) {
       return (
         <ImageBrowser
-          headerButtonColor={'#E31676'} // Button color on header.
           emptyText={'No photos'} // Empty Text
           callback={this.imageBrowserCallback} // Callback functinon on press Done or Cancel Button. Argument is Asset Infomartion of the picked images wrapping by the Promise.
         />
@@ -170,14 +189,6 @@ class AddReport extends Component {
           titleStyle={styles.headerTitle}
         />
         <ScrollView style={styles.container}>
-          {/* <View style={styles.imageContainer}>
-            <Text style={{position: 'absolute'}}>Foto Event</Text>
-            <Image
-              style={styles.image}
-              resizeMode="cover"
-              source={{uri: this.image}}
-            />
-          </View> */}
           <View style={styles.formContainer}>
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
@@ -207,6 +218,7 @@ class AddReport extends Component {
             />
             <Button onPress={this.openActionSheet}>Upload Foto</Button>
           </View>
+          {this.renderImages()}
         </ScrollView>
         <View style={styles.buttonContainer}>
           <Button onPress={this.handleAddReport}>Done</Button>
