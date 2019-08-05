@@ -30,6 +30,7 @@ import BottomSheet from '../../components/BottomSheet';
 import Divider from '../../components/Divider';
 import Touchable from '../../components/Touchable';
 import ImageBrowser from '../../components/ImageBrowser';
+import Fab from '../../components/FloatingActionButton';
 
 import styles from './styles';
 import theme from '../../styles/theme';
@@ -193,8 +194,31 @@ class AddReport extends Component {
         data={this.images}
         horizontal
         keyExtractor={(item, index) => String(index)}
-        ListHeaderComponent={<View style={{width: 28}}/>}
         ListFooterComponent={<View style={{width: 28}}/>}
+        ListHeaderComponent={() => {
+          if (this.images.length < 1) return (
+            <View style={{width: 32}}/>
+          );
+
+          return (
+            <View style={{paddingLeft: 28, paddingRight: 8, alignItems: 'center', justifyContent: 'center'}}>
+              <Fab 
+                underlayColor={theme["color-primary-active"]}
+                onPress={this.openActionSheet}
+                style={styles.fab}
+              >
+                {icon.getIcon('plus', null, '#fff', 20)}
+              </Fab>
+            </View>
+          );
+        }}
+        ListEmptyComponent={() => {
+          return (
+            <View style={{marginBottom: 16}}>
+              <Button onPress={this.openActionSheet}>Upload Foto</Button>
+            </View>
+          );
+        }}
         renderItem={({item, index}) => (
           <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
             <ImageBackground
@@ -262,7 +286,6 @@ class AddReport extends Component {
               style={styles.input}
               labelStyle={styles.labelStyle}
             />
-            <Button onPress={this.openActionSheet}>Upload Foto</Button>
           </View>
           {this.renderImages()}
         </ScrollView>

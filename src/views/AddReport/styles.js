@@ -23,15 +23,13 @@ const styles = StyleSheet.create({
   imageStyle: {
     borderRadius: 4,
   },
-  upload: {
-    position: 'absolute',
+  fab: {
+    top: (width/8)-20,
     alignItems: 'center',
     justifyContent:'center',
-    width:52,
-    height:52,
-    top: (width*1/2)-26,
-    right: 20,
-    backgroundColor: theme["text-primary-color"],
+    width:40,
+    height:40,
+    backgroundColor: theme["color-primary-default"],
     borderRadius:50,
     shadowColor: "#000",
     shadowOffset: {
@@ -45,7 +43,7 @@ const styles = StyleSheet.create({
   formContainer: {
     paddingHorizontal: 32,
     paddingTop: 40,
-    paddingBottom: 40
+    paddingBottom: 20
   },
   input: {
     backgroundColor: theme["background-basic-color-1"],

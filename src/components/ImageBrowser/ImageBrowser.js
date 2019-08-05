@@ -13,7 +13,6 @@ import * as MediaLibrary from 'expo-media-library'
 
 import ImageTile from './ImageTile'
 import Button from '../../components/Button';
-import theme from '../../styles/theme';
 
 const { width } = Dimensions.get('window')
 
