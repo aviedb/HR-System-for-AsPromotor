@@ -38,7 +38,7 @@ const Button = (props) => {
   return (
     <Touchable onPress={props.onPress}>
       <View style={{...styles.container, backgroundColor, ...shadow}}>
-        <Text style={{...styles.text, color, fontSize, fontFamily}}>
+        <Text style={{color, fontSize, fontFamily}}>
           {props.children || props.title}
         </Text>
       </View>

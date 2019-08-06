@@ -136,6 +136,10 @@ class AddReport extends Component {
     }).catch((e) => console.log(e));
   }
 
+  handleAddReport = () => {
+    this.props.navigation.navigate('Home');
+  }
+
   renderBottomSheet = () => {
     return (
       <BottomSheet
@@ -278,7 +282,7 @@ class AddReport extends Component {
               labelStyle={styles.labelStyle}
             />
             <Input 
-              label="Komentar"
+              label="Catatan"
               multiline={true}
               numberOfLines={3}
               value={this.comment}
