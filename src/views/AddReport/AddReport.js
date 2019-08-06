@@ -315,6 +315,7 @@ class AddReport extends Component {
               style={styles.input}
               labelStyle={styles.labelStyle}
               onEndEditing={Platform.OS==='ios' && this.addSoldNumber}
+              maxLength={20}
               icon={(style) => {
                 delete style.tintColor;
                 return icon.getIcon('plus', null, theme["text-primary-color"], null, this.addSoldNumber);
