@@ -314,7 +314,7 @@ class AddReport extends Component {
               keyboardType="phone-pad"
               style={styles.input}
               labelStyle={styles.labelStyle}
-              onEndEditing={Platform.OS==='ios' && this.addSoldNumber}
+              onEndEditing={this.addSoldNumber}
               maxLength={20}
               icon={(style) => {
                 delete style.tintColor;
