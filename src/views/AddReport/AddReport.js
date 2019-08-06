@@ -296,7 +296,7 @@ class AddReport extends Component {
           style={styles.header}
           titleStyle={styles.headerTitle}
         />
-        <KeyboardAwareScrollView contentContainerStyle={styles.container} style={styles.container}>
+        <KeyboardAwareScrollView style={styles.container}>
           <View style={styles.formContainer} behavior="padding">
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
