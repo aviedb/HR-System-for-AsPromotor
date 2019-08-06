@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, ScrollView, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
+import { StatusBar, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -41,7 +42,7 @@ class Login extends Component {
               backgroundColor={theme["color-primary-default"]} 
               barStyle="light-content"
             />
-            <ScrollView>
+            <KeyboardAwareScrollView>
               <View style={styles.logo}>
                 <Text category="h1" style={styles.logoTitle}>Sign up</Text>
                 <Text category="p1" style={styles.logoSubtitle}>HR System for AsPromoter</Text>
@@ -77,7 +78,7 @@ class Login extends Component {
                 />
                 <Button onPress={this.attemptSignup}>Sign Up</Button>
               </View>
-            </ScrollView>
+            </KeyboardAwareScrollView>
             <View style={styles.footer}>
               <Text category="p1">{"Already have an account? "}</Text>
               <TouchableOpacity>

@@ -3,8 +3,7 @@ import {
   StatusBar, 
   Platform, 
   View, 
-  SafeAreaView, 
-  ScrollView, 
+  SafeAreaView,
   ImageBackground,
   ActionSheetIOS,
   FlatList,
@@ -16,6 +15,7 @@ import {
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -296,8 +296,8 @@ class AddReport extends Component {
           style={styles.header}
           titleStyle={styles.headerTitle}
         />
-        <ScrollView style={styles.container}>
-          <View style={styles.formContainer}>
+        <KeyboardAwareScrollView contentContainerStyle={styles.container} style={styles.container}>
+          <View style={styles.formContainer} behavior="padding">
             <Text category="h5">Report Detail</Text>
             <Divider color="#D3DDE9" marginBottom={20}/>
             <SelectInput 
@@ -333,7 +333,7 @@ class AddReport extends Component {
             />
           </View>
           {this.renderImages()}
-        </ScrollView>
+        </KeyboardAwareScrollView>
         <View style={styles.buttonContainer}>
           <Button onPress={this.handleAddReport}>Done</Button>
         </View>
