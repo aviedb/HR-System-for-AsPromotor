@@ -50,11 +50,29 @@ const styles = StyleSheet.create({
     borderColor: theme["border-basic-color-4"],
     marginVertical: 4
   },
+  soldNumberWrapper: {
+    borderColor: theme["border-basic-color-5"],
+    borderWidth: 1,
+    borderRadius: 4,
+    backgroundColor: theme["background-basic-color-3"]
+  },
+  soldNumberItem: {
+    paddingHorizontal: 16,
+    paddingVertical: 10,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
   select: {
     marginVertical: 4
   },
   labelStyle: {
     color: '#1A2138'
+  },
+  uploadButton: {
+    marginBottom: 16,
+    marginLeft: 32,
+    alignItems: 'flex-start'
   },
   buttonContainer: {
     backgroundColor: '#fff',

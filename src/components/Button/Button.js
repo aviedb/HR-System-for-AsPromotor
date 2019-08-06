@@ -14,13 +14,15 @@ const Button = (props) => {
   let shadow = null;
 
   if (props.ghost) {
-    if (props.danger) color = theme["text-danger-color"];
+    if (props.disabled) color = theme["text-disabled-color"];
+    else if (props.danger) color = theme["text-danger-color"];
     else color = theme["text-primary-color"];
     
     fontSize = 18;
     fontFamily = 'product_sans_medium';
   } else {
-    if (props.danger) backgroundColor = theme["text-danger-color"];
+    if (props.disabled) backgroundColor = theme["text-disabled-color"];
+    else if (props.danger) backgroundColor = theme["text-danger-color"];
     else backgroundColor = theme["text-primary-color"];
 
     shadow = {
@@ -36,7 +38,7 @@ const Button = (props) => {
   }
 
   return (
-    <Touchable onPress={props.onPress}>
+    <Touchable onPress={props.onPress} onLongPress={props.onLongPress}>
       <View style={{...styles.container, backgroundColor, ...shadow}}>
         <Text style={{color, fontSize, fontFamily}}>
           {props.children || props.title}

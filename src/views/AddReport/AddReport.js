@@ -45,6 +45,7 @@ class AddReport extends Component {
   @observable images = [];
   @observable title = '';
   @observable sold = '';
+  @observable soldNumbers = [];
   @observable stok = 'Stok Toko';
   @observable comment = '';
   @observable bottomSheetVisible = false;
@@ -136,6 +137,20 @@ class AddReport extends Component {
     }).catch((e) => console.log(e));
   }
 
+  addSoldNumber = () => {
+    if (this.sold.length < 1) return;
+
+    this.soldNumbers = [
+      ...this.soldNumbers,
+      this.sold
+    ];
+    this.sold = '';
+  }
+
+  removeSoldNumber = (index) => () => {
+    this.soldNumbers = this.soldNumbers.filter((n, i) => i !== index);
+  }
+
   handleAddReport = () => {
     this.props.navigation.navigate('Home');
   }
@@ -193,6 +208,12 @@ class AddReport extends Component {
   }
 
   renderImages() {
+    if (this.images.length < 1) return (
+      <View style={styles.uploadButton}>
+        <Button onPress={this.openActionSheet}>Upload Foto</Button>
+      </View>
+    );
+
     return (
       <FlatList 
         data={this.images}
@@ -216,13 +237,6 @@ class AddReport extends Component {
             </View>
           );
         }}
-        ListEmptyComponent={() => {
-          return (
-            <View style={{marginBottom: 16}}>
-              <Button onPress={this.openActionSheet}>Upload Foto</Button>
-            </View>
-          );
-        }}
         renderItem={({item, index}) => (
           <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
             <ImageBackground
@@ -234,6 +248,26 @@ class AddReport extends Component {
           </TouchableOpacity>
         )}
       />
+    );
+  }
+
+  renderSoldNumbers() {
+    if (this.soldNumbers.length < 1) return <View />;
+
+    return (
+      <View style={styles.soldNumberWrapper}>
+        {this.soldNumbers.map((number, i) => (
+          <View key={i}>
+            <View style={styles.soldNumberItem}>
+              <Text>{number}</Text>
+              {icon.getIcon('close', null, theme["text-danger-disabled-color"], null, this.removeSoldNumber(i))}
+            </View>
+            {i !== this.soldNumbers.length-1 && 
+              <Divider color={theme["border-basic-color-5"]} />
+            }
+          </View>
+        ))}
+      </View>
     );
   }
 
@@ -277,10 +311,15 @@ class AddReport extends Component {
               label="Nomor yang dijual"
               value={this.sold}
               onChangeText={value => this.sold = value}
-              keyboardType="numeric"
+              keyboardType="phone-pad"
               style={styles.input}
               labelStyle={styles.labelStyle}
+              icon={(style) => {
+                delete style.tintColor;
+                return icon.getIcon('plus', null, theme["text-primary-color"], null, this.addSoldNumber);
+              }}
             />
+            {this.renderSoldNumbers()}
             <Input 
               label="Catatan"
               multiline={true}

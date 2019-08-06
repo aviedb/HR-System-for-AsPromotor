@@ -5,7 +5,7 @@ import { Platform } from 'react-native';
 
 class Icon {
   @action
-  getIcon = (name, Component, color, size) => {
+  getIcon = (name, Component, color, size, onPress) => {
     if (!Component) Component = AntDesign;
     if (!color) color = "#1A2138";
     if (!size) size = 24;
@@ -15,6 +15,7 @@ class Icon {
         name={name}
         size={size}
         color={color}
+        onPress={onPress}
       />
     );
   }
