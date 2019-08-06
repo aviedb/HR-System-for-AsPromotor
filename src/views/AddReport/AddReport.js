@@ -314,6 +314,7 @@ class AddReport extends Component {
               keyboardType="phone-pad"
               style={styles.input}
               labelStyle={styles.labelStyle}
+              onEndEditing={Platform.OS==='ios' && this.addSoldNumber}
               icon={(style) => {
                 delete style.tintColor;
                 return icon.getIcon('plus', null, theme["text-primary-color"], null, this.addSoldNumber);
