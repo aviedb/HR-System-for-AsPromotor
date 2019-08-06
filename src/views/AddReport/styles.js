@@ -57,8 +57,8 @@ const styles = StyleSheet.create({
     backgroundColor: theme["background-basic-color-3"]
   },
   soldNumberItem: {
-    paddingHorizontal: 16,
-    paddingVertical: 10,
+    paddingHorizontal: 20,
+    paddingVertical: 12,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'

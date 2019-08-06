@@ -260,7 +260,7 @@ class AddReport extends Component {
           <View key={i}>
             <View style={styles.soldNumberItem}>
               <Text>{number}</Text>
-              {icon.getIcon('close', null, theme["text-danger-disabled-color"], null, this.removeSoldNumber(i))}
+              {icon.getIcon('close', null, theme["text-danger-disabled-color"], 20, this.removeSoldNumber(i))}
             </View>
             {i !== this.soldNumbers.length-1 && 
               <Divider color={theme["border-basic-color-5"]} />
@@ -297,9 +297,9 @@ class AddReport extends Component {
           titleStyle={styles.headerTitle}
         />
         <KeyboardAwareScrollView style={styles.container}>
-          <View style={styles.formContainer} behavior="padding">
+          <View style={styles.formContainer}>
             <Text category="h5">Report Detail</Text>
-            <Divider color="#D3DDE9" marginBottom={20}/>
+            <Divider color={theme["border-basic-color-4"]} marginBottom={20}/>
             <SelectInput 
               label="Pilih stok"
               value={this.stok}
@@ -317,8 +317,9 @@ class AddReport extends Component {
               onEndEditing={this.addSoldNumber}
               maxLength={20}
               icon={(style) => {
+                let color = style.tintColor;
                 delete style.tintColor;
-                return icon.getIcon('plus', null, theme["text-primary-color"], null, this.addSoldNumber);
+                return icon.getIcon('plus', null, color, 20, this.addSoldNumber);
               }}
             />
             {this.renderSoldNumbers()}
