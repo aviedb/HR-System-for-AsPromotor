@@ -63,13 +63,10 @@ class AddReport extends Component {
   }
 
   pickImage = async (index) => {
-    if (Platform.OS === 'android') {
-      await this.closeBottomSheet();
-    }
-
     if (index === 0) return;
     if (index === 3) return this.images = [];
 
+    await this.closeBottomSheet();
     await this.getPermissionAsync();
 
     if (index === 2) return this.imageBrowserVisible = true;
@@ -77,12 +74,7 @@ class AddReport extends Component {
     ImagePicker.launchCameraAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images
     }).then(res => {
-      if (!res.cancelled) {
-        this.images = [
-          ...this.images,
-          res
-        ];
-      }
+      if (!res.cancelled) this.images = [...this.images, res];
     }).catch(err => {
       console.log(err);
     });
@@ -108,10 +100,8 @@ class AddReport extends Component {
       this.removeBottomSheetVisible = true;
       this.removeImageIndex = imageIndex;
     } else if (Platform.OS === 'ios') {
-      let options = ['Cancel', 'Remove picture'];
-
       ActionSheetIOS.showActionSheetWithOptions({
-        options,
+        options: ['Cancel', 'Remove picture'],
         destructiveButtonIndex: 1,
         cancelButtonIndex: 0
       }, (index) => {
@@ -130,20 +120,16 @@ class AddReport extends Component {
   imageBrowserCallback = (callback) => {
     callback.then(images => {
       this.imageBrowserVisible = false;
-      this.images = [
-        ...this.images,
-        ...images
-      ];
-    }).catch((e) => console.log(e));
+      this.images = [...this.images, ...images];
+    }).catch((e) => {
+      console.log(e);
+    });
   }
 
   addSoldNumber = () => {
     if (this.sold.length < 1) return;
 
-    this.soldNumbers = [
-      ...this.soldNumbers,
-      this.sold
-    ];
+    this.soldNumbers = [...this.soldNumbers, this.sold];
     this.sold = '';
   }
 
@@ -219,24 +205,18 @@ class AddReport extends Component {
         data={this.images}
         horizontal
         keyExtractor={(item, index) => String(index)}
-        ListFooterComponent={<View style={{width: 28}}/>}
-        ListHeaderComponent={() => {
-          if (this.images.length < 1) return (
-            <View style={{width: 32}}/>
-          );
-
-          return (
-            <View style={{paddingLeft: 32, paddingRight: 4, alignItems: 'center', justifyContent: 'center'}}>
-              <Fab 
-                underlayColor={theme["color-primary-active"]}
-                onPress={this.openActionSheet}
-                style={styles.fab}
-              >
-                {icon.getIcon('plus', null, '#fff', 20)}
-              </Fab>
-            </View>
-          );
-        }}
+        ListFooterComponent={() => <View style={{width: 28}}/>}
+        ListHeaderComponent={() => (
+          <View style={{paddingLeft: 32, paddingRight: 8, alignItems: 'center', justifyContent: 'center'}}>
+            <Fab 
+              underlayColor={theme["color-primary-active"]}
+              onPress={this.openActionSheet}
+              style={styles.fab}
+            >
+              {icon.getIcon('plus', null, '#fff', 20)}
+            </Fab>
+          </View>
+        )}
         renderItem={({item, index}) => (
           <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
             <ImageBackground
