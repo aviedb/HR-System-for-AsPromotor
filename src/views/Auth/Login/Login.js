@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
+import { StatusBar, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import Button from '../../../components/Button';
+import { auth } from '../../../services/firebase';
 
 import styles from '../styles';
 import theme from '../../../styles/theme';
@@ -17,16 +18,23 @@ class Login extends Component {
     header: null,
   };
 
-  @observable username = '';
+  @observable email = '';
   @observable password = '';
 
   handleChange = (key) => (value) => {
     this[key] = value;
   }
 
-  attemptLogin = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('AppStack');
+  attemptLogin = () => {
+    console.log('Signing in');
+
+    auth.doSignInWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        console.log('Signed in');
+        this.props.navigation.navigate('AppStack');
+      }).catch(err => {
+        console.warn(err);
+      });
   }
 
   render() {
@@ -47,9 +55,9 @@ class Login extends Component {
               </View>
               <View style={styles.container}>
                 <Input 
-                  placeholder="Username"
-                  value={this.username}
-                  onChangeText={this.handleChange('username')}
+                  placeholder="Email"
+                  value={this.email}
+                  onChangeText={this.handleChange('email')}
                   style={styles.input}
                 />
                 <Input 

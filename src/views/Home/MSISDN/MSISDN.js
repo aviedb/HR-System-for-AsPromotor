@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, AsyncStorage } from 'react-native';
+import { View } from 'react-native';
 import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import { observer } from 'mobx-react';
@@ -7,6 +7,7 @@ import { observable } from 'mobx';
 
 import { icon } from '../../../services/stores';
 import EmptyList from '../../../components/EmptyList';
+import { auth } from '../../../services/firebase';
 
 import styles from './styles';
 
@@ -44,8 +45,15 @@ class MSISDN extends Component {
   }
 
   attemptLogout = async () => {
-    await AsyncStorage.clear();
-    this.props.navigation.navigate('AuthStack');
+    console.log('Signing out');
+
+    auth.doSignOut()
+      .then(() => {
+        console.log('Signed out');
+        this.props.navigation.navigate('AuthStack');
+      }).catch(err => {
+        console.warn(err);
+      });
   }
 
   renderItem = ({ item }) => {

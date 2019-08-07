@@ -1,11 +1,12 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, View, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
+import { StatusBar, View, TouchableOpacity, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import Button from '../../../components/Button';
+import { auth } from '../../../services/firebase';
 
 import styles from '../styles';
 import theme from '../../../styles/theme';
@@ -27,8 +28,15 @@ class Login extends Component {
   }
 
   attemptSignup = async () => {
-    await AsyncStorage.setItem('userToken', 'abc');
-    this.props.navigation.navigate('AppStack');
+    console.log('Signing up');
+
+    auth.doCreateUserWithEmailAndPassword(this.email, this.password)
+      .then(() => {
+        console.log('Signed up');
+        this.props.navigation.navigate('AppStack');
+      }).catch(err => {
+        console.warn(err);
+      });
   }
 
   render() {
