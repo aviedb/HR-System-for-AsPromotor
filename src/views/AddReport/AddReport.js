@@ -56,7 +56,7 @@ class AddReport extends Component {
   @observable removeImageIndex = null;
 
   componentDidMount() {
-    console.log(moment());
+    // console.log(moment());
   }
 
   getPermissionAsync = async () => {
