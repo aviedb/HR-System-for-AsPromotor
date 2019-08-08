@@ -24,6 +24,7 @@ import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { icon } from '../../services/stores';
+import { db } from '../../services/firebase';
 import Button from '../../components/Button';
 import SelectInput from '../../components/SelectInput';
 import BottomSheet from '../../components/BottomSheet';
@@ -138,7 +139,14 @@ class AddReport extends Component {
   }
 
   handleAddReport = () => {
-    this.props.navigation.navigate('Home');
+    console.log('Adding report');
+
+    db.addAsProReport(this.soldNumbers[0], this.comment)
+      .then(() => {
+        this.props.navigation.navigate('Home');
+      }).catch(err => {
+        console.warn(err);
+    });
   }
 
   renderBottomSheet = () => {

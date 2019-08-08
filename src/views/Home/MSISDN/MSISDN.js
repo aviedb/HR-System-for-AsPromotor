@@ -2,12 +2,13 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
+import moment from 'moment';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
 import { icon } from '../../../services/stores';
 import EmptyList from '../../../components/EmptyList';
-import { auth } from '../../../services/firebase';
+import { auth, db } from '../../../services/firebase';
 
 import styles from './styles';
 
@@ -19,25 +20,22 @@ class MSISDN extends Component {
   @observable isFetching = false;
 
   componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = () => {
     this.isFetching = true;
-    setTimeout(() => {
+    db.getMSISDN().then(res => {
+      let data = res.docs.map(doc => doc.data());
+      this.data = data;
       this.isFetching = false;
-    }, 2000);
+    }).catch(err => {
+      console.warn(err);
+    });
   }
 
   _onRefresh = () => {
-    this.isFetching = true;
-    
-    setTimeout(() => {
-      this.data = [
-        { msisdn: 'MSISDN 1', shipOutDate: '2019-07-10', subAgent: 'Sub Agent 1' },
-        { msisdn: 'MSISDN 2', shipOutDate: '2019-07-11', subAgent: 'Sub Agent 2' },
-        { msisdn: 'MSISDN 3', shipOutDate: '2019-07-13', subAgent: 'Sub Agent 3' },
-        { msisdn: 'MSISDN 4', shipOutDate: '2019-07-16', subAgent: 'Sub Agent 4' },
-      ];
-
-      this.isFetching = false;
-    }, 2000);
+    this.fetchData();
   }
 
   handleChange = (key) => (value) => {
@@ -60,7 +58,7 @@ class MSISDN extends Component {
     return (
       <ListItem 
         title={item.msisdn}
-        description={`${item.subAgent}\n${item.shipOutDate}`}
+        description={`${item.subAgent}\n${moment(item.shipOutDate.toDate()).format("dddd, MMMM Do YYYY")}`}
         style={styles.item}
         titleStyle={styles.itemTitle}
         onPress={() => this.props.navigation.navigate('MSISDNDetail', {
