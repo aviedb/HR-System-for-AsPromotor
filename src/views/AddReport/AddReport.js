@@ -16,6 +16,7 @@ import {
   TopNavigationAction
 } from 'react-native-ui-kitten';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import moment from 'moment';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -53,6 +54,10 @@ class AddReport extends Component {
   @observable imageBrowserVisible = false;
   @observable removeBottomSheetVisible = false;
   @observable removeImageIndex = null;
+
+  componentDidMount() {
+    console.log(moment());
+  }
 
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
@@ -141,11 +146,18 @@ class AddReport extends Component {
   handleAddReport = () => {
     console.log('Adding report');
 
-    db.addAsProReport(this.soldNumbers[0], this.comment)
-      .then(() => {
-        this.props.navigation.navigate('Home');
-      }).catch(err => {
-        console.warn(err);
+    let data = {
+      title: 'this is title',
+      stok: this.stok,
+      soldNumbers: this.soldNumbers,
+      note: this.comment,
+      date: new Date()
+    }
+
+    db.addAsProReport(data).then(() => {
+      this.props.navigation.navigate('Home');
+    }).catch(err => {
+      console.warn(err);
     });
   }
 

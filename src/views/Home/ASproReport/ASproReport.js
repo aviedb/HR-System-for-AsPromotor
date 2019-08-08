@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import moment from 'moment';
 import React, { Component } from 'react';
 import { View, Platform } from 'react-native';
 import { TopNavigation, Text } from 'react-native-ui-kitten';
@@ -6,6 +7,7 @@ import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-c
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
+import { db } from '../../../services/firebase';
 import Fab from '../../../components/FloatingActionButton';
 import Touchable from '../../../components/Touchable';
 
@@ -37,17 +39,40 @@ function getPastDate(days) {
 class ASproReport extends Component {
 
   @observable isFetching = true;
-  @observable items = [
-    {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
-    {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
-    {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
-    {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
-    {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[6], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
-    {title: dates[8], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[9], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
-    {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
-  ]
+  @observable items = []
+
+  componentDidMount() {
+    this.fetchData();
+  }
+
+  fetchData = () => {
+    db.getAsProReport().then(res => {
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.hour = moment(doc.date.toDate()).format('HH:mm');
+        doc.date = moment(doc.date.toDate()).format('YYYY-MM-DD');
+        return doc;
+      });
+
+      let items = [];
+      _.mapKeys(_.groupBy(data, 'date'), (value, key) => {
+        value = value.map(e => {
+          return {
+            hour: e.hour,
+            duration: '1h',
+            title: e.title
+          }
+        });
+
+        items = [...items, {
+          title: key,
+          data: value
+        }];
+      });
+
+      this.items = items;
+    })
+  }
 
   onDateChanged = (date, updateSource) => {
     // console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);

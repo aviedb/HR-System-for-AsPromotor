@@ -5,13 +5,15 @@ export const getMSISDN = () => {
 }
 
 export const getAsProReport = () => {
-  return firestore.collection('asproreport').get();
+  return firestore.collection('asproreport').orderBy('date').get();
 }
 
-export const addAsProReport = (soldNumber, note) => {
+export const addAsProReport = ({title, stok, soldNumbers, note, date}) => {
   return firestore.collection('asproreport').add({
-    title: 'new aspro report',
-    soldNumber,
-    note
+    title,
+    stok,
+    soldNumbers,
+    note,
+    date
   });
 }
