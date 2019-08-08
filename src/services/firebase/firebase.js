@@ -1,14 +1,22 @@
 import * as firebase from 'firebase';
+import {
+  API_KEY,
+  AUTH_DOMAIN,
+  DATABASE_URL,
+  PROJECT_ID,
+  MESSAGING_SENDER_ID,
+  APP_ID
+} from 'react-native-dotenv';
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAd4hSXcHLvUNHR3g8LqbL3HiCDGibU-Zg",
-  authDomain: "hr-system-for-aspromoter.firebaseapp.com",
-  databaseURL: "https://hr-system-for-aspromoter.firebaseio.com",
-  projectId: "hr-system-for-aspromoter",
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
   storageBucket: "",
-  messagingSenderId: "505859410597",
-  appId: "1:505859410597:web:4111048aeff61127"
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID
 };
 
 firebase.initializeApp(firebaseConfig);
