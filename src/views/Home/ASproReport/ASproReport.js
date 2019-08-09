@@ -22,9 +22,9 @@ const today = new Date().toISOString().split('T')[0];
 class ASproReport extends Component {
 
   @observable isFetching = true;
-  @observable items = []
+  @observable items = [];
 
-  componentDidMount() {
+  componentDidUpdate() {
     this.fetchData();
   }
 
@@ -47,10 +47,7 @@ class ASproReport extends Component {
           }
         });
 
-        items = [...items, {
-          title: key,
-          data: value
-        }];
+        items.push({ title: key, data: value });
       });
 
       this.items = items;

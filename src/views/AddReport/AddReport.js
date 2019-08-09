@@ -146,8 +146,9 @@ class AddReport extends Component {
   handleAddReport = () => {
     console.log('Adding report');
 
+    let size = this.soldNumbers.length;
     let data = {
-      title: 'this is title',
+      title: `${size} number${size>1?'s':''} sold (${this.stok})`,
       stok: this.stok,
       soldNumbers: this.soldNumbers,
       note: this.comment,
