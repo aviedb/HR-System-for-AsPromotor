@@ -26,18 +26,22 @@ class AgendaDetail extends Component {
   };
 
   @observable title = '';
-  @observable images = [
-    'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
-    'assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG',
-    'assets-library://asset/asset.JPG?id=99D53A1F-FEEF-40E1-8BB3-7DD55A43C8B7&ext=JPG',
-    'assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG',
-    'assets-library://asset/asset.JPG?id=B84E8479-475C-4727-A4A4-B77AA9980897&ext=JPG',
-    'assets-library://asset/asset.JPG?id=106E99A1-4F6A-45A2-B320-B0AD4A8E8473&ext=JPG',
-  ];
+  @observable images = [];
 
   componentDidMount() {
     const title = this.props.navigation.getParam('title', 'Title');
     this.title = title;
+
+    setTimeout(() => {
+      this.images = [
+        'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
+        'assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG',
+        'assets-library://asset/asset.JPG?id=99D53A1F-FEEF-40E1-8BB3-7DD55A43C8B7&ext=JPG',
+        'assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG',
+        'assets-library://asset/asset.JPG?id=B84E8479-475C-4727-A4A4-B77AA9980897&ext=JPG',
+        'assets-library://asset/asset.JPG?id=106E99A1-4F6A-45A2-B320-B0AD4A8E8473&ext=JPG',
+      ]
+    }, 1);
   }
 
   _renderImageCarousel({item, index}, parallaxProps) {
@@ -77,6 +81,7 @@ class AgendaDetail extends Component {
     return (
       <ScrollView style={styles.container}>
         {this.renderImages()}
+        <Text>Some text</Text>
       </ScrollView>
     );
   }
