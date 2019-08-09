@@ -5,7 +5,7 @@ import {
   TopNavigation,
   TopNavigationAction
 } from 'react-native-ui-kitten';
-import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
+import Carousel, { ParallaxImage, Pagination } from 'react-native-snap-carousel';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
@@ -27,6 +27,7 @@ class AgendaDetail extends Component {
 
   @observable title = '';
   @observable images = [];
+  @observable activeSlide = 0;
 
   componentDidMount() {
     const title = this.props.navigation.getParam('title', 'Title');
@@ -44,9 +45,31 @@ class AgendaDetail extends Component {
     }, 1);
   }
 
+  renderPagination() {
+    return (
+      <Pagination
+        dotsLength={this.images.length}
+        activeDotIndex={this.activeSlide}
+        containerStyle={{ backgroundColor: 'transparent' }}
+        dotStyle={{
+            width: 10,
+            height: 10,
+            borderRadius: 5,
+            marginHorizontal: 8,
+            backgroundColor: 'rgba(0, 0, 0, 0.75)'
+        }}
+        inactiveDotStyle={{
+            // Define styles for inactive dots here
+        }}
+        inactiveDotOpacity={0.4}
+        inactiveDotScale={0.6}
+      />
+    )
+  }
+
   _renderImageCarousel({item, index}, parallaxProps) {
     return (
-      <View style={{width: screenWidth*80/100, height: screenWidth*60/100, marginVertical: 20}}>
+      <View style={{width: screenWidth*80/100, height: screenWidth*60/100, marginTop: 20}}>
         <ParallaxImage
           source={{ uri: item }}
           containerStyle={{flex: 1,
@@ -61,7 +84,7 @@ class AgendaDetail extends Component {
           {...parallaxProps}
       />
       </View>
-    )
+    );
   }
 
   renderImages = () => {
@@ -73,6 +96,7 @@ class AgendaDetail extends Component {
         data={this.images}
         renderItem={this._renderImageCarousel}
         hasParallaxImages={true}
+        onSnapToItem={(i) => this.activeSlide = i}
       />
     );
   }
@@ -81,6 +105,7 @@ class AgendaDetail extends Component {
     return (
       <ScrollView style={styles.container}>
         {this.renderImages()}
+        {this.renderPagination()}
         <Text>Some text</Text>
       </ScrollView>
     );
