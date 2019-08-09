@@ -7,7 +7,9 @@ import {
   ImageBackground,
   ActionSheetIOS,
   FlatList,
-  TouchableOpacity
+  TouchableOpacity,
+  StyleSheet,
+  Dimensions
 } from 'react-native';
 import {
   Input,
@@ -16,7 +18,7 @@ import {
   TopNavigationAction
 } from 'react-native-ui-kitten';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import moment from 'moment';
+import Carousel, { ParallaxImage } from 'react-native-snap-carousel';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
 import * as Permissions from 'expo-permissions';
@@ -36,6 +38,8 @@ import Fab from '../../components/FloatingActionButton';
 
 import styles from './styles';
 import theme from '../../styles/theme';
+
+const { width: screenWidth } = Dimensions.get('window');
 
 @observer
 class AddReport extends Component {
@@ -214,6 +218,25 @@ class AddReport extends Component {
     );
   }
 
+  _renderImageCarousel({item, index}, parallaxProps) {
+    return (
+      <View style={{width: screenWidth-80, height: screenWidth-200}}>
+        <ParallaxImage
+          source={{ uri: item.uri }}
+          containerStyle={{flex: 1,
+            marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
+            backgroundColor: 'white',
+            borderRadius: 8}}
+          style={{
+            width: screenWidth-80, height: screenWidth-200,
+            resizeMode: 'cover'}}
+          parallaxFactor={0.4}
+          {...parallaxProps}
+      />
+      </View>
+    )
+  }
+
   renderImages() {
     if (this.images.length < 1) return (
       <View style={styles.uploadButton}>
@@ -222,34 +245,45 @@ class AddReport extends Component {
     );
 
     return (
-      <FlatList 
+      <Carousel
+        sliderWidth={screenWidth}
+        sliderHeight={screenWidth}
+        itemWidth={screenWidth - 80}
         data={this.images}
-        horizontal
-        keyExtractor={(item, index) => String(index)}
-        ListFooterComponent={() => <View style={{width: 28}}/>}
-        ListHeaderComponent={() => (
-          <View style={{paddingLeft: 32, paddingRight: 8, alignItems: 'center', justifyContent: 'center'}}>
-            <Fab 
-              underlayColor={theme["color-primary-active"]}
-              onPress={this.openActionSheet}
-              style={styles.fab}
-            >
-              {icon.getIcon('plus', null, '#fff', 20)}
-            </Fab>
-          </View>
-        )}
-        renderItem={({item, index}) => (
-          <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
-            <ImageBackground
-              source={{uri: item.uri}}
-              resizeMode="cover"
-              style={styles.imageBackground}
-              imageStyle={styles.imageStyle}
-            />
-          </TouchableOpacity>
-        )}
+        renderItem={this._renderImageCarousel}
+        hasParallaxImages={true}
       />
-    );
+    )
+
+    // return (
+    //   <FlatList 
+    //     data={this.images}
+    //     horizontal
+    //     keyExtractor={(item, index) => String(index)}
+    //     ListFooterComponent={() => <View style={{width: 28}}/>}
+    //     ListHeaderComponent={() => (
+    //       <View style={{paddingLeft: 32, paddingRight: 8, alignItems: 'center', justifyContent: 'center'}}>
+    //         <Fab 
+    //           underlayColor={theme["color-primary-active"]}
+    //           onPress={this.openActionSheet}
+    //           style={styles.fab}
+    //         >
+    //           {icon.getIcon('plus', null, '#fff', 20)}
+    //         </Fab>
+    //       </View>
+    //     )}
+    //     renderItem={({item, index}) => (
+    //       <TouchableOpacity onLongPress={this.openRemoveActionSheet(index)} activeOpacity={.8}>
+    //         <ImageBackground
+    //           source={{uri: item.uri}}
+    //           resizeMode="cover"
+    //           style={styles.imageBackground}
+    //           imageStyle={styles.imageStyle}
+    //         />
+    //       </TouchableOpacity>
+    //     )}
+    //   />
+    // );
   }
 
   renderSoldNumbers() {
