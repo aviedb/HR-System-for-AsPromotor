@@ -24,7 +24,7 @@ class ASproReport extends Component {
   @observable isFetching = true;
   @observable items = [];
 
-  componentDidUpdate() {
+  componentDidMount() {
     this.fetchData();
   }
 
@@ -38,15 +38,9 @@ class ASproReport extends Component {
       });
 
       let items = [];
-      _.mapKeys(_.groupBy(data, 'date'), (value, key) => {
-        value = value.map(e => {
-          return {
-            hour: e.hour,
-            note: e.note,
-            title: e.title
-          }
-        });
+      let dateKeys = _.groupBy(data, 'date');
 
+      _.mapKeys(dateKeys, (value, key) => {
         items.push({ title: key, data: value });
       });
 
