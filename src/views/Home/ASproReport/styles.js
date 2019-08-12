@@ -44,18 +44,19 @@ const styles = StyleSheet.create({
     flexDirection: 'row'
   },
   itemHourText: {
-    fontFamily: 'helvetica_neue_lt'
-  },
-  itemDurationText: {
-    color: theme["text-hint-color"], 
-    fontFamily: 'helvetica_neue_lt',
-    fontSize: 12, 
-    marginTop: 4,
-    marginLeft: 4
+    color: theme["text-hint-color"],
+    fontFamily: 'product_sans_regular',
+    fontSize: 16
   },
   itemTitleText: {
     fontFamily: 'helvetica_neue_md',
     fontSize: 16
+  },
+  itemNoteText: {
+    color: theme["text-hint-color"],
+    fontFamily: 'helvetica_neue_lt',
+    fontSize: 16,
+    marginTop: 4,
   },
   itemButtonContainer: {
     flex: 1, 

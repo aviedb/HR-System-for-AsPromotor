@@ -42,7 +42,7 @@ class ASproReport extends Component {
         value = value.map(e => {
           return {
             hour: e.hour,
-            duration: '1h',
+            note: e.note,
             title: e.title
           }
         });
@@ -127,20 +127,18 @@ class ASproReport extends Component {
     if (_.isEmpty(item)) {
       return this.renderEmptyItem();
     }
-    
+
     return (
-      <Touchable 
-        onPress={() => this.props.navigation.navigate('AgendaDetail', {
-          title: item.title
-        })} 
-      >
+      <Touchable onPress={() => this.props.navigation.navigate('AgendaDetail', {
+        title: item.title
+      })}>
         <View style={styles.item}>
-          <View>
+          <View style={{ justifyContent: 'center' }}>
             <Text style={styles.itemHourText}>{item.hour}</Text>
-            <Text style={styles.itemDurationText}>{item.duration}</Text>
           </View>
-          <View style={{paddingLeft: 16}}>
+          <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.title}</Text>
+            <Text style={styles.itemNoteText}>{item.note}</Text>
           </View>
         </View>
       </Touchable>
