@@ -31,9 +31,9 @@ class AgendaDetail extends Component {
   @observable activeSlide = 0;
 
   componentDidMount() {
-    const item = this.props.navigation.getParam('item', { title: 'Empty' });
-    this.title = item.title;
-    this.soldNumbers = item.soldNumbers;
+    const item = this.props.navigation.getParam('item', {});
+    this.title = item.title || 'Empty';
+    this.soldNumbers = item.soldNumbers || [];
     setTimeout(() => {
       this.images = item.images || [];
     }, .1);
@@ -61,7 +61,7 @@ class AgendaDetail extends Component {
         data={this.images}
         hasParallaxImages={true}
         onSnapToItem={(i) => this.activeSlide = i}
-        renderItem={({item, index}, parallaxProps) => (
+        renderItem={({item}, parallaxProps) => (
           <View style={styles.carouselContainer}>
             <ParallaxImage
               source={{ uri: item }}
