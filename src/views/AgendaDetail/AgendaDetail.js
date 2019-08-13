@@ -52,20 +52,6 @@ class AgendaDetail extends Component {
     );
   }
 
-  _renderImageCarousel({item, index}, parallaxProps) {
-    return (
-      <View style={styles.carouselContainer}>
-        <ParallaxImage
-          source={{ uri: item }}
-          containerStyle={styles.parallaxContainer}
-          style={styles.parallaxStyle}
-          parallaxFactor={0.4}
-          {...parallaxProps}
-      />
-      </View>
-    );
-  }
-
   renderImages = () => {
     return (
       <Carousel
@@ -73,9 +59,19 @@ class AgendaDetail extends Component {
         sliderHeight={screenWidth}
         itemWidth={screenWidth*80/100}
         data={this.images}
-        renderItem={this._renderImageCarousel}
         hasParallaxImages={true}
         onSnapToItem={(i) => this.activeSlide = i}
+        renderItem={({item, index}, parallaxProps) => (
+          <View style={styles.carouselContainer}>
+            <ParallaxImage
+              source={{ uri: item }}
+              containerStyle={styles.parallaxContainer}
+              style={styles.parallaxStyle}
+              parallaxFactor={0.4}
+              {...parallaxProps}
+            />
+          </View>
+        )}
       />
     );
   }
