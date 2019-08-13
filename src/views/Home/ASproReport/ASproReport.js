@@ -124,7 +124,7 @@ class ASproReport extends Component {
 
     return (
       <Touchable onPress={() => this.props.navigation.navigate('AgendaDetail', {
-        title: item.title
+        item: item
       })}>
         <View style={styles.item}>
           <View style={{ justifyContent: 'center' }}>

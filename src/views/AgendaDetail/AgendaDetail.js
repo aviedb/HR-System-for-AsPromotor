@@ -27,22 +27,16 @@ class AgendaDetail extends Component {
 
   @observable title = '';
   @observable images = [];
+  @observable soldNumbers = [];
   @observable activeSlide = 0;
 
   componentDidMount() {
-    const title = this.props.navigation.getParam('title', 'Title');
-    this.title = title;
-
+    const item = this.props.navigation.getParam('item', { title: 'Empty' });
+    this.title = item.title;
+    this.soldNumbers = item.soldNumbers;
     setTimeout(() => {
-      this.images = [
-        'assets-library://asset/asset.HEIC?id=CC95F08C-88C3-4012-9D6D-64A413D254B3&ext=HEIC',
-        'assets-library://asset/asset.JPG?id=ED7AC36B-A150-4C38-BB8C-B6D696F4F2ED&ext=JPG',
-        'assets-library://asset/asset.JPG?id=99D53A1F-FEEF-40E1-8BB3-7DD55A43C8B7&ext=JPG',
-        'assets-library://asset/asset.JPG?id=9F983DBA-EC35-42B8-8773-B597CF782EDD&ext=JPG',
-        'assets-library://asset/asset.JPG?id=B84E8479-475C-4727-A4A4-B77AA9980897&ext=JPG',
-        'assets-library://asset/asset.JPG?id=106E99A1-4F6A-45A2-B320-B0AD4A8E8473&ext=JPG',
-      ]
-    }, 1);
+      this.images = item.images || [];
+    }, .1);
   }
 
   renderPagination() {
@@ -50,36 +44,21 @@ class AgendaDetail extends Component {
       <Pagination
         dotsLength={this.images.length}
         activeDotIndex={this.activeSlide}
-        containerStyle={{ backgroundColor: 'transparent' }}
-        dotStyle={{
-            width: 10,
-            height: 10,
-            borderRadius: 5,
-            marginHorizontal: 8,
-            backgroundColor: 'rgba(0, 0, 0, 0.75)'
-        }}
-        inactiveDotStyle={{
-            // Define styles for inactive dots here
-        }}
+        containerStyle={styles.paginationContainer}
+        dotStyle={styles.paginationDot}
         inactiveDotOpacity={0.4}
         inactiveDotScale={0.6}
       />
-    )
+    );
   }
 
   _renderImageCarousel({item, index}, parallaxProps) {
     return (
-      <View style={{width: screenWidth*80/100, height: screenWidth*60/100, marginTop: 20}}>
+      <View style={styles.carouselContainer}>
         <ParallaxImage
           source={{ uri: item }}
-          containerStyle={{flex: 1,
-            marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
-            backgroundColor: 'white',
-            borderRadius: 8}}
-          style={{
-            ...StyleSheet.absoluteFillObject,
-            width: screenWidth*80/100, height: screenWidth*60/100,
-            resizeMode: 'cover'}}
+          containerStyle={styles.parallaxContainer}
+          style={styles.parallaxStyle}
           parallaxFactor={0.4}
           {...parallaxProps}
       />
