@@ -37,7 +37,6 @@ class AgendaDetail extends Component {
     this.soldNumbers = item.soldNumbers || [];
     this.stok = item.stok || '';
     this.note = item.note || '';
-    console.log(item.images)
     setTimeout(() => {
       this.images = item.images || [];
     }, .1);
