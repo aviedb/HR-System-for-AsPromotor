@@ -91,15 +91,6 @@ class AgendaDetail extends Component {
   }
 
   render() {
-    if (this.imageBrowserVisible) {
-      return (
-        <ImageBrowser
-          emptyText={'No photos'}
-          callback={this.imageBrowserCallback}
-        />
-      );
-    }
-
     return (
       <Fragment>
         <SafeAreaView style={styles.safeArea}>
@@ -114,7 +105,8 @@ class AgendaDetail extends Component {
               onPress={() => this.props.navigation.goBack()}
             />}
             style={styles.header}
-            titleStyle={styles.headerTitle} />
+            titleStyle={styles.headerTitle}
+          />
           {this.renderContent()}
           <Divider />
         </SafeAreaView>
