@@ -6,10 +6,22 @@ const { width } = Dimensions.get('window');
 
 const styles = StyleSheet.create({
   ...globalStyles,
+  container: {
+    ...globalStyles.container,
+    backgroundColor: theme["backgorund-basic-color-1"]
+  },
   carouselContainer: {
+    top: -1,
+    backgroundColor: theme["background-basic-color-2"],
+    borderTopColor: theme["border-basic-color-4"],
+    borderBottomColor: theme["border-basic-color-4"],
+    borderBottomWidth: 1,
+    borderTopWidth: 1,
+  },
+  parallaxView: {
     width: width*80/100, 
     height: width*60/100, 
-    marginTop: 20
+    marginTop: 20,
   },
   parallaxContainer: {flex: 1,
     marginBottom: Platform.select({ ios: 0, android: 1 }), // Prevent a random Android rendering issue
@@ -32,6 +44,25 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     backgroundColor: 'rgba(0, 0, 0, 0.75)'
+  },
+  content: {
+    paddingHorizontal: 24,
+    paddingVertical: 20
+  },
+  textStok: {
+    fontFamily: 'product_sans_medium',
+    fontWeight: 'normal'
+  },
+  textNote: {
+    fontFamily: 'helvetica_neue_lt',
+    fontSize: 16,
+    color: theme["text-hint-color"],
+    marginBottom: 16,
+  },
+  textNumber: {
+    fontFamily: 'product_sans_regular',
+    fontSize: 16,
+    marginBottom: 2
   }
 });
 

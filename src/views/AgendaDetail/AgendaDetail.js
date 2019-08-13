@@ -11,7 +11,6 @@ import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
 import Divider from '../../components/Divider';
-import ImageBrowser from '../../components/ImageBrowser';
 
 import styles from './styles';
 import theme from '../../styles/theme';
@@ -28,12 +27,17 @@ class AgendaDetail extends Component {
   @observable title = '';
   @observable images = [];
   @observable soldNumbers = [];
+  @observable stok = '';
+  @observable note = '';
   @observable activeSlide = 0;
 
   componentDidMount() {
     const item = this.props.navigation.getParam('item', {});
     this.title = item.title || 'Empty';
     this.soldNumbers = item.soldNumbers || [];
+    this.stok = item.stok || '';
+    this.note = item.note || '';
+    console.log(item.images)
     setTimeout(() => {
       this.images = item.images || [];
     }, .1);
@@ -62,7 +66,7 @@ class AgendaDetail extends Component {
         hasParallaxImages={true}
         onSnapToItem={(i) => this.activeSlide = i}
         renderItem={({item}, parallaxProps) => (
-          <View style={styles.carouselContainer}>
+          <View style={styles.parallaxView}>
             <ParallaxImage
               source={{ uri: item }}
               containerStyle={styles.parallaxContainer}
@@ -79,9 +83,19 @@ class AgendaDetail extends Component {
   renderContent = () => {
     return (
       <ScrollView style={styles.container}>
-        {this.renderImages()}
-        {this.renderPagination()}
-        <Text>Some text</Text>
+        <View style={styles.carouselContainer}>
+          {this.renderImages()}
+          {this.renderPagination()}
+        </View>
+        <View style={styles.content}>
+          <Text style={styles.textStok} category="h5">{this.stok}</Text>
+          <Text style={styles.textNote}>{this.note}</Text>
+          <View>
+            {this.soldNumbers.map((number, i) => (
+              <Text key={i} style={styles.textNumber}>{number}</Text>
+            ))}
+          </View>
+        </View>
       </ScrollView>
     );
   }
