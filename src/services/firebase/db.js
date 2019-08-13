@@ -8,12 +8,13 @@ export const getAsProReport = () => {
   return firestore.collection('asproreport').orderBy('date').get();
 }
 
-export const addAsProReport = ({title, stok, soldNumbers, note, date}) => {
+export const addAsProReport = ({title, stok, soldNumbers, note, date, images}) => {
   return firestore.collection('asproreport').add({
     title,
     stok,
     soldNumbers,
     note,
-    date
+    date,
+    images
   });
 }
