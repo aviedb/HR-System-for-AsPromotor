@@ -1,4 +1,4 @@
-import { firestore } from './firebase';
+import { firestore, auth } from './firebase';
 
 export const getMSISDN = () => {
   return firestore.collection('msisdn').get();
@@ -10,6 +10,7 @@ export const getAsProReport = () => {
 
 export const addAsProReport = ({title, stok, soldNumbers, note, date, images}) => {
   return firestore.collection('asproreport').add({
+    email: auth.currentUser.email,
     title,
     stok,
     soldNumbers,
