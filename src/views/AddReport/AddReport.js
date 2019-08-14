@@ -25,7 +25,7 @@ import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { icon } from '../../services/stores';
-import { db, storage } from '../../services/firebase';
+import { db, storage, firebase } from '../../services/firebase';
 import Button from '../../components/Button';
 import SelectInput from '../../components/SelectInput';
 import BottomSheet from '../../components/BottomSheet';
@@ -57,7 +57,7 @@ class AddReport extends Component {
   @observable isUploading = false;
 
   componentDidMount() {
-    // console.log(moment());
+    // console.log(firebase.auth.currentUser);
   }
 
   getPermissionAsync = async () => {
