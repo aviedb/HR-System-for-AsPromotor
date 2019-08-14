@@ -146,7 +146,7 @@ class AddReport extends Component {
 
   uploadImages = (callback) => {
     this.isUploading = true;
-    if (this.images.length === 0) return this.handleAddReport([]);
+    if (this.images.length === 0) return callback([]);
 
     console.log('Uploading images');
     let imagesUrl = [];
@@ -172,6 +172,10 @@ class AddReport extends Component {
   handleAddReport = () => {
     this.uploadImages(images => {
       console.log('Adding report');
+
+      if (this.soldNumbers.length === 0 && this.sold.length > 0) {
+        this.soldNumbers = [this.sold];
+      }
       let size = this.soldNumbers.length;
       let data = {
         title: `${size} number${size>1?'s':''} sold (${this.stok})`,
