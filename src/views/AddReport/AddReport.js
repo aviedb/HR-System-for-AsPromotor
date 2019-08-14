@@ -144,7 +144,7 @@ class AddReport extends Component {
     this.soldNumbers = this.soldNumbers.filter((n, i) => i !== index);
   }
 
-  uploadImages = () => {
+  uploadImages = (callback) => {
     this.isUploading = true;
     if (this.images.length === 0) return this.handleAddReport([]);
 
@@ -161,7 +161,7 @@ class AddReport extends Component {
           imagesUrl.push(res);
 
           if (imagesUrl.length === this.images.length) {
-            this.handleAddReport(imagesUrl);
+            callback(imagesUrl);
           }
         }).catch(err => {
           console.warn(err);
@@ -169,24 +169,25 @@ class AddReport extends Component {
     }
   }
 
-  handleAddReport = (images) => {
-    console.log('Adding report');
+  handleAddReport = () => {
+    this.uploadImages(images => {
+      console.log('Adding report');
+      let size = this.soldNumbers.length;
+      let data = {
+        title: `${size} number${size>1?'s':''} sold (${this.stok})`,
+        stok: this.stok,
+        soldNumbers: this.soldNumbers,
+        note: this.comment,
+        date: new Date(),
+        images: images
+      }
 
-    let size = this.soldNumbers.length;
-    let data = {
-      title: `${size} number${size>1?'s':''} sold (${this.stok})`,
-      stok: this.stok,
-      soldNumbers: this.soldNumbers,
-      note: this.comment,
-      date: new Date(),
-      images: images
-    }
-
-    db.addAsProReport(data).then(() => {
-      this.isUploading = false;
-      this.props.navigation.navigate('Home');
-    }).catch(err => {
-      console.warn(err);
+      db.addAsProReport(data).then(() => {
+        this.isUploading = false;
+        this.props.navigation.navigate('Home');
+      }).catch(err => {
+        console.warn(err);
+      });
     });
   }
 
@@ -367,7 +368,7 @@ class AddReport extends Component {
         <View style={styles.buttonContainer}>
           {this.isUploading
             ? <ActivityIndicator size="large" color={theme["text-primary-color"]}/>
-            : <Button onPress={this.uploadImages}>Done</Button>
+            : <Button onPress={this.handleAddReport}>Done</Button>
           }
         </View>
         {this.renderBottomSheet()}
