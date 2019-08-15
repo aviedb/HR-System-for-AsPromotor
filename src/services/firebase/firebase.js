@@ -12,13 +12,13 @@ import {
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyBlJXhOm79U2Kcf6V3A0T8_0fq9dP7PFNU",
-    authDomain: "hr-system-for-aspromoter2.firebaseapp.com",
-    databaseURL: "https://hr-system-for-aspromoter2.firebaseio.com",
-    projectId: "hr-system-for-aspromoter2",
-    storageBucket: "hr-system-for-aspromoter2.appspot.com",
-    messagingSenderId: "992165127171",
-    appId: "1:992165127171:web:fb4a02ed7b63c34f"
+  apiKey: API_KEY,
+  authDomain: AUTH_DOMAIN,
+  databaseURL: DATABASE_URL,
+  projectId: PROJECT_ID,
+  storageBucket: STORAGE_BUCKET,
+  messagingSenderId: MESSAGING_SENDER_ID,
+  appId: APP_ID
 };
 
 firebase.initializeApp(firebaseConfig);

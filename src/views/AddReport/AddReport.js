@@ -183,7 +183,6 @@ class AddReport extends Component {
         stok: this.stok,
         soldNumbers: this.soldNumbers,
         note: this.comment,
-        date: new Date(),
         images: images
       }
 
