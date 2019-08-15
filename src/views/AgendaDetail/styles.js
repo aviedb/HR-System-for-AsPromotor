@@ -61,17 +61,48 @@ const styles = StyleSheet.create({
     fontFamily: 'product_sans_medium',
     fontWeight: 'normal'
   },
-  textNote: {
-    fontFamily: 'helvetica_neue_lt',
+  dateWrapper: {
+    flexDirection: 'row',
+    borderBottomColor: theme["border-basic-color-4"],
+    borderBottomWidth: 1,
+    marginBottom: 12,
+    paddingBottom: 4
+  },
+  textDate: {
+    fontFamily: 'product_sans_light',
     fontSize: 16,
     color: theme["text-hint-color"],
-    marginBottom: 16,
   },
-  textNumber: {
+  textEmail: {
     fontFamily: 'product_sans_regular',
     fontSize: 16,
-    marginBottom: 2
-  }
+    color: theme["text-hint-color"],
+  },
+  textNote: {
+    fontFamily: 'helvetica_neue_lt',
+    color: theme["text-basic-color"],
+    fontSize: 16,
+    marginBottom: 20,
+  },
+  soldNumberTitle: {
+    fontFamily: 'product_sans_medium',
+    fontSize: 16,
+  },
+  soldNumberText: {
+    fontFamily: 'product_sans_regular',
+    fontSize: 16,
+    color: theme["text-hint-color"]
+  },
+  soldNumberWrapper: {
+    borderColor: theme["border-basic-color-4"],
+    borderWidth: 1,
+    borderRadius: 4,
+    backgroundColor: theme["background-basic-color-2"]
+  },
+  soldNumberItem: {
+    paddingHorizontal: 20,
+    paddingVertical: 12
+  },
 });
 
 export default styles;

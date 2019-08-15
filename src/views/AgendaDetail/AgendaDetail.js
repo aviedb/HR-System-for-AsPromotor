@@ -6,6 +6,7 @@ import {
   TopNavigationAction
 } from 'react-native-ui-kitten';
 import Carousel, { ParallaxImage, Pagination } from 'react-native-snap-carousel';
+import moment from 'moment';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
@@ -29,6 +30,8 @@ class AgendaDetail extends Component {
   @observable soldNumbers = [];
   @observable stok = '';
   @observable note = '';
+  @observable date = '';
+  @observable email = '';
   @observable activeSlide = 0;
 
   componentDidMount() {
@@ -37,6 +40,8 @@ class AgendaDetail extends Component {
     this.soldNumbers = item.soldNumbers || [];
     this.stok = item.stok || '';
     this.note = item.note || '';
+    this.date = moment(item.date.toDate()).fromNow() || 'a few seconds ago';
+    this.email = item.email || '';
     setTimeout(() => {
       this.images = item.images || [];
     }, 1);
@@ -82,6 +87,28 @@ class AgendaDetail extends Component {
     );
   }
 
+  renderSoldNumbers() {
+    if (this.soldNumbers.length < 1) return <View />;
+
+    return (
+      <View style={styles.soldNumberWrapper}>
+        <View style={styles.soldNumberItem}>
+          <Text style={styles.soldNumberTitle}>
+            {`Sold Number${this.soldNumbers.length>1?'s':''}:`}
+          </Text>
+        </View>
+        {this.soldNumbers.map((number, i) => (
+          <View key={i}>
+            <Divider color={theme["border-basic-color-4"]} />
+            <View style={styles.soldNumberItem}>
+              <Text style={styles.soldNumberText}>{number}</Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    );
+  }
+
   renderContent = () => {
     return (
       <ScrollView style={styles.container}>
@@ -93,12 +120,12 @@ class AgendaDetail extends Component {
         </View>
         <View style={styles.content}>
           <Text style={styles.textStok} category="h5">{this.stok}</Text>
-          <Text style={styles.textNote}>{this.note}</Text>
-          <View>
-            {this.soldNumbers.map((number, i) => (
-              <Text key={i} style={styles.textNumber}>{number}</Text>
-            ))}
+          <View style={styles.dateWrapper}>
+            <Text style={styles.textDate}>{`${this.date} by `}</Text>
+            <Text style={styles.textEmail}>{this.email}</Text>
           </View>
+          <Text style={styles.textNote}>{this.note}</Text>
+          {this.renderSoldNumbers()}
         </View>
       </ScrollView>
     );

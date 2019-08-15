@@ -32,14 +32,14 @@ class ASproReport extends Component {
       let data = res.docs.map(doc => {
         doc = doc.data();
         doc.hour = moment(doc.date.toDate()).format('HH:mm');
-        doc.date = moment(doc.date.toDate()).format('YYYY-MM-DD');
+        doc.formattedDate = moment(doc.date.toDate()).format('YYYY-MM-DD');
         let split = doc.note.split('\n');
         doc.notePreview = split.length === 1? split[0] : `${split[0]} ...`;
         return doc;
       });
 
       let items = [];
-      let dateKeys = _.groupBy(data, 'date');
+      let dateKeys = _.groupBy(data, 'formattedDate');
 
       _.mapKeys(dateKeys, (data, title) => {
         items.push({ title, data });
