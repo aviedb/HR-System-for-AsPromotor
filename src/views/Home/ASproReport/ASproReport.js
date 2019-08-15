@@ -29,7 +29,7 @@ class ASproReport extends Component {
   }
 
   fetchData = () => {
-    db.getAsProReport().then(res => {
+    db.getAsProReport().onSnapshot(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
         doc.hour = moment(doc.date.toDate()).format('HH:mm');

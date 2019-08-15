@@ -2,16 +2,15 @@ import { firestore, auth } from './firebase';
 
 export const getMSISDN = () => {
   return firestore
-  .collection('msisdn')
-  .get();
+    .collection('msisdn')
+    .get();
 }
 
 export const getAsProReport = () => {
   return firestore
     .collection('asproreport')
     .where('email', '==', auth.currentUser.email)
-    .orderBy('date')
-    .get();
+    .orderBy('date');
 }
 
 export const addAsProReport = ({title, stok, soldNumbers, note, images}) => {

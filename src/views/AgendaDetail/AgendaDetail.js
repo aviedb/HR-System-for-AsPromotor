@@ -39,7 +39,7 @@ class AgendaDetail extends Component {
     this.note = item.note || '';
     setTimeout(() => {
       this.images = item.images || [];
-    }, .1);
+    }, 1);
   }
 
   renderPagination() {
