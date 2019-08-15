@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, Platform, View, SafeAreaView, Dimensions, ScrollView, StyleSheet } from 'react-native';
+import { StatusBar, Platform, View, SafeAreaView, Dimensions, ScrollView } from 'react-native';
 import {
   Text,
   TopNavigation,
@@ -57,25 +57,28 @@ class AgendaDetail extends Component {
 
   renderImages = () => {
     return (
-      <Carousel
-        sliderWidth={screenWidth}
-        sliderHeight={screenWidth}
-        itemWidth={screenWidth*80/100}
-        data={this.images}
-        hasParallaxImages={true}
-        onSnapToItem={(i) => this.activeSlide = i}
-        renderItem={({item}, parallaxProps) => (
-          <View style={styles.parallaxView}>
-            <ParallaxImage
-              source={{ uri: item }}
-              containerStyle={styles.parallaxContainer}
-              style={styles.parallaxStyle}
-              parallaxFactor={0.4}
-              {...parallaxProps}
-            />
-          </View>
-        )}
-      />
+      <Fragment>
+        <Carousel
+          sliderWidth={screenWidth}
+          sliderHeight={screenWidth}
+          itemWidth={screenWidth*80/100}
+          data={this.images}
+          hasParallaxImages={true}
+          onSnapToItem={(i) => this.activeSlide = i}
+          renderItem={({item}, parallaxProps) => (
+            <View style={styles.parallaxView}>
+              <ParallaxImage
+                source={{ uri: item }}
+                containerStyle={styles.parallaxContainer}
+                style={styles.parallaxStyle}
+                parallaxFactor={0.4}
+                {...parallaxProps}
+              />
+            </View>
+          )}
+        />
+        {this.renderPagination()}
+      </Fragment>
     );
   }
 
@@ -83,8 +86,10 @@ class AgendaDetail extends Component {
     return (
       <ScrollView style={styles.container}>
         <View style={styles.carouselContainer}>
-          {this.renderImages()}
-          {this.renderPagination()}
+          {this.images.length === 0
+            ? <Text style={styles.noPhoto}>Image not available</Text>
+            : this.renderImages()
+          }
         </View>
         <View style={styles.content}>
           <Text style={styles.textStok} category="h5">{this.stok}</Text>

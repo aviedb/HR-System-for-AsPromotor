@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text} from 'react-native';
+import { View, Text } from 'react-native';
 
 import Touchable from '../Touchable';
 
@@ -12,6 +12,13 @@ const Button = (props) => {
   let fontSize = null;
   let fontFamily = null;
   let shadow = null;
+  let onPress = props.onPress;
+  let onLongPress = props.onLongPress;
+
+  if (props.disabled) {
+    onPress = null;
+    onLongPress = null;
+  }
 
   if (props.ghost) {
     if (props.disabled) color = theme["text-disabled-color"];
@@ -38,7 +45,7 @@ const Button = (props) => {
   }
 
   return (
-    <Touchable onPress={props.onPress} onLongPress={props.onLongPress}>
+    <Touchable onPress={onPress} onLongPress={onLongPress}>
       <View style={{...styles.container, backgroundColor, ...shadow}}>
         <Text style={{color, fontSize, fontFamily}}>
           {props.children || props.title}

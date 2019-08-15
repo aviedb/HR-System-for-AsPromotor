@@ -25,7 +25,7 @@ import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
 
 import { icon } from '../../services/stores';
-import { db, storage, firebase } from '../../services/firebase';
+import { db, storage } from '../../services/firebase';
 import Button from '../../components/Button';
 import SelectInput from '../../components/SelectInput';
 import BottomSheet from '../../components/BottomSheet';
@@ -55,6 +55,7 @@ class AddReport extends Component {
   @observable removeBottomSheetVisible = false;
   @observable removeImageIndex = null;
   @observable isUploading = false;
+  @observable disableAdd = true;
 
   componentDidMount() {
     // console.log(firebase.auth.currentUser);
@@ -314,6 +315,8 @@ class AddReport extends Component {
         />
       );
     }
+
+    let disableAdd = !(this.soldNumbers.length>0 || this.sold.length>0);
     
     return (
       <SafeAreaView style={styles.safeArea}>
@@ -372,7 +375,7 @@ class AddReport extends Component {
         <View style={styles.buttonContainer}>
           {this.isUploading
             ? <ActivityIndicator size="large" color={theme["text-primary-color"]}/>
-            : <Button onPress={this.handleAddReport}>Done</Button>
+            : <Button onPress={this.handleAddReport} disabled={disableAdd}>Done</Button>
           }
         </View>
         {this.renderBottomSheet()}

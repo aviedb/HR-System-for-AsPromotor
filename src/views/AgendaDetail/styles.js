@@ -17,6 +17,9 @@ const styles = StyleSheet.create({
     borderBottomColor: theme["border-basic-color-4"],
     borderBottomWidth: 1,
     borderTopWidth: 1,
+    minHeight: (width*60/100) + 40,
+    justifyContent: 'center',
+    alignItems: 'center'
   },
   parallaxView: {
     width: width*80/100, 
@@ -44,6 +47,11 @@ const styles = StyleSheet.create({
     height: 10,
     borderRadius: 5,
     backgroundColor: 'rgba(0, 0, 0, 0.75)'
+  },
+  noPhoto: {
+    color: theme["text-hint-color"],
+    fontSize: 18,
+    fontFamily: 'product_sans_regular'
   },
   content: {
     paddingHorizontal: 24,
