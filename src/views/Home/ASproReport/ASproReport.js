@@ -34,7 +34,7 @@ class ASproReport extends Component {
         doc.hour = moment(doc.date.toDate()).format('HH:mm');
         doc.date = moment(doc.date.toDate()).format('YYYY-MM-DD');
         let split = doc.note.split('\n');
-        doc.notePreview = split.length === 1? split[0] : `${split[0]} ....`;
+        doc.notePreview = split.length === 1? split[0] : `${split[0]} ...`;
         return doc;
       });
 
