@@ -3,7 +3,7 @@ import { firestore, auth } from './firebase';
 export const getMSISDN = () => {
   return firestore
     .collection('msisdn')
-    .get();
+    .orderBy('shipOutDate');
 }
 
 export const getAsProReport = () => {

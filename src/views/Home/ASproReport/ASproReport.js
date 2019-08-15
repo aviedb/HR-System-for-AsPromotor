@@ -15,7 +15,6 @@ import styles from './styles';
 import theme from '../../../styles/theme';
 import { icon } from '../../../services/stores';
 
-// generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
 
 @observer
@@ -34,27 +33,20 @@ class ASproReport extends Component {
         doc = doc.data();
         doc.hour = moment(doc.date.toDate()).format('HH:mm');
         doc.date = moment(doc.date.toDate()).format('YYYY-MM-DD');
+        let split = doc.note.split('\n');
+        doc.notePreview = split.length === 1? split[0] : `${split[0]} ....`;
         return doc;
       });
 
       let items = [];
       let dateKeys = _.groupBy(data, 'date');
 
-      _.mapKeys(dateKeys, (value, key) => {
-        items.push({ title: key, data: value });
+      _.mapKeys(dateKeys, (data, title) => {
+        items.push({ title, data });
       });
 
       this.items = items;
     });
-  }
-
-  onDateChanged = (date, updateSource) => {
-    // console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
-    // fetch and set data for date + week ahead
-  }
-
-  onMonthChange = (month, updateSource) => {
-    // console.log('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
   }
 
   getMarkedDates = () => {
@@ -132,7 +124,7 @@ class ASproReport extends Component {
           </View>
           <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.title}</Text>
-            <Text style={styles.itemNoteText}>{item.note}</Text>
+            <Text style={styles.itemNoteText}>{item.notePreview}</Text>
           </View>
         </View>
       </Touchable>
@@ -150,12 +142,7 @@ class ASproReport extends Component {
           style={styles.header}
           titleStyle={styles.headerTitle}
         />
-        <CalendarProvider
-          date={today} 
-          onDateChanged={this.onDateChanged} 
-          onMonthChange={this.onMonthChange}
-          disabledOpacity={0.6}
-        >
+        <CalendarProvider date={today} disabledOpacity={0.6}>
           <ExpandableCalendar 
             // horizontal={false}
             // hideArrows
