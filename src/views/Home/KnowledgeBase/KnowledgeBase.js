@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -7,6 +7,7 @@ import { observable } from 'mobx';
 import Card from '../../../components/Card';
 import EmptyList from '../../../components/EmptyList';
 import styles from './styles';
+import theme from '../../../styles/theme';
 
 @observer
 class KnowledgeBase extends Component {
@@ -45,6 +46,10 @@ class KnowledgeBase extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          backgroundColor={theme["status-bar-android"]}
+          barStyle="dark-content"
+        />
         <View style={styles.container}>
           <TopNavigation
             title="Knowledge Base"

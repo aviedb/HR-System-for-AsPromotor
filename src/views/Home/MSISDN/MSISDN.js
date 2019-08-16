@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, SafeAreaView } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
@@ -11,6 +11,7 @@ import EmptyList from '../../../components/EmptyList';
 import { auth, db } from '../../../services/firebase';
 
 import styles from './styles';
+import theme from '../../../styles/theme';
 
 @observer
 class MSISDN extends Component {
@@ -75,6 +76,10 @@ class MSISDN extends Component {
 
     return (
       <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          backgroundColor={theme["status-bar-android"]}
+          barStyle="dark-content"
+        />
         <View style={styles.container}>
           <View style={styles.headerContainer}>
             <TopNavigation 

@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { View, Platform, SafeAreaView } from 'react-native';
+import { View, Platform, SafeAreaView, StatusBar } from 'react-native';
 import { TopNavigation, Text } from 'react-native-ui-kitten';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import { observer } from 'mobx-react';
@@ -134,6 +134,10 @@ class ASproReport extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          backgroundColor={theme["status-bar-android"]}
+          barStyle="dark-content"
+        />
         <View style={styles.container}>
           <TopNavigation
             title="ASpro Report"

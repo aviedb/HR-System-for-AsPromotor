@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Platform, View, SafeAreaView } from 'react-native';
+import { Platform, View, SafeAreaView, StatusBar } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
@@ -143,6 +143,10 @@ class ExpandableCalendarScreen extends Component {
   render() {
     return (
       <SafeAreaView style={styles.safeArea}>
+        <StatusBar
+          backgroundColor={theme["status-bar-android"]}
+          barStyle="dark-content"
+        />
         <CalendarProvider
           date={today} 
           onDateChanged={this.onDateChanged} 
