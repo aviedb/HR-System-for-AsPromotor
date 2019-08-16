@@ -188,7 +188,7 @@ class AddReport extends Component {
 
       db.addAsProReport(data).then(() => {
         this.isUploading = false;
-        this.props.navigation.navigate('Home');
+        this.props.navigation.navigate('HomeTabNavigator');
       }).catch(err => {
         console.warn(err);
       });

@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import { mapping } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
-import { 
-  createStackNavigator, 
-  createAppContainer, 
-  createSwitchNavigator ,
-  createBottomTabNavigator
+import {  
+  createAppContainer,
+  createBottomTabNavigator,
+  createStackNavigator,
+  createSwitchNavigator,
 } from 'react-navigation';
 import { setCustomText } from 'react-native-global-props';
 import * as Font from 'expo-font';
@@ -41,9 +41,6 @@ const HomeTabNavigator = createBottomTabNavigator({
   PayrollSlip,
   Schedule
 }, {
-  navigationOptions: {
-    header: null
-  },
   defaultNavigationOptions: ({ navigation }) => ({
     tabBarIcon: ({ focused, horizontal, tintColor }) => {
       const { routeName } = navigation.state;
@@ -58,6 +55,9 @@ const HomeTabNavigator = createBottomTabNavigator({
       return icon.getIcon(iconName, null, tintColor);
     },
   }),
+  navigationOptions: {
+    header: null
+  },
   tabBarOptions: {
     showLabel: false,
     activeTintColor: theme["icon-active-color"],
@@ -69,7 +69,7 @@ const HomeTabNavigator = createBottomTabNavigator({
 });
 
 const AppStack = createStackNavigator({
-  Home: HomeTabNavigator,
+  HomeTabNavigator,
   MSISDNDetail,
   PdfViewer,
   AgendaDetail,
