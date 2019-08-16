@@ -13,7 +13,6 @@ import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import lightTheme from './src/styles/theme';
 import Login from './src/views/Auth/Login';
 import Signup from './src/views/Auth/Signup';
 import MSISDN from './src/views/MSISDN';
@@ -81,15 +80,13 @@ const AuthStack = createStackNavigator({
   Signup,
 });
 
-const AppContainer = createAppContainer(createSwitchNavigator(
-  {
-    AuthLoading,
-    AppStack,
-    AuthStack
-  }, {
-    initialRouteName: 'AuthLoading'
-  }
-));
+const AppContainer = createAppContainer(createSwitchNavigator({
+  AuthLoading,
+  AppStack,
+  AuthStack
+}, {
+  initialRouteName: 'AuthLoading'
+}));
 
 @observer
 class App extends Component {
@@ -128,7 +125,7 @@ class App extends Component {
     return (
       <ApplicationProvider
         mapping={mapping}
-        theme={lightTheme}
+        theme={theme}
       >
         {this.fontLoaded &&
           <AppContainer />
