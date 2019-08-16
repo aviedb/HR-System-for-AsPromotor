@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -43,31 +43,31 @@ class KnowledgeBase extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 1) return <View />
-
     return (
-      <View style={styles.container}>
-        <TopNavigation
-          title="Knowledge Base"
-          alignment="center"
-          style={styles.header}
-          titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
-        />
-        <List 
-          data={this.data}
-          renderItem={this.renderItem}
-          ListHeaderComponent={<View style={{height: 12}}/>}
-          keyExtractor={(item, index) => String(index)}
-          onRefresh={this._onRefresh}
-          refreshing={this.isFetching}
-          ListEmptyComponent={<EmptyList 
-            message={this.isFetching? 'Loading...':'Empty in Knowledge Base'}
-            playAnimation={this.isFetching}
-          />}
-          contentContainerStyle={{ flexGrow: 1 }}
-          style={styles.container}
-        />
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <TopNavigation
+            title="Knowledge Base"
+            alignment="center"
+            style={styles.header}
+            titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
+          />
+          <List 
+            data={this.data}
+            renderItem={this.renderItem}
+            ListHeaderComponent={<View style={{height: 12}}/>}
+            keyExtractor={(item, index) => String(index)}
+            onRefresh={this._onRefresh}
+            refreshing={this.isFetching}
+            ListEmptyComponent={<EmptyList 
+              message={this.isFetching? 'Loading...':'Empty in Knowledge Base'}
+              playAnimation={this.isFetching}
+            />}
+            contentContainerStyle={{ flexGrow: 1 }}
+            style={styles.container}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

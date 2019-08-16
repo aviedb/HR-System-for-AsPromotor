@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Platform, View } from 'react-native';
+import { Platform, View, SafeAreaView } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
@@ -141,39 +141,33 @@ class ExpandableCalendarScreen extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 4) return <View />
-
     return (
-      <CalendarProvider
-        date={today} 
-        onDateChanged={this.onDateChanged} 
-        onMonthChange={this.onMonthChange}
-        disabledOpacity={0.6}
-      >
-        <ExpandableCalendar 
-          // horizontal={false}
-          // hideArrows
-          // disablePan
-          // hideKnob
-          // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
-          markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
-          theme={this.getTheme()}
-          leftArrowImageSource={require('../../../assets/previous.png')}
-          rightArrowImageSource={require('../../../assets/next.png')}
-          style={styles.calendarHeader}
-          // headerStyle={styles.calendar} // for horizontal only
-        />
-        <AgendaList
-          sections={this.items.slice()}
-          renderItem={this.renderItem}
-          sectionStyle={styles.section}
-          ListEmptyComponent={<EmptyList 
-            message={this.isFetching? 'Loading...':'Empty in Schedule'}
-            playAnimation={false}
-          />}
-          contentContainerStyle={{ flexGrow: 1 }}
-        />
-      </CalendarProvider>
+      <SafeAreaView style={styles.safeArea}>
+        <CalendarProvider
+          date={today} 
+          onDateChanged={this.onDateChanged} 
+          onMonthChange={this.onMonthChange}
+          disabledOpacity={0.6}
+        >
+          <ExpandableCalendar 
+            markedDates={this.getMarkedDates()}
+            theme={this.getTheme()}
+            leftArrowImageSource={require('../../../assets/previous.png')}
+            rightArrowImageSource={require('../../../assets/next.png')}
+            style={styles.calendarHeader}
+          />
+          <AgendaList
+            sections={this.items.slice()}
+            renderItem={this.renderItem}
+            sectionStyle={styles.section}
+            ListEmptyComponent={<EmptyList 
+              message={this.isFetching? 'Loading...':'Empty in Schedule'}
+              playAnimation={false}
+            />}
+            contentContainerStyle={{ flexGrow: 1 }}
+          />
+        </CalendarProvider>
+      </SafeAreaView>
     );
   }
 }

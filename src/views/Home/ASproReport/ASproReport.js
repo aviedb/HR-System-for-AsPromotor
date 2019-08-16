@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { View, Platform } from 'react-native';
+import { View, Platform, SafeAreaView } from 'react-native';
 import { TopNavigation, Text } from 'react-native-ui-kitten';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import { observer } from 'mobx-react';
@@ -132,44 +132,44 @@ class ASproReport extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 2) return <View />
-
     return (
-      <View style={styles.container}>
-        <TopNavigation
-          title="ASpro Report"
-          alignment="center"
-          style={styles.header}
-          titleStyle={styles.headerTitle}
-        />
-        <CalendarProvider date={today} disabledOpacity={0.6}>
-          <ExpandableCalendar 
-            // horizontal={false}
-            // hideArrows
-            // disablePan
-            // hideKnob
-            // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
-            markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
-            theme={this.getTheme()}
-            leftArrowImageSource={require('../../../assets/previous.png')}
-            rightArrowImageSource={require('../../../assets/next.png')}
-            style={styles.calendarHeader}
-            // headerStyle={styles.calendar} // for horizontal only
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <TopNavigation
+            title="ASpro Report"
+            alignment="center"
+            style={styles.header}
+            titleStyle={styles.headerTitle}
           />
-          <AgendaList
-            sections={this.items.slice()}
-            renderItem={this.renderItem}
-            sectionStyle={styles.section}
-          />
-        </CalendarProvider>
-        <Fab 
-          underlayColor={theme["color-primary-active"]}
-          onPress={() => this.props.navigation.navigate('AddReport')}
-          style={styles.fab}
-        >
-          {icon.getIcon('plus', null, '#fff')}
-        </Fab>
-      </View>
+          <CalendarProvider date={today} disabledOpacity={0.6}>
+            <ExpandableCalendar 
+              // horizontal={false}
+              // hideArrows
+              // disablePan
+              // hideKnob
+              // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
+              markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
+              theme={this.getTheme()}
+              leftArrowImageSource={require('../../../assets/previous.png')}
+              rightArrowImageSource={require('../../../assets/next.png')}
+              style={styles.calendarHeader}
+              // headerStyle={styles.calendar} // for horizontal only
+            />
+            <AgendaList
+              sections={this.items.slice()}
+              renderItem={this.renderItem}
+              sectionStyle={styles.section}
+            />
+          </CalendarProvider>
+          <Fab 
+            underlayColor={theme["color-primary-active"]}
+            onPress={() => this.props.navigation.navigate('AddReport')}
+            style={styles.fab}
+          >
+            {icon.getIcon('plus', null, '#fff')}
+          </Fab>
+        </View>
+      </SafeAreaView>
     );
   }
 }

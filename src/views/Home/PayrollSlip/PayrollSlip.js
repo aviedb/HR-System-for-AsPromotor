@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
@@ -50,30 +50,30 @@ class PayrollSlip extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 3) return <View />
-
     return (
-      <View style={styles.container}>
-        <TopNavigation
-          title="Payroll Slip"
-          alignment="center"
-          style={styles.header}
-          titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
-        />
-        <List 
-          data={this.data}
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => String(index)}
-          onRefresh={this._onRefresh}
-          refreshing={this.isFetching}
-          ListEmptyComponent={<EmptyList 
-            message={this.isFetching? 'Loading...':'Empty in Payroll Slip'}
-            playAnimation={this.isFetching}
-          />}
-          contentContainerStyle={{ flexGrow: 1 }}
-          style={styles.container}
-        />
-      </View>
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <TopNavigation
+            title="Payroll Slip"
+            alignment="center"
+            style={styles.header}
+            titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
+          />
+          <List 
+            data={this.data}
+            renderItem={this.renderItem}
+            keyExtractor={(item, index) => String(index)}
+            onRefresh={this._onRefresh}
+            refreshing={this.isFetching}
+            ListEmptyComponent={<EmptyList 
+              message={this.isFetching? 'Loading...':'Empty in Payroll Slip'}
+              playAnimation={this.isFetching}
+            />}
+            contentContainerStyle={{ flexGrow: 1 }}
+            style={styles.container}
+          />
+        </View>
+      </SafeAreaView>
     );
   }
 }

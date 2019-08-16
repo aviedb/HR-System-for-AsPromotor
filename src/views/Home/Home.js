@@ -9,6 +9,7 @@ import { observable } from 'mobx';
 import Constants from 'expo-constants';
 import * as Location from 'expo-location';
 import * as Permissions from 'expo-permissions';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import { icon } from '../../services/stores';
 import MSISDN from './MSISDN';
@@ -104,4 +105,50 @@ class Home extends Component {
   }
 }
 
-export default Home;
+// const icon = (name, color) => {
+//   delete style.tintColor;
+//   let color = theme["icon-basic-color"];
+//   if (index !== null){ 
+//     color = this.selectedIndex === index 
+//       ? theme["icon-active-color"]
+//       : theme["icon-control-color"];
+//   }
+
+//   return icon.getIcon(name, null, color);
+// }
+
+const TabNavigator = createBottomTabNavigator({
+  MSISDN,
+  KnowledgeBase,
+  ASproReport,
+  PayrollSlip,
+  Schedule
+}, {
+  navigationOptions: {
+    header: null
+  },
+  defaultNavigationOptions: ({ navigation }) => ({
+    tabBarIcon: ({ focused, horizontal, tintColor }) => {
+      const { routeName } = navigation.state;
+      let iconName = '';
+
+      if (routeName === 'MSISDN') iconName = 'home';
+      else if (routeName === 'KnowledgeBase') iconName = 'iconfontdesktop';
+      else if (routeName === 'ASproReport') iconName = 'pluscircle';
+      else if (routeName === 'PayrollSlip') iconName = 'mail';
+      else if (routeName === 'Schedule') iconName = 'calendar';
+
+      return icon.getIcon(iconName, null, tintColor);
+    },
+  }),
+  tabBarOptions: {
+    showLabel: false,
+    activeTintColor: theme["icon-active-color"],
+    inactiveTintColor: theme["icon-control-color"],
+    style: {
+      borderTopColor: theme["border-basic-color-3"]
+    }
+  }
+});
+
+export default TabNavigator;

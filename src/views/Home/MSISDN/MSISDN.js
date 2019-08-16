@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, SafeAreaView } from 'react-native';
 import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
@@ -67,7 +67,6 @@ class MSISDN extends Component {
   }
 
   render() {
-    if (this.props.selectedIndex !== 0) return <View />
 
     const data = this.data.filter(e => 
       e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -75,45 +74,47 @@ class MSISDN extends Component {
     );
 
     return (
-      <View style={styles.container}>
-        <View style={styles.headerContainer}>
-          <TopNavigation 
-            title="MSISDN"
-            alignment="center"
-            titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
-            rightControls={<TopNavigationAction
-              icon={() => icon.getIcon('logout')}
-              onPress={this.attemptLogout}
-            />}
-          />
-          <View style={styles.search}>
-            <Input 
-              placeholder="Search by MSISDN or sub agent"
-              value={this.search}
-              onChangeText={this.handleChange('search')}
-              size="small"
-              icon={(style) => {
-                let color = style.tintColor;
-                delete style.tintColor;
-                return icon.getIcon('search1', null, color);
-              }}
+      <SafeAreaView style={styles.safeArea}>
+        <View style={styles.container}>
+          <View style={styles.headerContainer}>
+            <TopNavigation 
+              title="MSISDN"
+              alignment="center"
+              titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
+              rightControls={<TopNavigationAction
+                icon={() => icon.getIcon('logout')}
+                onPress={this.attemptLogout}
+              />}
             />
+            <View style={styles.search}>
+              <Input 
+                placeholder="Search by MSISDN or sub agent"
+                value={this.search}
+                onChangeText={this.handleChange('search')}
+                size="small"
+                icon={(style) => {
+                  let color = style.tintColor;
+                  delete style.tintColor;
+                  return icon.getIcon('search1', null, color);
+                }}
+              />
+            </View>
           </View>
+          <List 
+            data={data}
+            renderItem={this.renderItem}
+            keyExtractor={(item, index) => String(index)}
+            onRefresh={this._onRefresh}
+            refreshing={this.isFetching}
+            ListEmptyComponent={<EmptyList 
+              message={this.isFetching? 'Loading...':'Empty in MSISDN'}
+              playAnimation={this.isFetching}
+            />}
+            contentContainerStyle={{ flexGrow: 1 }}
+            style={styles.container}
+          />
         </View>
-        <List 
-          data={data}
-          renderItem={this.renderItem}
-          keyExtractor={(item, index) => String(index)}
-          onRefresh={this._onRefresh}
-          refreshing={this.isFetching}
-          ListEmptyComponent={<EmptyList 
-            message={this.isFetching? 'Loading...':'Empty in MSISDN'}
-            playAnimation={this.isFetching}
-          />}
-          contentContainerStyle={{ flexGrow: 1 }}
-          style={styles.container}
-        />
-      </View>
+      </SafeAreaView>
     );
   }
 }
