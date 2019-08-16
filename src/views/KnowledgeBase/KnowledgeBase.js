@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
+import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import EmptyList from '../../../components/EmptyList';
-
+import Card from '../../components/Card';
+import EmptyList from '../../components/EmptyList';
 import styles from './styles';
-import theme from '../../../styles/theme';
+import theme from '../../styles/theme';
 
 @observer
-class PayrollSlip extends Component {
+class KnowledgeBase extends Component {
 
   @observable data = [];
   @observable isFetching = true;
 
   componentDidMount() {
     setTimeout(() => {
+      
       this.isFetching = false;
     }, 2000);
   }
@@ -26,10 +27,10 @@ class PayrollSlip extends Component {
     
     setTimeout(() => {
       this.data = [
-        { title: 'Payroll Slip 1', createdAt: '2019-06-29' },
-        { title: 'Payroll Slip 2', createdAt: '2019-07-01' },
-        { title: 'Payroll Slip 3', createdAt: '2019-07-03' },
-        { title: 'Payroll Slip 4', createdAt: '2019-07-10' },
+        { title: 'Knowledge Base 1', createdAt: '2019-06-20' },
+        { title: 'Knowledge Base 2', createdAt: '2019-06-25' },
+        { title: 'Knowledge Base 3', createdAt: '2019-07-01' },
+        { title: 'Knowledge Base 4', createdAt: '2019-07-04' },
       ];
 
       this.isFetching = false;
@@ -38,15 +39,7 @@ class PayrollSlip extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <ListItem 
-        title={item.title}
-        description={item.createdAt}
-        style={styles.item}
-        titleStyle={styles.itemTitle}
-        onPress={() => this.props.navigation.navigate('PdfViewer', {
-          title: item.title
-        })}
-      />
+      <Card {...this.props} {...item} />
     );
   }
 
@@ -59,7 +52,7 @@ class PayrollSlip extends Component {
         />
         <View style={styles.container}>
           <TopNavigation
-            title="Payroll Slip"
+            title="Knowledge Base"
             alignment="center"
             style={styles.header}
             titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
@@ -67,11 +60,12 @@ class PayrollSlip extends Component {
           <List 
             data={this.data}
             renderItem={this.renderItem}
+            ListHeaderComponent={<View style={{height: 12}}/>}
             keyExtractor={(item, index) => String(index)}
             onRefresh={this._onRefresh}
             refreshing={this.isFetching}
             ListEmptyComponent={<EmptyList 
-              message={this.isFetching? 'Loading...':'Empty in Payroll Slip'}
+              message={this.isFetching? 'Loading...':'Empty in Knowledge Base'}
               playAnimation={this.isFetching}
             />}
             contentContainerStyle={{ flexGrow: 1 }}
@@ -83,4 +77,4 @@ class PayrollSlip extends Component {
   }
 }
 
-export default PayrollSlip;
+export default KnowledgeBase;

@@ -6,12 +6,12 @@ import moment from 'moment';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import { icon } from '../../../services/stores';
-import EmptyList from '../../../components/EmptyList';
-import { auth, db } from '../../../services/firebase';
+import { icon } from '../../services/stores';
+import EmptyList from '../../components/EmptyList';
+import { auth, db } from '../../services/firebase';
 
 import styles from './styles';
-import theme from '../../../styles/theme';
+import theme from '../../styles/theme';
 
 @observer
 class MSISDN extends Component {

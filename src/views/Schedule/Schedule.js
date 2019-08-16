@@ -6,11 +6,11 @@ import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import { Text } from 'react-native-ui-kitten';
 
-import Touchable from '../../../components/Touchable';
-import EmptyList from '../../../components/EmptyList';
+import Touchable from '../../components/Touchable';
+import EmptyList from '../../components/EmptyList';
 
 import styles from './styles';
-import theme from '../../../styles/theme';
+import theme from '../../styles/theme';
 
 // generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
@@ -156,8 +156,8 @@ class ExpandableCalendarScreen extends Component {
           <ExpandableCalendar 
             markedDates={this.getMarkedDates()}
             theme={this.getTheme()}
-            leftArrowImageSource={require('../../../assets/previous.png')}
-            rightArrowImageSource={require('../../../assets/next.png')}
+            leftArrowImageSource={require('../../assets/previous.png')}
+            rightArrowImageSource={require('../../assets/next.png')}
             style={styles.calendarHeader}
           />
           <AgendaList

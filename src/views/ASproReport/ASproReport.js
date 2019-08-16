@@ -7,13 +7,13 @@ import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-c
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import { db } from '../../../services/firebase';
-import Fab from '../../../components/FloatingActionButton';
-import Touchable from '../../../components/Touchable';
+import { db } from '../../services/firebase';
+import Fab from '../../components/FloatingActionButton';
+import Touchable from '../../components/Touchable';
 
 import styles from './styles';
-import theme from '../../../styles/theme';
-import { icon } from '../../../services/stores';
+import theme from '../../styles/theme';
+import { icon } from '../../services/stores';
 
 const today = new Date().toISOString().split('T')[0];
 
@@ -154,8 +154,8 @@ class ASproReport extends Component {
               // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
               markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
               theme={this.getTheme()}
-              leftArrowImageSource={require('../../../assets/previous.png')}
-              rightArrowImageSource={require('../../../assets/next.png')}
+              leftArrowImageSource={require('../../assets/previous.png')}
+              rightArrowImageSource={require('../../assets/next.png')}
               style={styles.calendarHeader}
               // headerStyle={styles.calendar} // for horizontal only
             />
