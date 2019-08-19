@@ -32,13 +32,15 @@ export const getSchedule = () => {
 }
 
 export const addAsProReport = ({ title, stok, soldNumbers, note, images }) => {
-  return firestore.collection('asproreport').add({
-    email: auth.currentUser.email,
-    date: new Date(),
-    title,
-    stok,
-    soldNumbers,
-    note,
-    images
-  });
+  return firestore
+    .collection('asproreport')
+    .add({
+      email: auth.currentUser.email,
+      date: new Date(),
+      title,
+      stok,
+      soldNumbers,
+      note,
+      images
+    });
 }
