@@ -65,8 +65,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     borderBottomColor: theme["border-basic-color-4"],
     borderBottomWidth: 1,
-    marginBottom: 12,
-    paddingBottom: 4
+    marginBottom: 16,
+    paddingVertical: 4
   },
   textDate: {
     fontFamily: 'product_sans_light',

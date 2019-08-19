@@ -121,8 +121,8 @@ class AgendaDetail extends Component {
         <View style={styles.content}>
           <Text style={styles.textStok} category="h5">{this.stok}</Text>
           <View style={styles.dateWrapper}>
-            <Text style={styles.textDate}>{`${this.date} by `}</Text>
-            <Text style={styles.textEmail}>{this.email}</Text>
+            <Text style={styles.textEmail}>{`${this.email} • `}</Text>
+            <Text style={styles.textDate}>{this.date}</Text>
           </View>
           <Text style={styles.textNote}>{this.note}</Text>
           {this.renderSoldNumbers()}
