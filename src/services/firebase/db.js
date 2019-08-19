@@ -6,10 +6,28 @@ export const getMSISDN = () => {
     .orderBy('shipOutDate');
 }
 
+export const getKnowledgeBase = () => {
+  return firestore
+    .collection('knowledgebase')
+    .orderBy('createdAt');
+}
+
 export const getAsProReport = () => {
   return firestore
     .collection('asproreport')
     .where('email', '==', auth.currentUser.email)
+    .orderBy('date');
+}
+
+export const getPayrollSlip = () => {
+  return firestore
+    .collection('payrollslip')
+    .orderBy('createdAt');
+}
+
+export const getSchedule = () => {
+  return firestore
+    .collection('schedule')
     .orderBy('date');
 }
 
