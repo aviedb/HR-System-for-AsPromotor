@@ -170,7 +170,7 @@ class ASproReport extends Component {
             onPress={() => this.props.navigation.navigate('AddReport')}
             style={styles.fab}
           >
-            {icon.getIcon('plus', null, '#fff')}
+            {icon.getIcon({ name: 'plus', color: '#fff' })}
           </Fab>
         </View>
       </SafeAreaView>

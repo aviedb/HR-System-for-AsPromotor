@@ -27,7 +27,11 @@ const Card = (props) => {
       })}>
         <View style={styles.viewButton}>
           <Text style={{color: theme["text-alternate-color"]}}>View PDF</Text>
-          {icon.getIcon('chevron-small-right', Entypo, theme["text-alternate-color"])}
+          {icon.getIcon({
+            name: 'chevron-small-right',
+            color: theme["text-alternate-color"],
+            Component: Entypo
+          })}
         </View>
       </Touchable>
     </View>

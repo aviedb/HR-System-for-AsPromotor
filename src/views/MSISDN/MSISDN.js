@@ -87,7 +87,7 @@ class MSISDN extends Component {
               alignment="center"
               titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
               rightControls={<TopNavigationAction
-                icon={() => icon.getIcon('logout')}
+                icon={() => icon.getIcon({ name: 'logout' })}
                 onPress={this.attemptLogout}
               />}
             />
@@ -100,7 +100,7 @@ class MSISDN extends Component {
                 icon={(style) => {
                   let color = style.tintColor;
                   delete style.tintColor;
-                  return icon.getIcon('search1', null, color);
+                  return icon.getIcon({ name: 'search1', color });
                 }}
               />
             </View>

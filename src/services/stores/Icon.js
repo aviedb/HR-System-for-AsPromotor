@@ -5,7 +5,8 @@ import { Platform } from 'react-native';
 
 class Icon {
   @action
-  getIcon = (name, Component, color, size, onPress) => {
+  getIcon = ({name, Component, color, size, onPress}) => {
+    if (!name) console.warn('Icon Name Required!');
     if (!Component) Component = AntDesign;
     if (!color) color = "#1A2138";
     if (!size) size = 24;
@@ -23,7 +24,7 @@ class Icon {
   @computed
   get backIcon() {
     const name = Platform.OS === 'ios'? 'ios-arrow-back':'md-arrow-back';
-    return () => this.getIcon(name, Ionicons);
+    return () => this.getIcon({ name, Component: Ionicons });
   }
 }
 

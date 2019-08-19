@@ -204,20 +204,32 @@ class AddReport extends Component {
       >
         <Touchable onPress={() => this.pickImage(1)}>
           <View style={styles.bottomSheetItem}>
-            {icon.getIcon('camera-alt', MaterialIcons, theme["text-disabled-color"])}
+            {icon.getIcon({
+              name: 'camera-alt',
+              Component: MaterialIcons,
+              color: theme["text-disabled-color"]
+            })}
             <Text style={styles.bottomSheetItemTitle}>Take photo</Text>
           </View>
         </Touchable>
         <Touchable onPress={() => this.pickImage(2)}>
           <View style={styles.bottomSheetItem}>
-            {icon.getIcon('image', MaterialIcons, theme["text-disabled-color"])}
+            {icon.getIcon({
+              name: 'image',
+              Component: MaterialIcons,
+              color: theme["text-disabled-color"]
+            })}
             <Text style={styles.bottomSheetItemTitle}>Choose image</Text>
           </View>
         </Touchable>
         {this.images.length > 0 &&
           <Touchable onPress={() => this.pickImage(3)}>
             <View style={styles.bottomSheetItem}>
-              {icon.getIcon('clear', MaterialIcons, theme["text-danger-disabled-color"])}
+              {icon.getIcon({
+                name: 'clear',
+                Component: MaterialIcons,
+                color: theme["text-danger-disabled-color"]
+              })}
               <Text style={styles.bottomSheetItemTitleDanger}>Remove pictures</Text>
             </View>
           </Touchable>
@@ -239,7 +251,11 @@ class AddReport extends Component {
           this.closeBottomSheet();
         }}>
           <View style={styles.bottomSheetItem}>
-            {icon.getIcon('clear', MaterialIcons, theme["text-danger-disabled-color"])}
+            {icon.getIcon({
+              name: 'clear',
+              Component: MaterialIcons,
+              color: theme["text-danger-disabled-color"]
+            })}
             <Text style={styles.bottomSheetItemTitleDanger}>Remove picture</Text>
           </View>
         </Touchable>
@@ -267,7 +283,7 @@ class AddReport extends Component {
               onPress={this.openActionSheet}
               style={styles.fab}
             >
-              {icon.getIcon('plus', null, '#fff', 20)}
+              {icon.getIcon({ name: 'plus', color: '#fff', size: 20 })}
             </Fab>
           </View>
         )}
@@ -294,7 +310,12 @@ class AddReport extends Component {
           <View key={i}>
             <View style={styles.soldNumberItem}>
               <Text>{number}</Text>
-              {icon.getIcon('close', null, theme["text-danger-disabled-color"], 20, this.removeSoldNumber(i))}
+              {icon.getIcon({
+                name: 'close',
+                color: theme["text-danger-disabled-color"],
+                size: 20,
+                onPress: this.removeSoldNumber(i)
+              })}
             </View>
             {i !== this.soldNumbers.length-1 && 
               <Divider color={theme["border-basic-color-5"]} />
@@ -355,7 +376,12 @@ class AddReport extends Component {
               icon={(style) => {
                 let color = style.tintColor;
                 delete style.tintColor;
-                return icon.getIcon('plus', null, color, 20, this.addSoldNumber);
+                return icon.getIcon({
+                  name: 'plus', 
+                  color, 
+                  size: 20, 
+                  onPress: this.addSoldNumber
+                });
               }}
             />
             {this.renderSoldNumbers()}

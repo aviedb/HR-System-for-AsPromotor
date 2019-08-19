@@ -41,7 +41,7 @@ const HomeTabNavigator = createBottomTabNavigator({
   Schedule
 }, {
   defaultNavigationOptions: ({ navigation }) => ({
-    tabBarIcon: ({ focused, horizontal, tintColor }) => {
+    tabBarIcon: ({ tintColor }) => {
       const { routeName } = navigation.state;
       let iconName = '';
 
@@ -51,7 +51,10 @@ const HomeTabNavigator = createBottomTabNavigator({
       else if (routeName === 'PayrollSlip') iconName = 'mail';
       else if (routeName === 'Schedule') iconName = 'calendar';
 
-      return icon.getIcon(iconName, null, tintColor);
+      return icon.getIcon({ 
+        name: iconName,
+        color: tintColor
+      });
     },
   }),
   navigationOptions: {
@@ -59,6 +62,7 @@ const HomeTabNavigator = createBottomTabNavigator({
   },
   tabBarOptions: {
     showLabel: false,
+    keyboardHidesTabBar: true,
     activeTintColor: theme["icon-active-color"],
     inactiveTintColor: theme["icon-control-color"],
     style: {
