@@ -28,7 +28,7 @@ class KnowledgeBase extends Component {
 
   fetchData = () => {
     this.isFetching = true;
-    db.getKnowledgeBase().onSnapshot(res => {
+    db.getKnowledgeBase(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
         doc.createdAt = moment(doc.createdAt.toDate()).format("D MMM, hh:mm A");

@@ -26,7 +26,7 @@ class MSISDN extends Component {
 
   fetchData = () => {
     this.isFetching = true;
-    db.getMSISDN().onSnapshot(res => {
+    db.getMSISDN(res => {
       let data = res.docs.map(doc => doc.data());
       this.data = data;
       this.isFetching = false;

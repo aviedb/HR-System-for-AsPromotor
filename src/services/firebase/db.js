@@ -1,34 +1,39 @@
 import { firestore, auth } from './firebase';
 
-export const getMSISDN = () => {
+export const getMSISDN = (callback) => {
   return firestore
     .collection('msisdn')
-    .orderBy('shipOutDate');
+    .orderBy('shipOutDate')
+    .onSnapshot(callback);
 }
 
-export const getKnowledgeBase = () => {
+export const getKnowledgeBase = (callback) => {
   return firestore
     .collection('knowledgebase')
-    .orderBy('createdAt');
+    .orderBy('createdAt')
+    .onSnapshot(callback);
 }
 
-export const getAsProReport = () => {
+export const getAsProReport = (callback) => {
   return firestore
     .collection('asproreport')
     .where('email', '==', auth.currentUser.email)
-    .orderBy('date');
+    .orderBy('date')
+    .onSnapshot(callback);
 }
 
-export const getPayrollSlip = () => {
+export const getPayrollSlip = (callback) => {
   return firestore
     .collection('payrollslip')
-    .orderBy('createdAt');
+    .orderBy('createdAt')
+    .onSnapshot(callback);
 }
 
-export const getSchedule = () => {
+export const getSchedule = (callback) => {
   return firestore
     .collection('schedule')
-    .orderBy('date');
+    .orderBy('date')
+    .onSnapshot(callback);
 }
 
 export const addAsProReport = ({ title, stok, soldNumbers, note, images }) => {
