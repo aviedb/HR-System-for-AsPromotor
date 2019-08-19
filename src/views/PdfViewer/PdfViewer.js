@@ -21,8 +21,10 @@ class PdfViewer extends Container {
   @observable uri = '';
 
   componentWillMount() {
-    this.title = this.props.navigation.getParam('title', 'PDF Viewer');
-    this.uri = this.props.navigation.getParam('uri', 'http://www.africau.edu/images/default/sample.pdf');
+    let item = this.props.navigation.getParam('item', {});
+
+    this.title = item.title || 'title';
+    this.uri = item.file || 'http://www.africau.edu/images/default/sample.pdf';
 
     // this is temporary?
     // WebView cannot display pdf for android for some reason

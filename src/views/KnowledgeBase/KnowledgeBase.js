@@ -42,7 +42,7 @@ class KnowledgeBase extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <Card {...this.props} {...item} />
+      <Card {...this.props} item={item} />
     );
   }
 

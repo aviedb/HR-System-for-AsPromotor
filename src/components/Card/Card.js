@@ -17,13 +17,13 @@ const Card = (props) => {
         <Text style={{color: theme["color-primary-500"]}} category="h6">PDF</Text>
       </View>
       <View style={styles.content}>
-        <Text category="s1">{props.title}</Text>
+        <Text category="s1">{props.item.title}</Text>
         <Text category="s2" style={{color: theme["text-disabled-color"]}}>
-          {props.createdAt}
+          {props.item.createdAt}
         </Text>
       </View>
       <Touchable onPress={() => props.navigation.navigate('PdfViewer', {
-        title: props.title
+        item: props.item
       })}>
         <View style={styles.viewButton}>
           <Text style={{color: theme["text-alternate-color"]}}>View PDF</Text>
