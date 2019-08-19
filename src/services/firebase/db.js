@@ -31,7 +31,7 @@ export const getSchedule = () => {
     .orderBy('date');
 }
 
-export const addAsProReport = ({title, stok, soldNumbers, note, images}) => {
+export const addAsProReport = ({ title, stok, soldNumbers, note, images }) => {
   return firestore.collection('asproreport').add({
     email: auth.currentUser.email,
     date: new Date(),
