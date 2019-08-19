@@ -57,10 +57,6 @@ class AddReport extends Component {
   @observable isUploading = false;
   @observable disableAdd = true;
 
-  componentDidMount() {
-    // console.log(firebase.auth.currentUser);
-  }
-
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);

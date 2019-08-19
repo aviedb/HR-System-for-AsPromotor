@@ -3,9 +3,12 @@ import { View, SafeAreaView, StatusBar } from 'react-native';
 import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import moment from 'moment';
 
 import Card from '../../components/Card';
 import EmptyList from '../../components/EmptyList';
+
+import { db } from '../../services/firebase';
 import styles from './styles';
 import theme from '../../styles/theme';
 
@@ -16,25 +19,25 @@ class KnowledgeBase extends Component {
   @observable isFetching = true;
 
   componentDidMount() {
-    setTimeout(() => {
-      
-      this.isFetching = false;
-    }, 2000);
+    this.fetchData();
   }
 
   _onRefresh = () => {
-    this.isFetching = true;
-    
-    setTimeout(() => {
-      this.data = [
-        { title: 'Knowledge Base 1', createdAt: '2019-06-20' },
-        { title: 'Knowledge Base 2', createdAt: '2019-06-25' },
-        { title: 'Knowledge Base 3', createdAt: '2019-07-01' },
-        { title: 'Knowledge Base 4', createdAt: '2019-07-04' },
-      ];
+    this.fetchData();
+  }
 
+  fetchData = () => {
+    this.isFetching = true;
+    db.getKnowledgeBase().onSnapshot(res => {
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.createdAt = moment(doc.createdAt.toDate()).format("D MMM, hh:mm A");
+        return doc;
+      });
+
+      this.data = data;
       this.isFetching = false;
-    }, 2000);
+    });
   }
 
   renderItem = ({ item }) => {

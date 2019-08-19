@@ -3,9 +3,11 @@ import { View, SafeAreaView, StatusBar } from 'react-native';
 import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import moment from 'moment';
 
 import EmptyList from '../../components/EmptyList';
 
+import { db } from '../../services/firebase';
 import styles from './styles';
 import theme from '../../styles/theme';
 
@@ -16,24 +18,25 @@ class PayrollSlip extends Component {
   @observable isFetching = true;
 
   componentDidMount() {
-    setTimeout(() => {
-      this.isFetching = false;
-    }, 2000);
+    this.fetchData();
   }
 
   _onRefresh = () => {
+    this.fetchData();
+  }
+  
+  fetchData = () => {
     this.isFetching = true;
-    
-    setTimeout(() => {
-      this.data = [
-        { title: 'Payroll Slip 1', createdAt: '2019-06-29' },
-        { title: 'Payroll Slip 2', createdAt: '2019-07-01' },
-        { title: 'Payroll Slip 3', createdAt: '2019-07-03' },
-        { title: 'Payroll Slip 4', createdAt: '2019-07-10' },
-      ];
+    db.getPayrollSlip().onSnapshot(res => {
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.createdAt = moment(doc.createdAt.toDate()).format("D MMM, hh:mm A");
+        return doc;
+      });
 
+      this.data = data;
       this.isFetching = false;
-    }, 2000);
+    });
   }
 
   renderItem = ({ item }) => {
