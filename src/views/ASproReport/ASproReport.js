@@ -20,7 +20,6 @@ const today = new Date().toISOString().split('T')[0];
 @observer
 class ASproReport extends Component {
 
-  @observable isFetching = true;
   @observable items = [];
 
   componentDidMount() {

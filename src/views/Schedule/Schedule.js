@@ -4,56 +4,47 @@ import { Platform, View, SafeAreaView, StatusBar } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
-import { Text } from 'react-native-ui-kitten';
+import { Text, TopNavigation } from 'react-native-ui-kitten';
+import moment from 'moment';
 
 import Touchable from '../../components/Touchable';
 import EmptyList from '../../components/EmptyList';
 
+import { db } from '../../services/firebase';
 import styles from './styles';
 import theme from '../../styles/theme';
 
-// generate dummy dates dummy dates
 const today = new Date().toISOString().split('T')[0];
-const fastDate = getPastDate(3); 
-const futureDates = getFutureDates(9);
-const dates = [fastDate, today].concat(futureDates);
-
-function getFutureDates(days) {
-  const array = [];
-  for (let index = 1; index <= days; index++) {
-    const date = new Date(Date.now() + (864e5 * index)); // 864e5 == 86400000 == 24*60*60*1000
-    const dateString = date.toISOString().split('T')[0];
-    array.push(dateString);
-  }
-  return array;
-}
-
-function getPastDate(days) {
-  return new Date(Date.now() - (864e5 * days)).toISOString().split('T')[0];
-}
 
 @observer
 class ExpandableCalendarScreen extends Component {
 
-  @observable items = [
-    {title: dates[0], data: [{hour: '12am', duration: '1h', title: 'Lunch'}]},
-    {title: dates[1], data: [{hour: '4pm', duration: '1h', title: 'Lorem ipsum dolor sit amet panjang lorem ipsum dolor sit amet'}, {hour: '5pm', duration: '1h', title: 'Vinyasa Yoga'}]},
-    {title: dates[2], data: [{hour: '1pm', duration: '1h', title: 'Lorem ipsum dolor sit'}, {hour: '2pm', duration: '1h', title: 'Lorem ipsum dolor sit amet'}, {hour: '3pm', duration: '1h', title: 'Texty text'}]},
-    {title: dates[3], data: [{hour: '12am', duration: '1h', title: 'Lorem ipsum'}]},
-    {title: dates[5], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[6], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]},
-    {title: dates[8], data: [{hour: '9pm', duration: '1h', title: 'Pilates Reformer'}, {hour: '10pm', duration: '1h', title: 'Ashtanga'}, {hour: '11pm', duration: '1h', title: 'TRX'}, {hour: '12pm', duration: '1h', title: 'Running Group'}]},
-    {title: dates[9], data: [{hour: '1pm', duration: '1h', title: 'Ashtanga Yoga'}, {hour: '2pm', duration: '1h', title: 'Deep Streches'}, {hour: '3pm', duration: '1h', title: 'Private Yoga'}]},
-    {title: dates[10], data: [{hour: '12am', duration: '1h', title: 'Ashtanga Yoga'}]}
-  ]
+  @observable items = [];
 
-  onDateChanged = (date, updateSource) => {
-    console.log('ExpandableCalendarScreen onDateChanged: ', date, updateSource);
-    // fetch and set data for date + week ahead
+  componentDidMount() {
+    this.fetchData();
   }
 
-  onMonthChange = (month, updateSource) => {
-    // console.log('ExpandableCalendarScreen onMonthChange: ', month, updateSource);
+  fetchData = () => {
+    db.getAsProReport(res => {
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.hour = moment(doc.date.toDate()).format('HH:mm');
+        doc.formattedDate = moment(doc.date.toDate()).format('YYYY-MM-DD');
+        let split = doc.note.split('\n');
+        doc.notePreview = split.length === 1? split[0] : `${split[0]} ...`;
+        return doc;
+      });
+
+      let items = [];
+      let dateKeys = _.groupBy(data, 'formattedDate');
+
+      _.mapKeys(dateKeys, (data, title) => {
+        items.push({ title, data });
+      });
+
+      this.items = items;
+    });
   }
 
   getMarkedDates = () => {
@@ -122,18 +113,16 @@ class ExpandableCalendarScreen extends Component {
     }
     
     return (
-      <Touchable 
-        onPress={() => this.props.navigation.navigate('AgendaDetail', {
-          title: item.title
-        })} 
-      >
+      <Touchable onPress={() => this.props.navigation.navigate('AgendaDetail', {
+        item: item
+      })}>
         <View style={styles.item}>
-          <View>
+          <View style={{ justifyContent: 'center' }}>
             <Text style={styles.itemHourText}>{item.hour}</Text>
-            <Text style={styles.itemDurationText}>{item.duration}</Text>
           </View>
-          <View style={{paddingLeft: 16}}>
+          <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.title}</Text>
+            <Text style={styles.itemNoteText}>{item.notePreview}</Text>
           </View>
         </View>
       </Touchable>
@@ -147,30 +136,38 @@ class ExpandableCalendarScreen extends Component {
           backgroundColor={theme["status-bar-android"]}
           barStyle="dark-content"
         />
-        <CalendarProvider
-          date={today} 
-          onDateChanged={this.onDateChanged} 
-          onMonthChange={this.onMonthChange}
-          disabledOpacity={0.6}
-        >
-          <ExpandableCalendar 
-            markedDates={this.getMarkedDates()}
-            theme={this.getTheme()}
-            leftArrowImageSource={require('../../assets/previous.png')}
-            rightArrowImageSource={require('../../assets/next.png')}
-            style={styles.calendarHeader}
+        <View style={styles.container}>
+          <TopNavigation
+            title="Schedule"
+            alignment="center"
+            style={styles.header}
+            titleStyle={styles.headerTitle}
           />
-          <AgendaList
-            sections={this.items.slice()}
-            renderItem={this.renderItem}
-            sectionStyle={styles.section}
-            ListEmptyComponent={<EmptyList 
-              message={this.isFetching? 'Loading...':'Empty in Schedule'}
-              playAnimation={false}
-            />}
-            contentContainerStyle={{ flexGrow: 1 }}
-          />
-        </CalendarProvider>
+          <CalendarProvider
+            date={today} 
+            onDateChanged={this.onDateChanged} 
+            onMonthChange={this.onMonthChange}
+            disabledOpacity={0.6}
+          >
+            <ExpandableCalendar 
+              markedDates={this.getMarkedDates()}
+              theme={this.getTheme()}
+              leftArrowImageSource={require('../../assets/previous.png')}
+              rightArrowImageSource={require('../../assets/next.png')}
+              style={styles.calendarHeader}
+            />
+            <AgendaList
+              sections={this.items.slice()}
+              renderItem={this.renderItem}
+              sectionStyle={styles.section}
+              ListEmptyComponent={<EmptyList 
+                message={this.isFetching? 'Loading...':'Empty in Schedule'}
+                playAnimation={false}
+              />}
+              contentContainerStyle={{ flexGrow: 1 }}
+            />
+          </CalendarProvider>
+        </View>
       </SafeAreaView>
     );
   }
