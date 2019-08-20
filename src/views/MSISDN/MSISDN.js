@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { Input, ListItem, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
+import { Input, Text, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
 import { observer } from 'mobx-react';
@@ -8,6 +8,7 @@ import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
 import EmptyList from '../../components/EmptyList';
+import Card from '../../components/Card';
 import { auth, db } from '../../services/firebase';
 
 import styles from './styles';
@@ -27,7 +28,11 @@ class MSISDN extends Component {
   fetchData = () => {
     this.isFetching = true;
     db.getMSISDN(res => {
-      let data = res.docs.map(doc => doc.data());
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMM, hh:mm A");
+        return doc;
+      });
       this.data = data;
       this.isFetching = false;
     });
@@ -50,12 +55,18 @@ class MSISDN extends Component {
   }
 
   renderItem = ({ item }) => {
+    item = {
+      msisdn: item.msisdn,
+      title: item.subAgent,
+      createdAt: item.shipOutDate
+    }
+
     return (
-      <ListItem 
-        title={item.msisdn}
-        description={`${item.subAgent}\n${moment(item.shipOutDate.toDate()).format("dddd, MMMM Do YYYY")}`}
-        style={styles.item}
-        titleStyle={styles.itemTitle}
+      <Card 
+        {...this.props} 
+        item={item} 
+        preview={item.msisdn}
+        buttonText="View Detail"
         onPress={() => this.props.navigation.navigate('MSISDNDetail', {
           title: item.msisdn
         })}
@@ -107,6 +118,7 @@ class MSISDN extends Component {
             keyExtractor={(item, index) => String(index)}
             onRefresh={this.fetchData}
             refreshing={this.isFetching}
+            ListHeaderComponent={<View style={{height: 12}}/>}
             ListEmptyComponent={<EmptyList 
               message={this.isFetching? 'Loading...':'Empty in MSISDN'}
               playAnimation={this.isFetching}

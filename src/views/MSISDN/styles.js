@@ -21,8 +21,20 @@ const styles = StyleSheet.create({
     paddingBottom: 8
   },
   item: {
-    borderBottomColor: theme["border-basic-color-3"],
-    borderBottomWidth: 1
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 3,
+    },
+    shadowOpacity: 0.22,
+    shadowRadius: 2.22,
+    elevation: 3,
+    backgroundColor: theme["background-basic-color-1"],
+    borderRadius: 4,
+    marginBottom: 12,
+    marginHorizontal: 16,
+    paddingHorizontal: 12,
+    paddingVertical: 12
   },
   itemTitle: {
     fontWeight: 'normal',

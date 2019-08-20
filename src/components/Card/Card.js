@@ -14,7 +14,7 @@ const Card = (props) => {
   return (
     <View style={styles.item}>
       <View style={styles.preview}>
-        <Text style={{color: theme["color-primary-500"]}} category="h6">PDF</Text>
+        <Text style={{color: theme["color-primary-500"]}} category="h6">{props.preview}</Text>
       </View>
       <View style={styles.content}>
         <Text category="s1">{props.item.title}</Text>
@@ -22,11 +22,9 @@ const Card = (props) => {
           {props.item.createdAt}
         </Text>
       </View>
-      <Touchable onPress={() => props.navigation.navigate('PdfViewer', {
-        item: props.item
-      })}>
+      <Touchable onPress={props.onPress}>
         <View style={styles.viewButton}>
-          <Text style={{color: theme["text-alternate-color"]}}>View PDF</Text>
+          <Text style={{color: theme["text-alternate-color"]}}>{props.buttonText}</Text>
           {icon.getIcon({
             name: 'chevron-small-right',
             color: theme["text-alternate-color"],

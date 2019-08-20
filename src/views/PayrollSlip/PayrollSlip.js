@@ -38,7 +38,15 @@ class PayrollSlip extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <Card {...this.props} item={item} />
+      <Card 
+        {...this.props} 
+        item={item} 
+        preview="PDF" 
+        buttonText="View PDF"
+        onPress={() => this.props.navigation.navigate('PdfViewer', {
+          item: item
+        })}
+      />
     );
   }
 
