@@ -51,7 +51,7 @@ const HomeTabNavigator = createBottomTabNavigator({
       else if (routeName === 'PayrollSlip') iconName = 'mail';
       else if (routeName === 'Schedule') iconName = 'calendar';
 
-      return icon.getIcon({ 
+      return icon.getIcon({
         name: iconName,
         color: tintColor
       });
