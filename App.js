@@ -13,18 +13,18 @@ import * as Font from 'expo-font';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 
-import Login from './src/views/Auth/Login';
-import Signup from './src/views/Auth/Signup';
-import MSISDN from './src/views/MSISDN';
-import KnowledgeBase from './src/views/KnowledgeBase';
-import ASproReport from './src/views/ASproReport';
-import PayrollSlip from './src/views/PayrollSlip';
-import Schedule from './src/views/Schedule';
-import MSISDNDetail from './src/views/MSISDNDetail';
-import PdfViewer from './src/views/PdfViewer';
-import AgendaDetail from './src/views/AgendaDetail';
-import AddReport from './src/views/AddReport';
-import AuthLoading from './src/views/Auth/AuthLoading';
+import Login from './src/screens/Auth/Login';
+import Signup from './src/screens/Auth/Signup';
+import MSISDN from './src/screens/MSISDN';
+import KnowledgeBase from './src/screens/KnowledgeBase';
+import ASproReport from './src/screens/ASproReport';
+import PayrollSlip from './src/screens/PayrollSlip';
+import Schedule from './src/screens/Schedule';
+import MSISDNDetail from './src/screens/MSISDNDetail';
+import PdfViewer from './src/screens/PdfViewer';
+import AgendaDetail from './src/screens/AgendaDetail';
+import AddReport from './src/screens/AddReport';
+import AuthLoading from './src/screens/Auth/AuthLoading';
 
 import { icon } from './src/services/stores';
 import theme from './src/styles/theme';
@@ -72,7 +72,7 @@ const HomeTabNavigator = createBottomTabNavigator({
 });
 
 const AppStack = createStackNavigator({
-  HomeTabNavigator,
+  HomeTabNavigator, // initial app stack is Tab Navigator
   MSISDNDetail,
   PdfViewer,
   AgendaDetail,
