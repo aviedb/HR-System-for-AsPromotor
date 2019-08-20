@@ -113,7 +113,7 @@ class ExpandableCalendarScreen extends Component {
     }
     
     return (
-      <Touchable onPress={() => this.props.navigation.navigate('AgendaDetail', {
+      <Touchable activeOpacity={.7} onPress={() => this.props.navigation.navigate('AgendaDetail', {
         item: item
       })}>
         <View style={styles.item}>

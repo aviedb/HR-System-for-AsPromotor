@@ -6,10 +6,11 @@ const Touchable = (props) => {
     android: TouchableNativeFeedback,
     ios: TouchableOpacity
   });
+  const activeOpacity = props.activeOpacity || .9;
 
   return (
     <TouchableComponent 
-      activeOpacity={.9} 
+      activeOpacity={activeOpacity} 
       {...props}
     />
   );

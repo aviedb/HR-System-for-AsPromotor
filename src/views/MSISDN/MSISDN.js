@@ -8,7 +8,6 @@ import { observable } from 'mobx';
 
 import { icon } from '../../services/stores';
 import EmptyList from '../../components/EmptyList';
-import Card from '../../components/Card';
 import { auth, db } from '../../services/firebase';
 
 import styles from './styles';
