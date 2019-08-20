@@ -152,8 +152,8 @@ class ExpandableCalendarScreen extends Component {
             <ExpandableCalendar 
               markedDates={this.getMarkedDates()}
               theme={this.getTheme()}
-              leftArrowImageSource={require('../../assets/previous.png')}
-              rightArrowImageSource={require('../../assets/next.png')}
+              leftArrowImageSource={require('../../assets/images/previous.png')}
+              rightArrowImageSource={require('../../assets/images/next.png')}
               style={styles.calendarHeader}
             />
             <AgendaList

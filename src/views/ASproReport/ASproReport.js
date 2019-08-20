@@ -153,8 +153,8 @@ class ASproReport extends Component {
               // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
               markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
               theme={this.getTheme()}
-              leftArrowImageSource={require('../../assets/previous.png')}
-              rightArrowImageSource={require('../../assets/next.png')}
+              leftArrowImageSource={require('../../assets/images/previous.png')}
+              rightArrowImageSource={require('../../assets/images/next.png')}
               style={styles.calendarHeader}
               // headerStyle={styles.calendar} // for horizontal only
             />
