@@ -24,15 +24,25 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 3,
+      height: 1,
     },
-    shadowOpacity: 0.22,
-    shadowRadius: 2.22,
-    elevation: 3,
+    shadowOpacity: 0.20,
+    shadowRadius: 1.41,
+    elevation: 2,
     backgroundColor: theme["background-basic-color-1"],
     borderRadius: 4,
     marginBottom: 12,
     marginHorizontal: 16,
+  },
+  preview: {
+    borderTopLeftRadius: 5,
+    borderTopRightRadius: 5,
+    backgroundColor: theme["color-success-200"],
+    height: 140,
+    alignItems: 'center',
+    justifyContent: 'center'
+  },
+  content: {
     paddingHorizontal: 12,
     paddingVertical: 12
   },

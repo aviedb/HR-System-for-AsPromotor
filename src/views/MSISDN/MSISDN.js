@@ -55,22 +55,16 @@ class MSISDN extends Component {
   }
 
   renderItem = ({ item }) => {
-    item = {
-      msisdn: item.msisdn,
-      title: item.subAgent,
-      createdAt: item.shipOutDate
-    }
-
     return (
-      <Card 
-        {...this.props} 
-        item={item} 
-        preview={item.msisdn}
-        buttonText="View Detail"
-        onPress={() => this.props.navigation.navigate('MSISDNDetail', {
-          title: item.msisdn
-        })}
-      />
+      <View style={styles.item}>
+        <View style={styles.preview}>
+          <Text style={{color: theme["color-success-600"]}} category="h6">{item.msisdn}</Text>
+        </View>
+        <View style={styles.content}>
+          <Text category="s1" style={{fontWeight: 'normal'}}>{item.subAgent}</Text>
+          <Text category="s2" style={{color: theme["text-disabled-color"]}}>{item.shipOutDate}</Text>
+        </View>
+      </View>
     );
   }
 
