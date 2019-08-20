@@ -6,6 +6,7 @@ import { observable } from 'mobx';
 import moment from 'moment';
 
 import EmptyList from '../../components/EmptyList';
+import Card from '../../components/Card';
 
 import { db } from '../../services/firebase';
 import styles from './styles';
@@ -18,10 +19,6 @@ class PayrollSlip extends Component {
   @observable isFetching = true;
 
   componentDidMount() {
-    this.fetchData();
-  }
-
-  _onRefresh = () => {
     this.fetchData();
   }
   
@@ -41,15 +38,7 @@ class PayrollSlip extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <ListItem 
-        title={item.title}
-        description={item.createdAt}
-        style={styles.item}
-        titleStyle={styles.itemTitle}
-        onPress={() => this.props.navigation.navigate('PdfViewer', {
-          item: item
-        })}
-      />
+      <Card {...this.props} item={item} />
     );
   }
 
@@ -70,8 +59,9 @@ class PayrollSlip extends Component {
           <List 
             data={this.data}
             renderItem={this.renderItem}
+            ListHeaderComponent={<View style={{height: 12}}/>}
             keyExtractor={(item, index) => String(index)}
-            onRefresh={this._onRefresh}
+            onRefresh={this.fetchData}
             refreshing={this.isFetching}
             ListEmptyComponent={<EmptyList 
               message={this.isFetching? 'Loading...':'Empty in Payroll Slip'}

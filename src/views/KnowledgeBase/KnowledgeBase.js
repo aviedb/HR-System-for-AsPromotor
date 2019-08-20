@@ -22,10 +22,6 @@ class KnowledgeBase extends Component {
     this.fetchData();
   }
 
-  _onRefresh = () => {
-    this.fetchData();
-  }
-
   fetchData = () => {
     this.isFetching = true;
     db.getKnowledgeBase(res => {
@@ -65,7 +61,7 @@ class KnowledgeBase extends Component {
             renderItem={this.renderItem}
             ListHeaderComponent={<View style={{height: 12}}/>}
             keyExtractor={(item, index) => String(index)}
-            onRefresh={this._onRefresh}
+            onRefresh={this.fetchData}
             refreshing={this.isFetching}
             ListEmptyComponent={<EmptyList 
               message={this.isFetching? 'Loading...':'Empty in Knowledge Base'}

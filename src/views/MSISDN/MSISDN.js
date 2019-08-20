@@ -33,10 +33,6 @@ class MSISDN extends Component {
     });
   }
 
-  _onRefresh = () => {
-    this.fetchData();
-  }
-
   handleChange = (key) => (value) => {
     this[key] = value;
   }
@@ -109,7 +105,7 @@ class MSISDN extends Component {
             data={data}
             renderItem={this.renderItem}
             keyExtractor={(item, index) => String(index)}
-            onRefresh={this._onRefresh}
+            onRefresh={this.fetchData}
             refreshing={this.isFetching}
             ListEmptyComponent={<EmptyList 
               message={this.isFetching? 'Loading...':'Empty in MSISDN'}

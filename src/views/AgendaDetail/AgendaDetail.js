@@ -76,7 +76,7 @@ class AgendaDetail extends Component {
                 source={{ uri: item }}
                 containerStyle={styles.parallaxContainer}
                 style={styles.parallaxStyle}
-                parallaxFactor={0.4}
+                parallaxFactor={0}
                 {...parallaxProps}
               />
             </View>

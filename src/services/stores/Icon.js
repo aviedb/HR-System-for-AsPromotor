@@ -6,7 +6,10 @@ import { Platform } from 'react-native';
 class Icon {
   @action
   getIcon = ({ name, Component, color, size, onPress }) => {
-    if (!name) console.warn('Icon Name Required!');
+    if (!name) {
+      console.warn('Icon Name Required!');
+      name = 'question'
+    }
     if (!Component) Component = AntDesign;
     if (!color) color = "#1A2138";
     if (!size) size = 24;
