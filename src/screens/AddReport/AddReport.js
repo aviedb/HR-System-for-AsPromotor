@@ -192,6 +192,12 @@ class AddReport extends Component {
     });
   }
 
+  openMsisdnBottomSheet = () => {
+    if (this.stok !== 'Stok Telin') return;
+
+    this.msisdnBottomSheetVisible = true;
+  }
+
   renderMsisdnBottomSheet = () => {
     return (
       <BottomSheet
@@ -377,28 +383,30 @@ class AddReport extends Component {
               options={["Stok Toko", "Stok Telin"]}
               style={styles.select}
             />
-            <Input 
-              label="Nomor yang dijual"
-              value={this.sold}
-              onChangeText={value => this.sold = value}
-              keyboardType="phone-pad"
-              style={styles.input}
-              labelStyle={styles.labelStyle}
-              onEndEditing={this.addSoldNumber}
-              onTouchStart={() => this.stok === 'Stok Telin'? this.msisdnBottomSheetVisible = true:null}
-              disabled={this.stok === 'Stok Telin'}
-              maxLength={20}
-              icon={(style) => {
-                let color = style.tintColor;
-                delete style.tintColor;
-                return icon.getIcon({
-                  name: 'plus', 
-                  color, 
-                  size: 20, 
-                  onPress: this.addSoldNumber
-                });
-              }}
-            />
+            <TouchableOpacity onPress={this.openMsisdnBottomSheet} activeOpacity={1}>
+              <Input 
+                label="Nomor yang dijual"
+                value={this.sold}
+                onChangeText={value => this.sold = value}
+                keyboardType="phone-pad"
+                style={styles.input}
+                labelStyle={styles.labelStyle}
+                onEndEditing={this.addSoldNumber}
+                disabled={this.stok === 'Stok Telin'}
+                maxLength={20}
+                pointerEvents={this.stok === 'Stok Telin'? 'none':null}
+                icon={(style) => {
+                  let color = style.tintColor;
+                  delete style.tintColor;
+                  return icon.getIcon({
+                    name: 'plus', 
+                    color, 
+                    size: 20, 
+                    onPress: this.addSoldNumber
+                  });
+                }}
+              />
+            </TouchableOpacity>
             {this.renderSoldNumbers()}
             <Input 
               label="Catatan"

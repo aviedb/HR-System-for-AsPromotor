@@ -19,7 +19,7 @@ const BottomSheet = (props) => {
     >
       <SafeAreaView style={props.full? styles.safeArea : null}>
         <View style={styles.bottomSheetContainer}>
-          <StatusBar backgroundColor="#474747"/>
+          <StatusBar backgroundColor={props.full?null:"#474747"}/>
           <View style={styles.bottomSheetHandle}/>
           {props.title &&
             <View>
