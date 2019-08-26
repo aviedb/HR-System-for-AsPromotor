@@ -3,15 +3,15 @@ import { light as lightTheme } from '@eva-design/eva';
 const pallete = {
   // basic colors for backgrounds, borders, texts
   "color-basic-100": "#FFFFFF",
-  "color-basic-200": "#F8F9FA",
-  "color-basic-300": "#E1E7EB",
-  "color-basic-400": "#D5DDE5",
-  "color-basic-500": "#CCD4DB",
-  "color-basic-600": "#AEBECC",
-  "color-basic-700": "#929FB1",
-  "color-basic-800": "#6E7A89",
-  "color-basic-900": "#404B5A",
-  "color-basic-1000": "#202833",
+  "color-basic-200": "#F7FAFC",
+  "color-basic-300": "#EDF2F7",
+  "color-basic-400": "#E2E8F0",
+  "color-basic-500": "#CBD5E0",
+  "color-basic-600": "#A0AEC0",
+  "color-basic-700": "#718096",
+  "color-basic-800": "#4A5568",
+  "color-basic-900": "#2D3748",
+  "color-basic-1000": "#1A202C",
 
   // primary colors
   "color-primary-100": "#C6E1F3",

@@ -57,7 +57,7 @@ class MSISDN extends Component {
     return (
       <View style={styles.item}>
         <View style={styles.preview}>
-          <Text style={{color: theme["color-success-600"]}} category="h6">{item.msisdn}</Text>
+          <Text style={{color: theme["color-primary-500"]}} category="h6">{item.msisdn}</Text>
         </View>
         <View style={styles.content}>
           <Text category="s1" style={{fontWeight: 'normal'}}>{item.subAgent}</Text>
