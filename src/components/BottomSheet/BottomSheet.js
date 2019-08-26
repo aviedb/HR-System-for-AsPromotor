@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StatusBar } from 'react-native';
+import { View, Text, StatusBar, SafeAreaView } from 'react-native';
 import Modal from "react-native-modal";
 
 import Divider from '../Divider';
@@ -17,19 +17,21 @@ const BottomSheet = (props) => {
       onSwipeComplete={props.closeBottomSheet}
       style={styles.bottomSheetModal}
     >
-      <View style={styles.bottomSheetContainer}>
-        <StatusBar backgroundColor="#474747"/>
-        <View style={styles.bottomSheetHandle}/>
-        {props.title &&
-          <View>
-            <Text style={styles.bottomSheetTitle}>
-              {props.title}
-            </Text>
-            <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
-          </View>
-        }
-        {props.children}
-      </View>
+      <SafeAreaView style={props.full? styles.safeArea : null}>
+        <View style={styles.bottomSheetContainer}>
+          <StatusBar backgroundColor="#474747"/>
+          <View style={styles.bottomSheetHandle}/>
+          {props.title &&
+            <View>
+              <Text style={styles.bottomSheetTitle}>
+                {props.title}
+              </Text>
+              <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
+            </View>
+          }
+          {props.children}
+        </View>
+      </SafeAreaView>
     </Modal>
   );
 }

@@ -51,6 +51,7 @@ class AddReport extends Component {
   @observable stok = 'Stok Toko';
   @observable comment = '';
   @observable bottomSheetVisible = false;
+  @observable msisdnBottomSheetVisible = false;
   @observable imageBrowserVisible = false;
   @observable removeBottomSheetVisible = false;
   @observable removeImageIndex = null;
@@ -189,6 +190,19 @@ class AddReport extends Component {
         console.warn(err);
       });
     });
+  }
+
+  renderMsisdnBottomSheet = () => {
+    return (
+      <BottomSheet
+        isVisible={this.msisdnBottomSheetVisible}
+        full
+        closeBottomSheet={() => this.msisdnBottomSheetVisible = false}
+        title="0 Selected"
+      >
+        <Text>TO DO</Text>
+      </BottomSheet>
+    )
   }
 
   renderBottomSheet = () => {
@@ -356,7 +370,10 @@ class AddReport extends Component {
             <SelectInput 
               label="Pilih stok"
               value={this.stok}
-              onValueChange={value => this.stok = value}
+              onValueChange={value => {
+                this.stok = value;
+                this.soldNumbers = [];
+              }}
               options={["Stok Toko", "Stok Telin"]}
               style={styles.select}
             />
@@ -368,6 +385,8 @@ class AddReport extends Component {
               style={styles.input}
               labelStyle={styles.labelStyle}
               onEndEditing={this.addSoldNumber}
+              onTouchStart={() => this.stok === 'Stok Telin'? this.msisdnBottomSheetVisible = true:null}
+              disabled={this.stok === 'Stok Telin'}
               maxLength={20}
               icon={(style) => {
                 let color = style.tintColor;
@@ -400,6 +419,7 @@ class AddReport extends Component {
           }
         </View>
         {this.renderBottomSheet()}
+        {this.renderMsisdnBottomSheet()}
         {this.renderRemoveBottomSheet()}
       </SafeAreaView>
     );

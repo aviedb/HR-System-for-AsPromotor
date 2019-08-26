@@ -29,7 +29,7 @@ class MSISDN extends Component {
     db.getMSISDN(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
-        doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMM, hh:mm A");
+        doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMMM YYYY");
         return doc;
       });
       this.data = data;

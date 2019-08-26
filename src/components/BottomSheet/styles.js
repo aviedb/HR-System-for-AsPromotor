@@ -1,7 +1,9 @@
 import { StyleSheet } from 'react-native';
 import theme from '../../styles/theme';
+import globalStyles from '../../styles/globalStyles';
 
 const styles = StyleSheet.create({
+  ...globalStyles,
   bottomSheetModal: {
     margin: 0, 
     justifyContent: 'flex-end'
