@@ -246,7 +246,7 @@ class AddReport extends Component {
               description={`${item.subAgent}\n${item.shipOutDate}`}
               style={{
                 ...styles.msisdnItem,
-                backgroundColor: this.soldNumbers.includes(item.msisdn)?'#ddd':'#fff'
+                backgroundColor: this.soldNumbers.includes(item.msisdn)?'#eee':'#fff'
               }}
               titleStyle={styles.msisdnItemTitle}
               onPress={this.toggleTelinMsisdn(item.msisdn)}
@@ -446,7 +446,7 @@ class AddReport extends Component {
                   delete style.tintColor;
                   return icon.getIcon({
                     name: 'plus', 
-                    color, 
+                    color: this.stok === 'Stok Telin'? '#CBD5E0':color, 
                     size: 20, 
                     onPress: this.addSoldNumber
                   });
