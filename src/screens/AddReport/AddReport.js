@@ -98,7 +98,7 @@ class AddReport extends Component {
     }).then(res => {
       if (!res.cancelled) this.images = [...this.images, res];
     }).catch(err => {
-      console.log(err);
+      console.warn(err);
     });
   }
 
