@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: theme["background-basic-color-2"],
-    top: -1
+    marginTop: -1
   },
   item: {
     borderTopColor: theme["border-basic-color-2"],
