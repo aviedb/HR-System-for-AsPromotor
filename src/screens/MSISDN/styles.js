@@ -20,7 +20,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingBottom: 8
   },
+  container: {
+    flex: 1,
+    backgroundColor: theme["background-basic-color-2"],
+    top: -1
+  },
   item: {
+    borderTopColor: theme["border-basic-color-2"],
+    borderTopWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -29,10 +36,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.20,
     shadowRadius: 1.41,
     elevation: 2,
-    backgroundColor: theme["background-basic-color-1"],
-    borderRadius: 4,
-    marginBottom: 12,
-    marginHorizontal: 16,
   },
   preview: {
     borderTopLeftRadius: 5,

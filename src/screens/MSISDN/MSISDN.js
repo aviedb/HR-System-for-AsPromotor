@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { Input, Text, List, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
+import { Input, List, ListItem, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
 import { observer } from 'mobx-react';
@@ -55,20 +55,16 @@ class MSISDN extends Component {
 
   renderItem = ({ item }) => {
     return (
-      <View style={styles.item}>
-        <View style={styles.preview}>
-          <Text style={{color: theme["color-primary-500"]}} category="h6">{item.msisdn}</Text>
-        </View>
-        <View style={styles.content}>
-          <Text category="s1" style={{fontWeight: 'normal'}}>{item.subAgent}</Text>
-          <Text category="s2" style={{color: theme["text-disabled-color"]}}>{item.shipOutDate}</Text>
-        </View>
-      </View>
+      <ListItem
+        title={item.msisdn}
+        description={`${item.subAgent}\n${item.shipOutDate}`}
+        style={styles.item}
+        titleStyle={styles.itemTitle}
+      />
     );
   }
 
   render() {
-
     const data = this.data.filter(e => 
       e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
       e.subAgent.toLowerCase().includes(this.search.toLowerCase())
@@ -111,7 +107,6 @@ class MSISDN extends Component {
             keyExtractor={(item, index) => String(index)}
             onRefresh={this.fetchData}
             refreshing={this.isFetching}
-            ListHeaderComponent={<View style={{height: 12}}/>}
             ListEmptyComponent={<EmptyList 
               message={this.isFetching? 'Loading...':'Empty in MSISDN'}
               playAnimation={this.isFetching}

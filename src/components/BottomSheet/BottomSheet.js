@@ -17,16 +17,19 @@ const BottomSheet = (props) => {
       onSwipeComplete={props.closeBottomSheet}
       style={styles.bottomSheetModal}
     >
+      {props.full && 
+        <SafeAreaView style={{flex: 0, backgroundColor: '#fff'}}/>
+      }
       <SafeAreaView style={props.full? styles.safeArea : null}>
-        <View style={styles.bottomSheetContainer}>
-          <StatusBar backgroundColor={props.full?null:"#474747"}/>
+        <View style={{...styles.bottomSheetContainer, paddingbottom: props.full?0:12}}>
+          <StatusBar backgroundColor={props.full?"#ddd":"#474747"}/>
           <View style={styles.bottomSheetHandle}/>
           {props.title &&
             <View>
               <Text style={styles.bottomSheetTitle}>
                 {props.title}
               </Text>
-              <Divider marginTop={16} marginBottom={16} color={theme["border-basic-color-4"]} />
+              <Divider marginTop={16} marginBottom={props.full?0:16} color={theme["border-basic-color-4"]} />
             </View>
           }
           {props.children}

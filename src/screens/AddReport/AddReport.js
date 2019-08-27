@@ -10,12 +10,8 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
-import {
-  Input,
-  Text,
-  TopNavigation,
-  TopNavigationAction
-} from 'react-native-ui-kitten';
+import moment from 'moment';
+import { Input, Text, TopNavigation, TopNavigationAction, List, ListItem } from 'react-native-ui-kitten';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
@@ -58,6 +54,14 @@ class AddReport extends Component {
   @observable isUploading = false;
   @observable disableAdd = true;
 
+  @observable msisdn = [];
+  @observable isFetching = false;
+  @observable search = '';
+
+  componentDidMount() {
+    this.fetchMsisdn();
+  }
+
   getPermissionAsync = async () => {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -65,6 +69,19 @@ class AddReport extends Component {
         alert('Sorry, we need camera roll permissions to make this work!');
       }
     }
+  }
+
+  fetchMsisdn = () => {
+    this.isFetching = true;
+    db.getMSISDN(res => {
+      let data = res.docs.map(doc => {
+        doc = doc.data();
+        doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMMM YYYY");
+        return doc;
+      });
+      this.msisdn = data;
+      this.isFetching = false;
+    });
   }
 
   pickImage = async (index) => {
@@ -198,15 +215,44 @@ class AddReport extends Component {
     this.msisdnBottomSheetVisible = true;
   }
 
+  toggleTelinMsisdn = (msisdn) => () => {
+    if (this.soldNumbers.includes(msisdn)) {
+      this.soldNumbers = this.soldNumbers.filter((e) => e !== msisdn);
+    } else {
+      this.soldNumbers.push(msisdn);
+    }
+  }
+
   renderMsisdnBottomSheet = () => {
+    const data = this.msisdn.filter(e => 
+      e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
+      e.subAgent.toLowerCase().includes(this.search.toLowerCase())
+    );
+
     return (
       <BottomSheet
         isVisible={this.msisdnBottomSheetVisible}
         full
         closeBottomSheet={() => this.msisdnBottomSheetVisible = false}
-        title="0 Selected"
+        title={`${this.soldNumbers.length} Selected`}
       >
-        <Text>TO DO</Text>
+        <List 
+          data={data}
+          keyExtractor={(item, index) => String(index)}
+          style={styles.msisdnContainer}
+          renderItem={({ item }) => (
+            <ListItem
+              title={item.msisdn}
+              description={`${item.subAgent}\n${item.shipOutDate}`}
+              style={{
+                ...styles.msisdnItem,
+                backgroundColor: this.soldNumbers.includes(item.msisdn)?'#ddd':'#fff'
+              }}
+              titleStyle={styles.msisdnItemTitle}
+              onPress={this.toggleTelinMsisdn(item.msisdn)}
+            />
+          )}
+        />
       </BottomSheet>
     )
   }

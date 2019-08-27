@@ -98,6 +98,16 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontFamily: 'product_sans_medium',
     marginLeft: 16
+  },
+  msisdnContainer: {
+    backgroundColor: theme["background-basic-color-2"]
+  },
+  msisdnItem: {
+    borderBottomColor: theme["border-basic-color-3"],
+    borderBottomWidth: 1,
+  },
+  msisdnItemTitle: {
+    fontWeight: 'normal',
   }
 });
 

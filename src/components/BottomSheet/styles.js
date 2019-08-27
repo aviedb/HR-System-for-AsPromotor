@@ -4,6 +4,10 @@ import globalStyles from '../../styles/globalStyles';
 
 const styles = StyleSheet.create({
   ...globalStyles,
+  safeArea: {
+    flex: 1,
+    backgroundColor: theme["background-basic-color-2"],
+  },
   bottomSheetModal: {
     margin: 0, 
     justifyContent: 'flex-end'
@@ -12,7 +16,6 @@ const styles = StyleSheet.create({
     backgroundColor: 'white',
     borderTopLeftRadius: 12,
     borderTopRightRadius: 12,
-    paddingBottom: 12
   },
   bottomSheetHandle: {
     alignSelf: 'center',
