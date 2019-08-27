@@ -143,8 +143,8 @@ class AddReport extends Component {
     callback.then(images => {
       this.imageBrowserVisible = false;
       this.images = [...this.images, ...images];
-    }).catch((e) => {
-      console.log(e);
+    }).catch(err => {
+      console.warn(e);
     });
   }
 
