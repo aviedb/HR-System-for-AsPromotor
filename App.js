@@ -20,7 +20,6 @@ import KnowledgeBase from './src/screens/KnowledgeBase';
 import ASproReport from './src/screens/ASproReport';
 import PayrollSlip from './src/screens/PayrollSlip';
 import Schedule from './src/screens/Schedule';
-import MSISDNDetail from './src/screens/MSISDNDetail';
 import PdfViewer from './src/screens/PdfViewer';
 import AgendaDetail from './src/screens/AgendaDetail';
 import AddReport from './src/screens/AddReport';
@@ -73,7 +72,6 @@ const HomeTabNavigator = createBottomTabNavigator({
 
 const AppStack = createStackNavigator({
   HomeTabNavigator, // initial app stack is Tab Navigator
-  MSISDNDetail,
   PdfViewer,
   AgendaDetail,
   AddReport
