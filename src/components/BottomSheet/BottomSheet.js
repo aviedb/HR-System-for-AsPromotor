@@ -3,7 +3,6 @@ import { View, Text, StatusBar, SafeAreaView } from 'react-native';
 import Modal from "react-native-modal";
 
 import Divider from '../Divider';
-
 import styles from './styles';
 import theme from '../../styles/theme';
 
@@ -17,9 +16,7 @@ const BottomSheet = (props) => {
       onSwipeComplete={props.closeBottomSheet}
       style={styles.bottomSheetModal}
     >
-      {props.full && 
-        <SafeAreaView style={{flex: 0, backgroundColor: '#fff'}}/>
-      }
+      {props.full && <SafeAreaView style={{flex: 0, backgroundColor: '#fff'}}/>}
       <SafeAreaView style={props.full? styles.safeArea : null}>
         <View style={{...styles.bottomSheetContainer, paddingbottom: props.full?0:12}}>
           <StatusBar backgroundColor={props.full?"#ddd":"#474747"}/>
