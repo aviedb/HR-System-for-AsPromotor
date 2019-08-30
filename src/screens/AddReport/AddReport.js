@@ -74,7 +74,7 @@ class AddReport extends Component {
 
   fetchMsisdn = () => {
     this.isFetching = true;
-    
+
     db.getMSISDN(res => {
       let data = res.docs.map(doc => {
         let id = doc.id;
@@ -196,9 +196,10 @@ class AddReport extends Component {
       if (this.soldNumbers.length === 0 && this.sold.length > 0) {
         this.soldNumbers = [this.sold];
       }
+
       let size = this.soldNumbers.length;
       let data = {
-        title: `${size} number${size>1?'s':''} sold (${this.stok})`,
+        title:  `${size} number${size>1? 's':''} sold (${this.stok})`,
         stok: this.stok,
         soldNumbers: this.soldNumbers,
         note: this.comment,
