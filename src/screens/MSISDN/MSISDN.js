@@ -30,8 +30,10 @@ class MSISDN extends Component {
       let data = res.docs.map(doc => {
         doc = doc.data();
         doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMMM YYYY");
+
+        if (doc.sold) doc.msisdn = `(SOLD) ${doc.msisdn}`;
         return doc;
-      });
+      }).sort((a, b) => (a.sold === b.sold)? 0 : a.sold? 1 : -1); // sort to display SOLD numbers last
       this.data = data;
       this.isFetching = false;
     });

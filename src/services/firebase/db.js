@@ -36,6 +36,12 @@ export const getSchedule = (callback) => {
     .onSnapshot(callback);
 }
 
+export const updateMsisdn = (id) => {
+  return firestore
+    .doc(`msisdn/${id}`)
+    .update({ sold: true });
+}
+
 export const addAsProReport = ({ title, stok, soldNumbers, note, images }) => {
   return firestore
     .collection('asproreport')

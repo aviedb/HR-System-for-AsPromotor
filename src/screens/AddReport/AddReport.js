@@ -44,6 +44,7 @@ class AddReport extends Component {
   @observable title = '';
   @observable sold = '';
   @observable soldNumbers = [];
+  @observable soldNumbersId = [];
   @observable stok = 'Stok Toko';
   @observable comment = '';
   @observable bottomSheetVisible = false;
@@ -75,10 +76,12 @@ class AddReport extends Component {
     this.isFetching = true;
     db.getMSISDN(res => {
       let data = res.docs.map(doc => {
+        let id = doc.id;
         doc = doc.data();
+        doc.id = id;
         doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMMM YYYY");
         return doc;
-      });
+      }).filter(e => !e.sold);
       this.msisdn = data;
       this.isFetching = false;
     });
@@ -201,10 +204,25 @@ class AddReport extends Component {
       }
 
       db.addAsProReport(data).then(() => {
-        this.isUploading = false;
-        this.props.navigation.navigate('HomeTabNavigator');
+        this.updateMsisdnSold(() => {
+          this.isUploading = false;
+          this.props.navigation.navigate('HomeTabNavigator');
+        });
       }).catch(err => {
         console.warn(err);
+      });
+    });
+  }
+
+  updateMsisdnSold = (callback) => {
+    let counter = 0;
+    this.soldNumbersId.map(id => {
+      db.updateMsisdn(id).then(() => {
+        counter++;
+
+        if (counter === this.soldNumbersId.length) {
+          callback();
+        }
       });
     });
   }
@@ -216,10 +234,14 @@ class AddReport extends Component {
   }
 
   toggleTelinMsisdn = (msisdn) => () => {
+    let id = this.msisdn.find(e => e.msisdn === msisdn).id;
+
     if (this.soldNumbers.includes(msisdn)) {
       this.soldNumbers = this.soldNumbers.filter((e) => e !== msisdn);
+      this.soldNumbersId = this.soldNumbersId.filter((e) => e !== id);
     } else {
       this.soldNumbers.push(msisdn);
+      this.soldNumbersId.push(id);
     }
   }
 
@@ -273,7 +295,7 @@ class AddReport extends Component {
           )}
         />
       </BottomSheet>
-    )
+    );
   }
 
   renderBottomSheet = () => {
