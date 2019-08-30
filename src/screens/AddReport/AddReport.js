@@ -74,6 +74,7 @@ class AddReport extends Component {
 
   fetchMsisdn = () => {
     this.isFetching = true;
+    
     db.getMSISDN(res => {
       let data = res.docs.map(doc => {
         let id = doc.id;
@@ -82,6 +83,7 @@ class AddReport extends Component {
         doc.shipOutDate = moment(doc.shipOutDate.toDate()).format("D MMMM YYYY");
         return doc;
       }).filter(e => !e.sold);
+
       this.msisdn = data;
       this.isFetching = false;
     });
