@@ -20,7 +20,7 @@ import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
 
-import { icon } from '../../services/stores';
+import { icon, permission } from '../../services/stores';
 import { db, storage } from '../../services/firebase';
 import Button from '../../components/Button';
 import SelectInput from '../../components/SelectInput';
@@ -63,15 +63,6 @@ class AddReport extends Component {
     this.fetchMsisdn();
   }
 
-  getPermissionAsync = async () => {
-    if (Constants.platform.ios) {
-      const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
-      if (status !== 'granted') {
-        alert('Sorry, we need camera roll permissions to make this work!');
-      }
-    }
-  }
-
   fetchMsisdn = () => {
     this.isFetching = true;
 
@@ -94,7 +85,7 @@ class AddReport extends Component {
     if (index === 3) return this.images = [];
 
     await this.closeBottomSheet();
-    await this.getPermissionAsync();
+    await permission.camaraRoll();
 
     if (index === 2) return this.imageBrowserVisible = true;
 
