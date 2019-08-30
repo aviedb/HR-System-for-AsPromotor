@@ -124,7 +124,7 @@ class AgendaDetail extends Component {
             <Text style={styles.textEmail}>{`${this.email} • `}</Text>
             <Text style={styles.textDate}>{this.date}</Text>
           </View>
-          <Text style={styles.textNote}>{this.note}</Text>
+          <Text style={styles.textNote}>{this.note || "-"}</Text>
           {this.renderSoldNumbers()}
         </View>
       </ScrollView>
