@@ -108,7 +108,12 @@ const styles = StyleSheet.create({
   },
   msisdnItemTitle: {
     fontWeight: 'normal',
-  }
+  },
+  search: {
+    paddingHorizontal: 16,
+    paddingVertical: 8,
+    backgroundColor: theme["background-basic-color-2"]
+  },
 });
 
 export default styles;

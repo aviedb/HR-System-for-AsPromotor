@@ -223,6 +223,10 @@ class AddReport extends Component {
     }
   }
 
+  handleChange = (key) => (value) => {
+    this[key] = value;
+  }
+
   renderMsisdnBottomSheet = () => {
     const data = this.msisdn.filter(e => 
       e.msisdn.toLowerCase().includes(this.search.toLowerCase()) ||
@@ -236,6 +240,21 @@ class AddReport extends Component {
         closeBottomSheet={() => this.msisdnBottomSheetVisible = false}
         title={`${this.soldNumbers.length} Selected`}
       >
+        <View style={styles.search}>
+          <Input 
+            placeholder="Search by MSISDN or sub agent"
+            value={this.search}
+            onChangeText={this.handleChange('search')}
+            size="small"
+            style={styles.input}
+            labelStyle={styles.labelStyle}
+            icon={(style) => {
+              let color = style.tintColor;
+              delete style.tintColor;
+              return icon.getIcon({ name: 'search1', color });
+            }}
+          />
+        </View>
         <List 
           data={data}
           keyExtractor={(item, index) => String(index)}
