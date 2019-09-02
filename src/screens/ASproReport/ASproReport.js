@@ -10,6 +10,7 @@ import { observable } from 'mobx';
 import { db } from '../../services/firebase';
 import Fab from '../../components/FloatingActionButton';
 import Touchable from '../../components/Touchable';
+import EmptyList from '../../components/EmptyList';
 
 import styles from './styles';
 import theme from '../../styles/theme';
@@ -21,6 +22,7 @@ const today = new Date().toISOString().split('T')[0];
 class ASproReport extends Component {
 
   @observable items = [];
+  @observable isFetching = true;
 
   componentDidMount() {
     this.fetchData();
@@ -45,6 +47,7 @@ class ASproReport extends Component {
       });
 
       this.items = items;
+      this.isFetching = false;
     });
   }
 
@@ -162,6 +165,11 @@ class ASproReport extends Component {
               sections={this.items.slice()}
               renderItem={this.renderItem}
               sectionStyle={styles.section}
+              ListEmptyComponent={<EmptyList 
+                message={this.isFetching? 'Loading...':'Empty in Schedule'}
+                playAnimation={false}
+              />}
+              contentContainerStyle={{ flexGrow: 1 }}
             />
           </CalendarProvider>
           <Fab 

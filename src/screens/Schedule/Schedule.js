@@ -20,6 +20,7 @@ const today = new Date().toISOString().split('T')[0];
 class ExpandableCalendarScreen extends Component {
 
   @observable items = [];
+  @observable isFetching = true;
 
   componentDidMount() {
     this.fetchData();
@@ -44,6 +45,7 @@ class ExpandableCalendarScreen extends Component {
       });
 
       this.items = items;
+      this.isFetching = false;
     });
   }
 
