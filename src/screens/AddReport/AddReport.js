@@ -215,6 +215,8 @@ class AddReport extends Component {
         if (counter === this.soldNumbersId.length) {
           callback();
         }
+      }).catch(err => {
+        console.warn(err);
       });
     });
   }
