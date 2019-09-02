@@ -3,7 +3,7 @@ import { light as lightTheme } from '@eva-design/eva';
 const pallete = {
   // basic colors for backgrounds, borders, texts
   "color-basic-100": "#FFFFFF",
-  "color-basic-200": "#F5F5F5",
+  "color-basic-200": "#F7F7F7",
   "color-basic-300": "#EEEEEE",
   "color-basic-400": "#E2E8F0",
   "color-basic-500": "#CBD5E0",
