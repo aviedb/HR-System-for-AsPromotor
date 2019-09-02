@@ -13,9 +13,7 @@ import {
 import moment from 'moment';
 import { Input, Text, TopNavigation, TopNavigationAction, List, ListItem } from 'react-native-ui-kitten';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Constants from 'expo-constants';
 import * as ImagePicker from 'expo-image-picker';
-import * as Permissions from 'expo-permissions';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { MaterialIcons } from '@expo/vector-icons';
