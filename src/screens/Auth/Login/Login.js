@@ -71,7 +71,7 @@ class Login extends Component {
                 <Text category="p1" style={styles.forget}>Forgot your password?</Text>
               </View>
             </KeyboardAwareScrollView>
-            <View style={styles.footer}>
+            {/* <View style={styles.footer}>
               <Text category="p1">{"Don't have an account? "}</Text>
               <TouchableOpacity>
                 <Text 
@@ -81,7 +81,7 @@ class Login extends Component {
                   Sign up
                 </Text>
               </TouchableOpacity>
-            </View>
+            </View> */}
           </View>
         </SafeAreaView>
       </Fragment>
