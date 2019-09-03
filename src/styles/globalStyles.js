@@ -34,4 +34,50 @@ const globalStyles = StyleSheet.create({
   }
 });
 
+const calendarStyle = () => {
+  const themeColor = theme["color-primary-default"];
+  const lightThemeColor = theme["color-primary-disabled"];
+  const disabledColor = theme["color-basic-disabled"];
+  const black = theme["text-basic-color"];
+  const grey = theme["text-hint-color"];
+  const white = theme["text-alternate-color"];
+  
+  return {
+    // arrows
+    arrowColor: black,
+    arrowStyle: {padding: 0},
+    // month
+    monthTextColor: black,
+    textMonthFontFamily: 'product_sans_medium',
+    textMonthFontSize: 18,
+    // day names
+    textSectionTitleColor: grey,
+    textDayHeaderFontSize: 12,
+    textDayHeaderFontFamily: 'product_sans_medium',
+    // today
+    todayBackgroundColor: lightThemeColor,
+    todayTextColor: themeColor,
+    // dates
+    dayTextColor: themeColor,
+    textDayFontSize: 18,
+    textDayFontFamily: 'product_sans_regular',
+    textDayStyle: {marginTop: Platform.OS === 'android' ? 2 : 4},
+    // selected date
+    selectedDayBackgroundColor: themeColor,
+    selectedDayTextColor: white,
+    // disabled date
+    textDisabledColor: disabledColor,
+    // dot (marked date)
+    dotColor: themeColor,
+    selectedDotColor: white,
+    disabledDotColor: disabledColor,
+    dotStyle: {marginTop: -2}
+  };
+}
+
+export {
+  globalStyles,
+  calendarStyle
+}
+
 export default globalStyles

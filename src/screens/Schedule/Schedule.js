@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { Platform, View, SafeAreaView, StatusBar } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
@@ -12,6 +12,7 @@ import EmptyList from '../../components/EmptyList';
 
 import { db } from '../../services/firebase';
 import styles from './styles';
+import { calendarStyle } from '../../styles/globalStyles';
 import theme from '../../styles/theme';
 
 const today = new Date().toISOString().split('T')[0];
@@ -58,47 +59,6 @@ class ExpandableCalendarScreen extends Component {
       }
     });
     return marked;
-  }
-
-  getTheme = () => {
-    const themeColor = theme["color-primary-default"];
-    const lightThemeColor = theme["color-primary-disabled"];
-    const disabledColor = theme["color-basic-disabled"];
-    const black = theme["text-basic-color"];
-    const grey = theme["text-hint-color"];
-    const white = theme["text-alternate-color"];
-    
-    return {
-      // arrows
-      arrowColor: black,
-      arrowStyle: {padding: 0},
-      // month
-      monthTextColor: black,
-      textMonthFontFamily: 'product_sans_medium',
-      textMonthFontSize: 18,
-      // day names
-      textSectionTitleColor: grey,
-      textDayHeaderFontSize: 12,
-      textDayHeaderFontFamily: 'product_sans_medium',
-      // today
-      todayBackgroundColor: lightThemeColor,
-      todayTextColor: themeColor,
-      // dates
-      dayTextColor: themeColor,
-      textDayFontSize: 18,
-      textDayFontFamily: 'product_sans_regular',
-      textDayStyle: {marginTop: Platform.OS === 'android' ? 2 : 4},
-      // selected date
-      selectedDayBackgroundColor: themeColor,
-      selectedDayTextColor: white,
-      // disabled date
-      textDisabledColor: disabledColor,
-      // dot (marked date)
-      dotColor: themeColor,
-      selectedDotColor: white,
-      disabledDotColor: disabledColor,
-      dotStyle: {marginTop: -2}
-    };
   }
 
   renderEmptyItem() {
@@ -153,7 +113,7 @@ class ExpandableCalendarScreen extends Component {
           >
             <ExpandableCalendar 
               markedDates={this.getMarkedDates()}
-              theme={this.getTheme()}
+              theme={calendarStyle()}
               leftArrowImageSource={require('../../assets/images/previous.png')}
               rightArrowImageSource={require('../../assets/images/next.png')}
               style={styles.calendarHeader}

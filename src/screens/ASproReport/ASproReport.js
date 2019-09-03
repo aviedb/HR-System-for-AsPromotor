@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import moment from 'moment';
 import React, { Component } from 'react';
-import { View, Platform, SafeAreaView, StatusBar } from 'react-native';
+import { View, SafeAreaView, StatusBar } from 'react-native';
 import { TopNavigation, Text } from 'react-native-ui-kitten';
 import { ExpandableCalendar, CalendarProvider, AgendaList } from 'react-native-calendars';
 import { observer } from 'mobx-react';
@@ -14,6 +14,7 @@ import EmptyList from '../../components/EmptyList';
 
 import styles from './styles';
 import theme from '../../styles/theme';
+import { calendarStyle } from '../../styles/globalStyles';
 import { icon } from '../../services/stores';
 
 const today = new Date().toISOString().split('T')[0];
@@ -60,47 +61,6 @@ class ASproReport extends Component {
       }
     });
     return marked;
-  }
-
-  getTheme = () => {
-    const themeColor = theme["color-primary-default"];
-    const lightThemeColor = theme["color-primary-disabled"];
-    const disabledColor = theme["color-basic-disabled"];
-    const black = theme["text-basic-color"];
-    const grey = theme["text-hint-color"];
-    const white = theme["text-alternate-color"];
-    
-    return {
-      // arrows
-      arrowColor: black,
-      arrowStyle: {padding: 0},
-      // month
-      monthTextColor: black,
-      textMonthFontFamily: 'product_sans_medium',
-      textMonthFontSize: 18,
-      // day names
-      textSectionTitleColor: grey,
-      textDayHeaderFontSize: 12,
-      textDayHeaderFontFamily: 'product_sans_medium',
-      // today
-      todayBackgroundColor: lightThemeColor,
-      todayTextColor: themeColor,
-      // dates
-      dayTextColor: themeColor,
-      textDayFontSize: 18,
-      textDayFontFamily: 'product_sans_regular',
-      textDayStyle: {marginTop: Platform.OS === 'android' ? 2 : 4},
-      // selected date
-      selectedDayBackgroundColor: themeColor,
-      selectedDayTextColor: white,
-      // disabled date
-      textDisabledColor: disabledColor,
-      // dot (marked date)
-      dotColor: themeColor,
-      selectedDotColor: white,
-      disabledDotColor: disabledColor,
-      dotStyle: {marginTop: -2}
-    };
   }
 
   renderEmptyItem() {
@@ -157,7 +117,7 @@ class ASproReport extends Component {
               // hideKnob
               // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
               markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
-              theme={this.getTheme()}
+              theme={calendarStyle()}
               leftArrowImageSource={require('../../assets/images/previous.png')}
               rightArrowImageSource={require('../../assets/images/next.png')}
               style={styles.calendarHeader}
