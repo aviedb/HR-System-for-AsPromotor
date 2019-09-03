@@ -1,5 +1,5 @@
 import React, { Component, Fragment } from 'react';
-import { StatusBar, View, TouchableOpacity, SafeAreaView } from 'react-native';
+import { StatusBar, View, TouchableOpacity, ActivityIndicator, SafeAreaView } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Input, Text } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
@@ -20,20 +20,26 @@ class Login extends Component {
 
   @observable email = '';
   @observable password = '';
+  @observable loading = false;
 
   handleChange = (key) => (value) => {
     this[key] = value;
   }
 
   attemptLogin = () => {
+    this.loading = true;
     console.log('Signing in');
 
     auth.doSignInWithEmailAndPassword(this.email, this.password)
       .then(() => {
         console.log('Signed in');
+        this.loading = false;
         this.props.navigation.navigate('AppStack');
       }).catch(err => {
         console.warn(err);
+        alert('Something went wrong');
+        this.password = '';
+        this.loading = false;
       });
   }
 
@@ -67,7 +73,10 @@ class Login extends Component {
                   secureTextEntry
                   style={styles.input}
                 />
-                <Button onPress={this.attemptLogin}>Login</Button>
+                {this.loading
+                  ? <ActivityIndicator size="large" color={theme["text-primary-color"]}/>
+                  : <Button onPress={this.attemptLogin}>Login</Button>
+                }
                 <Text category="p1" style={styles.forget}>Forgot your password?</Text>
               </View>
             </KeyboardAwareScrollView>
