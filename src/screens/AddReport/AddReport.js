@@ -144,6 +144,7 @@ class AddReport extends Component {
 
   addSoldNumber = () => {
     if (this.sold.length < 1) return;
+    if (this.soldNumbers.includes(this.sold)) return this.sold = '';
 
     this.soldNumbers = [...this.soldNumbers, this.sold];
     this.sold = '';
@@ -160,8 +161,9 @@ class AddReport extends Component {
     console.log('Uploading images');
     let imagesUrl = [];
 
+    let filename;
     for (let i = 0; i < this.images.length; i++) {
-      let filename = `${this.images[i].filename}-${new Date().toISOString()}`;
+      filename = `${this.images[i].filename}-${new Date().toISOString()}`;
 
       storage.doUploadImage(this.images[i], filename)
         .then(() => {

@@ -84,7 +84,9 @@ class ExpandableCalendarScreen extends Component {
           </View>
           <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.title}</Text>
-            <Text style={styles.itemNoteText}>{item.notePreview}</Text>
+            {!!item.notePreview &&
+              <Text style={styles.itemNoteText}>{item.notePreview}</Text>
+            }
           </View>
         </View>
       </Touchable>
