@@ -127,6 +127,7 @@ class AgendaDetail extends Component {
           </View>
           <Text style={styles.textNote}>{this.note || "-"}</Text>
           {this.renderSoldNumbers()}
+          <Text style={styles.contentDot}>•</Text>
         </View>
       </ScrollView>
     );

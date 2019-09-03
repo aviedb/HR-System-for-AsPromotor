@@ -110,6 +110,13 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 6
   },
+  contentDot: {
+    alignSelf: 'center',
+    marginVertical: 8,
+    color: theme["text-disabled-color"],
+    fontSize: 16,
+    fontFamily: 'product_sans_regular',
+  }
 });
 
 export default styles;
