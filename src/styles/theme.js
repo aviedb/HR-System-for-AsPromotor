@@ -149,7 +149,7 @@ const basic = {
 
   // others
   "outline-color"      : pallete["color-basic-400"],
-  "status-bar-android" : "#EEEEEE"
+  "status-bar-android" : pallete["color-basic-300"]
 }
 
 export default {

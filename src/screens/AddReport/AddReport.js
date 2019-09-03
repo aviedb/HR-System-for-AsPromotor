@@ -207,6 +207,8 @@ class AddReport extends Component {
   }
 
   updateMsisdnSold = (callback) => {
+    if (this.stok === 'Stok Toko') return callback();
+    
     let counter = 0;
     this.soldNumbersId.map(id => {
       db.updateMsisdn(id).then(() => {

@@ -32,6 +32,7 @@ export const getPayrollSlip = (callback) => {
 export const getSchedule = (callback) => {
   return firestore
     .collection('schedule')
+    .where('email', '==', auth.currentUser.email)
     .orderBy('date')
     .onSnapshot(callback);
 }
