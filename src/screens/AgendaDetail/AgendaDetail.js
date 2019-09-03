@@ -92,19 +92,20 @@ class AgendaDetail extends Component {
 
     return (
       <View style={styles.soldNumberWrapper}>
-        <View style={styles.soldNumberItem}>
-          <Text style={styles.soldNumberTitle}>
+        <View style={styles.soldNumberTitle}>
+          <Text style={styles.soldNumberTitleText}>
             {`Sold Number${this.soldNumbers.length>1?'s':''}:`}
           </Text>
         </View>
-        {this.soldNumbers.map((number, i) => (
-          <View key={i}>
-            <Divider color={theme["border-basic-color-4"]} />
-            <View style={styles.soldNumberItem}>
-              <Text style={styles.soldNumberText}>{number}</Text>
+        <View style={{ paddingVertical: 6 }}>
+          {this.soldNumbers.map((number, i) => (
+            <View key={i}>
+              <View style={styles.soldNumberItem}>
+                <Text style={styles.soldNumberText}>{`•\t${number}`}</Text>
+              </View>
             </View>
-          </View>
-        ))}
+          ))}
+        </View>
       </View>
     );
   }

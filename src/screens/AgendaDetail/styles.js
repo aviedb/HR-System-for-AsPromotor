@@ -85,6 +85,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   soldNumberTitle: {
+    paddingHorizontal: 20,
+    paddingVertical: 12,
+    backgroundColor: theme["background-basic-color-3"],
+    borderTopLeftRadius: 4,
+    borderTopRightRadius: 4
+  },
+  soldNumberTitleText: {
     fontFamily: 'product_sans_medium',
     fontSize: 16,
   },
@@ -101,7 +108,7 @@ const styles = StyleSheet.create({
   },
   soldNumberItem: {
     paddingHorizontal: 20,
-    paddingVertical: 12
+    paddingVertical: 6
   },
 });
 
