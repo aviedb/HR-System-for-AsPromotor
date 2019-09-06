@@ -94,10 +94,9 @@ class MSISDN extends Component {
               Logout
             </MenuItem>
           </Menu>
-        )
-      }
+        )}
       />
-    )
+    );
   }
 
   render() {
