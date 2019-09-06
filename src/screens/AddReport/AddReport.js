@@ -161,15 +161,16 @@ class AddReport extends Component {
     console.log('Uploading images');
     let imagesUrl = [];
 
-    let filename;
     for (let i = 0; i < this.images.length; i++) {
-      filename = `${this.images[i].filename}-${new Date().toISOString()}`;
+      let filename = `${this.images[i].filename}-${new Date().toISOString()}`;
 
       storage.doUploadImage(this.images[i], filename)
         .then(() => {
+          console.log(filename);
           return storage.getDownloadUrl(filename);
         }).then(res => {
           imagesUrl.push(res);
+          console.log(res);
 
           if (imagesUrl.length === this.images.length) {
             callback(imagesUrl);
