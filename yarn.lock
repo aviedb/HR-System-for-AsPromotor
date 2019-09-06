@@ -4326,6 +4326,12 @@ react-native-maps@0.24.2:
   version "0.24.2"
   resolved "https://registry.yarnpkg.com/react-native-maps/-/react-native-maps-0.24.2.tgz#19974f967cb0c2e24dab74ca879118e0932571b2"
 
+react-native-material-menu@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-material-menu/-/react-native-material-menu-1.0.0.tgz#bf3d366f7d7044accae1bc6fffe1cf13ac8d88ec"
+  dependencies:
+    prop-types "^15.6.0"
+
 react-native-modal@^11.3.1:
   version "11.3.1"
   resolved "https://registry.yarnpkg.com/react-native-modal/-/react-native-modal-11.3.1.tgz#9f67728b36fdc299f97d3da1d131190a0337b89b"

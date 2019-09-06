@@ -24,6 +24,7 @@ import PdfViewer from './src/screens/PdfViewer';
 import AgendaDetail from './src/screens/AgendaDetail';
 import AddReport from './src/screens/AddReport';
 import AuthLoading from './src/screens/Auth/AuthLoading';
+import Profile from './src/screens/Profile';
 
 import { icon } from './src/services/stores';
 import theme from './src/styles/theme';
@@ -74,7 +75,8 @@ const AppStack = createStackNavigator({
   HomeTabNavigator, // initial app stack is Tab Navigator
   PdfViewer,
   AgendaDetail,
-  AddReport
+  AddReport,
+  Profile
 });
 
 const AuthStack = createStackNavigator({

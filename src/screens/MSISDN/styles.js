@@ -51,6 +51,15 @@ const styles = StyleSheet.create({
   },
   itemTitle: {
     fontWeight: 'normal',
+  },
+  menuItem: {
+
+  },
+  menuItemText: {
+    fontSize: 16,
+    fontWeight: 'normal',
+    fontFamily: 'helvetica_neue_md',
+    color: theme["text-basic-color"]
   }
 });
 

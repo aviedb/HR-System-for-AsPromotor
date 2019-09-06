@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { Input, List, ListItem, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
+import { Input, List, ListItem, TopNavigation, TopNavigationAction, Text } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
+import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 import { icon } from '../../services/stores';
 import EmptyList from '../../components/EmptyList';
@@ -55,6 +56,11 @@ class MSISDN extends Component {
       });
   }
 
+  navigateToProfile = () => {
+    this._menu.hide();
+    this.props.navigation.navigate('Profile');
+  }
+
   renderItem = ({ item }) => {
     return (
       <ListItem
@@ -64,6 +70,34 @@ class MSISDN extends Component {
         titleStyle={styles.itemTitle}
       />
     );
+  }
+
+  renderRightControls = () => {
+    return (
+      <TopNavigationAction
+        icon={() => (
+          <Menu
+            ref={ref => this._menu = ref}
+            button={icon.getIcon({ name: 'ellipsis1', onPress: () => this._menu.show() })}
+          >
+            <MenuItem
+              onPress={this.navigateToProfile}
+              textStyle={styles.menuItemText}
+            >
+              Profile
+            </MenuItem>
+            <MenuItem
+              onPress={this.attemptLogout}
+              textStyle={{ ...styles.menuItemText, color: theme["text-danger-color"] }}
+              underlayColor={theme["color-danger-100"]}
+            >
+              Logout
+            </MenuItem>
+          </Menu>
+        )
+      }
+      />
+    )
   }
 
   render() {
@@ -84,10 +118,7 @@ class MSISDN extends Component {
               title="MSISDN"
               alignment="center"
               titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
-              rightControls={<TopNavigationAction
-                icon={() => icon.getIcon({ name: 'logout' })}
-                onPress={this.attemptLogout}
-              />}
+              rightControls={this.renderRightControls()}
             />
             <View style={styles.search}>
               <Input 
