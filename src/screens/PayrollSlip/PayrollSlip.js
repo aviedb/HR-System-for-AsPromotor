@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { ListItem, List, TopNavigation } from 'react-native-ui-kitten';
+import { List, TopNavigation } from 'react-native-ui-kitten';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
 import moment from 'moment';

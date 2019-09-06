@@ -111,17 +111,11 @@ class ASproReport extends Component {
           />
           <CalendarProvider date={today} disabledOpacity={0.6}>
             <ExpandableCalendar 
-              // horizontal={false}
-              // hideArrows
-              // disablePan
-              // hideKnob
-              // initialPosition={'open'} // ExpandableCalendar.positions.OPEN - can't find static positions
-              markedDates={this.getMarkedDates()} // {'2019-06-01': {marked: true}, '2019-06-02': {marked: true}, '2019-06-03': {marked: true}};
+              markedDates={this.getMarkedDates()}
               theme={calendarStyle()}
               leftArrowImageSource={require('../../assets/images/previous.png')}
               rightArrowImageSource={require('../../assets/images/next.png')}
               style={styles.calendarHeader}
-              // headerStyle={styles.calendar} // for horizontal only
             />
             <AgendaList
               sections={this.items.slice()}
