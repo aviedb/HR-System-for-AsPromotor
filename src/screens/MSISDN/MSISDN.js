@@ -45,6 +45,7 @@ class MSISDN extends Component {
   }
 
   attemptLogout = async () => {
+    this._menu.hide();
     console.log('Signing out');
 
     auth.doSignOut()
