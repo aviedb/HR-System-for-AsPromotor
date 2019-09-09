@@ -36,7 +36,7 @@ const globalStyles = StyleSheet.create({
 
 const calendarStyle = () => {
   const themeColor = theme["color-primary-default"];
-  const lightThemeColor = theme["color-primary-200"];
+  const lightThemeColor = theme["color-primary-100"];
   const disabledColor = theme["color-basic-disabled"];
   const black = theme["text-basic-color"];
   const grey = theme["text-hint-color"];
