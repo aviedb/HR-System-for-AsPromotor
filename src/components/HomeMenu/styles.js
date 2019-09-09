@@ -3,6 +3,7 @@ import globalStyles from '../../styles/globalStyles';
 import theme from '../../styles/theme';
 
 const styles = StyleSheet.create({
+  ...globalStyles,
   menuItemText: {
     fontSize: 16,
     fontWeight: 'normal',

@@ -1,16 +1,15 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { Input, List, ListItem, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
+import { Input, List, ListItem, TopNavigation } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
 import { observer } from 'mobx-react';
 import { observable } from 'mobx';
-import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 import { icon } from '../../services/stores';
 import EmptyList from '../../components/EmptyList';
 import HomeMenu from '../../components/HomeMenu';
-import { auth, db } from '../../services/firebase';
+import { db } from '../../services/firebase';
 
 import styles from './styles';
 import theme from '../../styles/theme';
