@@ -28,13 +28,13 @@ class ExpandableCalendarScreen extends Component {
   }
 
   fetchData = () => {
-    db.getAsProReport(res => {
+    db.getSchedule(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
-        doc.hour = moment(doc.date.toDate()).format('HH:mm');
-        doc.formattedDate = moment(doc.date.toDate()).format('YYYY-MM-DD');
-        let split = doc.note.split('\n');
-        doc.notePreview = split.length === 1? split[0] : `${split[0]} ...`;
+        console.log(doc.start)
+        doc.startHour = moment(doc.start.toDate()).format('HH:mm');
+        doc.endHour = moment(doc.end.toDate()).format('HH:mm');
+        doc.formattedDate = moment(doc.start.toDate()).format('YYYY-MM-DD');
         return doc;
       });
 
@@ -73,19 +73,22 @@ class ExpandableCalendarScreen extends Component {
     if (_.isEmpty(item)) {
       return this.renderEmptyItem();
     }
+
+    // approved
+    // declined
+    // processing
     
     return (
-      <Touchable activeOpacity={.7} onPress={() => this.props.navigation.navigate('AgendaDetail', {
-        item: item
-      })}>
+      <Touchable activeOpacity={.7}>
         <View style={styles.item}>
           <View style={{ justifyContent: 'center' }}>
-            <Text style={styles.itemHourText}>{item.hour}</Text>
+            <Text style={styles.itemHourText}>{`${item.startHour} -`}</Text>
+            <Text style={styles.itemHourText}>{item.endHour}</Text>
           </View>
           <View style={{ paddingLeft: 20, flex: 1 }}>
-            <Text style={styles.itemTitleText}>{item.title}</Text>
-            {!!item.notePreview &&
-              <Text style={styles.itemNoteText}>{item.notePreview}</Text>
+            <Text style={styles.itemTitleText}>{item.location}</Text>
+            {!!item.status &&
+              <Text style={styles.itemNoteText}>{item.status}</Text>
             }
           </View>
         </View>
