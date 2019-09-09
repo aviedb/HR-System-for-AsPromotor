@@ -88,6 +88,13 @@ class MSISDN extends Component {
               Profile
             </MenuItem>
             <MenuItem
+              onPress={this.navigateToProfile}
+              textStyle={styles.menuItemText}
+            >
+              Settings
+            </MenuItem>
+            <MenuDivider/>
+            <MenuItem
               onPress={this.attemptLogout}
               textStyle={{ ...styles.menuItemText, color: theme["text-danger-color"] }}
               underlayColor={theme["color-danger-100"]}
