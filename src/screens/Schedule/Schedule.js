@@ -89,7 +89,9 @@ class ExpandableCalendarScreen extends Component {
           </View>
           <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.location}</Text>
-            <Text style={{...styles.itemNoteText, color: color[item.status]}}>{item.status}</Text>
+            <Text style={{...styles.itemNoteText, color: color[item.status] || theme["text-hint-color"]}}>
+              {item.status}
+            </Text>
           </View>
         </View>
       </Touchable>
