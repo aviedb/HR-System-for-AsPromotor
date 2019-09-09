@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, SafeAreaView, StatusBar } from 'react-native';
-import { Input, List, ListItem, TopNavigation, TopNavigationAction, Text } from 'react-native-ui-kitten';
+import { Input, List, ListItem, TopNavigation, TopNavigationAction } from 'react-native-ui-kitten';
 import _ from 'lodash';
 import moment from 'moment';
 import { observer } from 'mobx-react';

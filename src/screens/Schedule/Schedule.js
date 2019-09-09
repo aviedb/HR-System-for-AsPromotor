@@ -31,7 +31,6 @@ class ExpandableCalendarScreen extends Component {
     db.getSchedule(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
-        console.log(doc.start)
         doc.startHour = moment(doc.start.toDate()).format('HH:mm');
         doc.endHour = moment(doc.end.toDate()).format('HH:mm');
         doc.formattedDate = moment(doc.start.toDate()).format('YYYY-MM-DD');
