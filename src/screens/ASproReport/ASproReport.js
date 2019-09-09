@@ -11,6 +11,7 @@ import { db } from '../../services/firebase';
 import Fab from '../../components/FloatingActionButton';
 import Touchable from '../../components/Touchable';
 import EmptyList from '../../components/EmptyList';
+import HomeMenu from '../../components/HomeMenu';
 
 import styles from './styles';
 import theme from '../../styles/theme';
@@ -108,6 +109,7 @@ class ASproReport extends Component {
             alignment="center"
             style={styles.header}
             titleStyle={styles.headerTitle}
+            rightControls={<HomeMenu navigation={this.props.navigation} />}
           />
           <CalendarProvider date={today} disabledOpacity={0.6}>
             <ExpandableCalendar 

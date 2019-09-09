@@ -9,6 +9,7 @@ import moment from 'moment';
 
 import Touchable from '../../components/Touchable';
 import EmptyList from '../../components/EmptyList';
+import HomeMenu from '../../components/HomeMenu';
 
 import { db } from '../../services/firebase';
 import styles from './styles';
@@ -110,6 +111,7 @@ class ExpandableCalendarScreen extends Component {
             alignment="center"
             style={styles.header}
             titleStyle={styles.headerTitle}
+            rightControls={<HomeMenu navigation={this.props.navigation} />}
           />
           <CalendarProvider
             date={today} 

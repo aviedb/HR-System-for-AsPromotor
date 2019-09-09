@@ -7,6 +7,7 @@ import moment from 'moment';
 
 import Card from '../../components/Card';
 import EmptyList from '../../components/EmptyList';
+import HomeMenu from '../../components/HomeMenu';
 
 import { db } from '../../services/firebase';
 import styles from './styles';
@@ -63,6 +64,7 @@ class KnowledgeBase extends Component {
             alignment="center"
             style={styles.header}
             titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
+            rightControls={<HomeMenu navigation={this.props.navigation} />}
           />
           <List 
             data={this.data}

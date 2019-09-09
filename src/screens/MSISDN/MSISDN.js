@@ -9,6 +9,7 @@ import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 
 import { icon } from '../../services/stores';
 import EmptyList from '../../components/EmptyList';
+import HomeMenu from '../../components/HomeMenu';
 import { auth, db } from '../../services/firebase';
 
 import styles from './styles';
@@ -44,24 +45,6 @@ class MSISDN extends Component {
     this[key] = value;
   }
 
-  attemptLogout = async () => {
-    this._menu.hide();
-    console.log('Signing out');
-
-    auth.doSignOut()
-      .then(() => {
-        console.log('Signed out');
-        this.props.navigation.navigate('AuthStack');
-      }).catch(err => {
-        console.warn(err);
-      });
-  }
-
-  navigateToProfile = () => {
-    this._menu.hide();
-    this.props.navigation.navigate('Profile');
-  }
-
   renderItem = ({ item }) => {
     return (
       <ListItem
@@ -69,40 +52,6 @@ class MSISDN extends Component {
         description={`${item.subAgent}\n${item.shipOutDate}`}
         style={styles.item}
         titleStyle={styles.itemTitle}
-      />
-    );
-  }
-
-  renderRightControls = () => {
-    return (
-      <TopNavigationAction
-        icon={() => (
-          <Menu
-            ref={ref => this._menu = ref}
-            button={icon.getIcon({ name: 'ellipsis1', onPress: () => this._menu.show() })}
-          >
-            <MenuItem
-              onPress={this.navigateToProfile}
-              textStyle={styles.menuItemText}
-            >
-              Profile
-            </MenuItem>
-            <MenuItem
-              onPress={this.navigateToProfile}
-              textStyle={styles.menuItemText}
-            >
-              Settings
-            </MenuItem>
-            <MenuDivider/>
-            <MenuItem
-              onPress={this.attemptLogout}
-              textStyle={{ ...styles.menuItemText, color: theme["text-danger-color"] }}
-              underlayColor={theme["color-danger-100"]}
-            >
-              Logout
-            </MenuItem>
-          </Menu>
-        )}
       />
     );
   }
@@ -125,7 +74,7 @@ class MSISDN extends Component {
               title="MSISDN"
               alignment="center"
               titleStyle={{...styles.headerTitle, ...styles.headerCenterTitle}}
-              rightControls={this.renderRightControls()}
+              rightControls={<HomeMenu navigation={this.props.navigation} />}
             />
             <View style={styles.search}>
               <Input 
