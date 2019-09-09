@@ -74,9 +74,11 @@ class ExpandableCalendarScreen extends Component {
       return this.renderEmptyItem();
     }
 
-    // approved
-    // declined
-    // processing
+    let color = {
+      approved: theme["text-success-color"],
+      declined: theme["text-danger-color"],
+      processing: theme["text-warning-color"]
+    }
     
     return (
       <Touchable activeOpacity={.7}>
@@ -87,9 +89,7 @@ class ExpandableCalendarScreen extends Component {
           </View>
           <View style={{ paddingLeft: 20, flex: 1 }}>
             <Text style={styles.itemTitleText}>{item.location}</Text>
-            {!!item.status &&
-              <Text style={styles.itemNoteText}>{item.status}</Text>
-            }
+            <Text style={{...styles.itemNoteText, color: color[item.status]}}>{item.status}</Text>
           </View>
         </View>
       </Touchable>
