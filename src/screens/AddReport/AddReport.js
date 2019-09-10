@@ -287,6 +287,7 @@ class AddReport extends Component {
                 backgroundColor: this.soldNumbers.includes(item.msisdn)?'#eee':'#fff'
               }}
               titleStyle={styles.msisdnItemTitle}
+              descriptionStyle={styles.msisdnItemSubtitle}
               onPress={this.toggleTelinMsisdn(item.msisdn)}
             />
           )}

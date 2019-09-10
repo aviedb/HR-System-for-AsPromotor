@@ -108,6 +108,13 @@ const styles = StyleSheet.create({
   },
   msisdnItemTitle: {
     fontWeight: 'normal',
+    fontFamily: 'product_sans_medium',
+    fontSize: 15,
+    color: theme["text-hint-color"]
+  },
+  msisdnItemSubtitle: {
+    fontWeight: 'normal',
+    color: theme["color-basic-700"]
   },
   search: {
     paddingHorizontal: 16,

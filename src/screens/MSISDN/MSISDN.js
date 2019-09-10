@@ -53,6 +53,7 @@ class MSISDN extends Component {
         description={`${item.subAgent}\n${item.shipOutDate}`}
         style={styles.item}
         titleStyle={styles.itemTitle}
+        descriptionStyle={styles.itemSubtitle}
       />
     );
   }
