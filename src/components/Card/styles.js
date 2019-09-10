@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   content: {
-    paddingHorizontal: 12,
+    paddingHorizontal: 16,
     paddingVertical: 16
   },
   viewButton: {
@@ -44,18 +44,19 @@ const styles = StyleSheet.create({
     fontFamily: 'product_sans_medium'
   },
   titleText: {
-    color: theme["text-hint-color"],
-    fontWeight: 'normal',
-    fontFamily: 'product_sans_medium'
+    fontFamily: 'helvetica_neue_md',
+    fontSize: 16
   },
   subtitleText: {
-    color: theme["text-disabled-color"],
-    fontWeight: 'normal',
-    fontFamily: 'product_sans_regular'
+    color: theme["text-hint-color"],
+    fontFamily: 'helvetica_neue_lt',
+    fontSize: 16,
+    marginTop: 4
   },
   buttonText: {
     color: theme["text-alternate-color"],
-    fontFamily: 'product_sans_medium'
+    fontFamily: 'helvetica_neue_lt',
+    fontSize: 16,
   }
 });
 
