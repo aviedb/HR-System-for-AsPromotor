@@ -92,7 +92,12 @@ class App extends Component {
 
   @observable fontLoaded = false;
 
-  async componentDidMount() {
+  componentDidMount() {
+    this.loadFonts();
+    this.defaultFonts();
+  }
+
+  async loadFonts() {
     await Font.loadAsync({
       'helvetica_neue': require('./src/assets/fonts/helvetica_neue.ttf'),
       'helvetica_neue_lt': require('./src/assets/fonts/helvetica_neue_lt.ttf'),
@@ -108,10 +113,9 @@ class App extends Component {
     });
 
     this.fontLoaded = true;
-    this.defaultFonts();
   }
 
-  defaultFonts(){
+  defaultFonts() {
     const customTextProps = {
       style: {
         fontFamily: 'helvetica_neue_md',
@@ -122,13 +126,8 @@ class App extends Component {
 
   render() {
     return (
-      <ApplicationProvider
-        mapping={mapping}
-        theme={theme}
-      >
-        {this.fontLoaded &&
-          <AppContainer />
-        }
+      <ApplicationProvider mapping={mapping} theme={theme}>
+        {this.fontLoaded && <AppContainer />}
       </ApplicationProvider>
     );
   }
