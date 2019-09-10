@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'normal',
     fontFamily: 'product_sans_medium',
-    color: theme["text-basic-color"]
   }
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { mapping } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
-import {  
+import {
   createAppContainer,
   createBottomTabNavigator,
   createStackNavigator,

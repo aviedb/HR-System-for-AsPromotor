@@ -5,7 +5,7 @@ import Menu, { MenuItem, MenuDivider } from 'react-native-material-menu';
 import styles from './styles';
 import theme from '../../styles/theme';
 import { icon } from '../../services/stores';
-import { auth } from '../../services/firebase';
+import { auth, firebase } from '../../services/firebase';
 
 class HomeMenu extends Component {
 
@@ -33,21 +33,25 @@ class HomeMenu extends Component {
         icon={() => (
           <Menu
             ref={ref => this._menu = ref}
-            button={icon.getIcon({ name: 'ellipsis1', onPress: () => this._menu.show() })}
+            button={icon.getIcon({
+              name: 'ellipsis1',
+              onPress: () => this._menu.show()
+            })}
           >
+            <MenuItem
+              onPress={this.navigateToProfile}
+              textStyle={styles.menuItemText}
+              disabled
+            >
+              {firebase.auth.currentUser.email}
+            </MenuItem>
             {/* <MenuItem
               onPress={this.navigateToProfile}
               textStyle={styles.menuItemText}
             >
-              Profile
-            </MenuItem>
-            <MenuItem
-              onPress={this.navigateToProfile}
-              textStyle={styles.menuItemText}
-            >
               Settings
-            </MenuItem>
-            <MenuDivider/> */}
+            </MenuItem> */}
+            <MenuDivider/>
             <MenuItem
               onPress={this.attemptLogout}
               textStyle={{ ...styles.menuItemText, color: theme["text-danger-color"] }}
