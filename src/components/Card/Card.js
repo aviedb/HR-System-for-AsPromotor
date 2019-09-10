@@ -14,17 +14,15 @@ const Card = (props) => {
   return (
     <View style={styles.item}>
       <View style={styles.preview}>
-        <Text style={{color: theme["color-primary-500"]}} category="h6">{props.preview}</Text>
+        <Text style={styles.previewText}>{props.preview}</Text>
       </View>
       <View style={styles.content}>
-        <Text category="s1">{props.item.title}</Text>
-        <Text category="s2" style={{color: theme["text-disabled-color"]}}>
-          {props.item.createdAt}
-        </Text>
+        <Text style={styles.titleText}>{props.item.title}</Text>
+        <Text style={styles.subtitleText}>{props.item.createdAt}</Text>
       </View>
       <Touchable onPress={props.onPress}>
         <View style={styles.viewButton}>
-          <Text style={{color: theme["text-alternate-color"]}}>{props.buttonText}</Text>
+          <Text style={styles.buttonText}>{props.buttonText}</Text>
           {icon.getIcon({
             name: 'chevron-small-right',
             color: theme["text-alternate-color"],

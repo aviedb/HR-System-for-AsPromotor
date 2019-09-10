@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 12,
-    paddingVertical: 12
+    paddingVertical: 16
   },
   viewButton: {
     height: 40,
@@ -37,8 +37,25 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 5,
     flexDirection: 'row'
   },
-  itemTitle: {
-    fontWeight: 'normal'
+  previewText: {
+    color: theme["color-primary-500"],
+    fontSize: 20,
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_medium'
+  },
+  titleText: {
+    color: theme["text-hint-color"],
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_medium'
+  },
+  subtitleText: {
+    color: theme["text-disabled-color"],
+    fontWeight: 'normal',
+    fontFamily: 'product_sans_regular'
+  },
+  buttonText: {
+    color: theme["text-alternate-color"],
+    fontFamily: 'product_sans_medium'
   }
 });
 

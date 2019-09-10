@@ -27,6 +27,7 @@ class MSISDN extends Component {
 
   fetchData = () => {
     this.isFetching = true;
+
     db.getMSISDN(res => {
       let data = res.docs.map(doc => {
         doc = doc.data();
@@ -35,6 +36,7 @@ class MSISDN extends Component {
         if (doc.sold) doc.msisdn = `(SOLD) ${doc.msisdn}`;
         return doc;
       }).sort((a, b) => (a.sold === b.sold)? 0 : a.sold? 1 : -1); // sort to display SOLD numbers last
+      
       this.data = data;
       this.isFetching = false;
     });

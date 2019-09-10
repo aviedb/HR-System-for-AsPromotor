@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
 import { mapping } from '@eva-design/eva';
 import { ApplicationProvider } from 'react-native-ui-kitten';
 import {  
@@ -28,10 +27,6 @@ import Profile from './src/screens/Profile';
 
 import { icon } from './src/services/stores';
 import theme from './src/styles/theme';
-
-// disable font scaling
-Text.defaultProps = Text.defaultProps || {};
-Text.defaultProps.allowFontScaling = false;
 
 const HomeTabNavigator = createBottomTabNavigator({
   MSISDN,

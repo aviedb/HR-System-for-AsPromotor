@@ -35,7 +35,7 @@ class HomeMenu extends Component {
             ref={ref => this._menu = ref}
             button={icon.getIcon({ name: 'ellipsis1', onPress: () => this._menu.show() })}
           >
-            <MenuItem
+            {/* <MenuItem
               onPress={this.navigateToProfile}
               textStyle={styles.menuItemText}
             >
@@ -47,7 +47,7 @@ class HomeMenu extends Component {
             >
               Settings
             </MenuItem>
-            <MenuDivider/>
+            <MenuDivider/> */}
             <MenuItem
               onPress={this.attemptLogout}
               textStyle={{ ...styles.menuItemText, color: theme["text-danger-color"] }}
