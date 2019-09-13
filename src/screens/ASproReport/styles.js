@@ -33,14 +33,14 @@ const styles = StyleSheet.create({
     }
   },
   section: {
-    backgroundColor: theme["background-basic-color-2"], 
+    backgroundColor: theme["background-basic-color-2"],
     color: theme["text-hint-color"]
   },
   item: {
-    padding: 20, 
-    backgroundColor: theme["background-basic-color-1"], 
-    borderBottomWidth: 1, 
-    borderBottomColor: theme["border-basic-color-3"], 
+    padding: 20,
+    backgroundColor: theme["background-basic-color-1"],
+    borderBottomWidth: 1,
+    borderBottomColor: theme["border-basic-color-3"],
     flexDirection: 'row'
   },
   itemHourText: {
@@ -59,16 +59,16 @@ const styles = StyleSheet.create({
     marginTop: 4,
   },
   itemButtonContainer: {
-    flex: 1, 
+    flex: 1,
     alignItems: 'flex-end'
   },
   emptyItem: {
-    backgroundColor: theme["background-basic-color-1"], 
+    backgroundColor: theme["background-basic-color-1"],
     paddingLeft: 20,
-    height: 52, 
+    height: 52,
     justifyContent: 'center',
     borderBottomWidth: 1, 
-    borderBottomColor: theme["border-basic-color-3"] 
+    borderBottomColor: theme["border-basic-color-3"]
   },
   emptyItemText: {
     color: theme["text-hint-color"],

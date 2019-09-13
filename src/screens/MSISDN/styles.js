@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     marginTop: -1
   },
   item: {
-    borderTopColor: theme["border-basic-color-2"],
+    borderTopColor: theme["border-basic-color-3"],
     borderTopWidth: 1,
     shadowColor: "#000",
     shadowOffset: {
