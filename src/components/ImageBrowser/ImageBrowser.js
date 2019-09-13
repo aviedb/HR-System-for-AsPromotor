@@ -49,14 +49,14 @@ export default class ImageBrowser extends React.Component {
   }
 
   getPhotos = () => {
-    let params = { first: 500 }
+    let params = { first: 500, sortBy: [MediaLibrary.SortBy.modificationTime] }
     if (this.state.after) params.after = this.state.after
     if (!this.state.hasNextPage) return
     MediaLibrary
       .getAssetsAsync(params)
       .then((assets) => {
         this.processPhotos(assets)
-      })
+      }).catch(err => console.warn(err))
   }
 
   processPhotos = (assets) => {
