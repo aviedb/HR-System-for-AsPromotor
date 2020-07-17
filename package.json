@@ -18,7 +18,7 @@
     "expo-location": "~5.0.1",
     "expo-permissions": "~5.0.1",
     "firebase": "^6.3.4",
-    "lodash": "^4.17.11",
+    "lodash": "^4.17.19",
     "lottie-react-native": "~2.6.1",
     "mobx": "^5.11.0",
     "mobx-react": "^6.1.1",
